@@ -135,7 +135,10 @@ async function consturctServer(moduleDefs) {
   const app = express()
   const { CORS_ALLOW_ORIGIN } = process.env
   app.set('trust proxy', true)
-
+  /**
+   * Serving static files
+   */
+  app.use(express.static(path.join(__dirname, 'public')))
   /**
    * CORS & Preflight request
    */
@@ -176,11 +179,6 @@ async function consturctServer(moduleDefs) {
   app.use(express.urlencoded({ extended: false }))
 
   app.use(fileUpload())
-
-  /**
-   * Serving static files
-   */
-  app.use(express.static(path.join(__dirname, 'public')))
 
   /**
    * Cache

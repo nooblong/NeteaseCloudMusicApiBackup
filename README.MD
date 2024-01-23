@@ -131,7 +131,7 @@ banner({ type:0 }).then(res=>{
 [文档地址](http://docs.neteasecloudmusicapi.binaryify.com/#/) 
 
 
-![文档](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/docs.png)
+![文档](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/public/static/docs.png)
 
 
 ## 功能特性
@@ -417,8 +417,8 @@ banner({ type:0 }).then(res=>{
 $ npm test
 ```
 
-![单元测试](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/screenshot1.png)
-![单元测试](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/screenshot2.png)
+![单元测试](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/public/static/screenshot1.png)
+![单元测试](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/public/static/screenshot2.png)
 
 ## SDK
 

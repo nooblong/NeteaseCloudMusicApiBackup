@@ -861,8 +861,6 @@ signature：用户签名
 
 **调用例子 :** `/user/playlist?uid=32953014`
 
-返回数据如下图 :
-![用户歌单](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/%E7%94%A8%E6%88%B7%E6%AD%8C%E5%8D%95.png)
 
 ### 更新歌单
 
@@ -1686,8 +1684,6 @@ tags: 歌单标签
 
 **调用例子 :** `/lyric?id=33894312`
 
-返回数据如下图 :
-![获取歌词](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/%E6%AD%8C%E8%AF%8D.png)
 
 ### 获取逐字歌词
 
@@ -1789,8 +1785,6 @@ tags: 歌单标签
 
 **调用例子 :** `/comment/music?id=186016&limit=1` 对应晴天评论
 
-返回数据如下图 :
-![获取评论](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/comment.png)
 
 ### 楼层评论
 
@@ -2360,8 +2354,6 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 **调用例子 :** `/artists?id=6452`
 
-返回数据如下图 :
-![获取歌手单曲](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/artists.png)
 
 ### 获取歌手 mv
 
@@ -2390,8 +2382,6 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 **调用例子 :** `/artist/album?id=6452&limit=5` ( 周杰伦 )
 
-返回数据如下图 :
-![获取专辑内容](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/artist_album.png)
 
 ### 获取歌手描述
 
@@ -2471,8 +2461,6 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 **调用例子 :** `/recommend/resource`
 
-返回数据如下图 :
-![每日推荐歌单](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/%E6%8E%A8%E8%8D%90%E6%AD%8C%E5%8D%95.png)
 
 ### 获取每日推荐歌曲
 
@@ -2482,8 +2470,6 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 **调用例子 :** `/recommend/songs`
 
-返回数据如下图 :
-![每日推荐歌曲](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/%E6%8E%A8%E8%8D%90%E6%AD%8C%E6%9B%B2.png)
 
 ### 每日推荐歌曲-不感兴趣
 
@@ -2535,9 +2521,7 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 **调用例子 :** `/personal_fm`
 
-返回数据如下图 :
 
-![私人 FM](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/personal_fm.png)
 
 ### 签到
 
@@ -2550,11 +2534,8 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 **调用例子 :** `/daily_signin`
 
-返回数据如下图 :
 
-![签到成功](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/signinSuccess.png)
 
-![签到失败](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/signinError.png)
 
 ### 乐签信息
 
@@ -2574,13 +2555,10 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 **调用例子 :** `/like?id=347230`
 
-返回数据如下图 :
 
-![喜欢成功](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/like.png)
 
 喜欢成功则返回数据的 code 为 200, 其余为失败
 
-![喜欢成功截图](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/likeSuccess.png)
 
 ### 喜欢音乐列表
 
@@ -2602,9 +2580,7 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 **调用例子 :** `/fm_trash?id=347230`
 
-返回数据如下图 :
 
-![移除成功](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/fm_trash.png)
 
 ### 新碟上架
 
@@ -2676,9 +2652,7 @@ pc: 云盘歌曲信息，如果不存在该字段，则为非云盘歌曲
 
 **调用例子 :** `/top/artists?offset=0&limit=30`
 
-返回数据如下图 :
 
-![热门歌手](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/top_artists.png)
 
 ### 全部 mv
 
@@ -2823,9 +2797,7 @@ MV 数据 , 数据包含 mv 名字 , 歌手 , 发布时间 , mv 视频地址等�
 
 **调用例子 :** `/mv/detail?mvid=5436712`
 
-返回数据如下图 :
 
-![mv 数据](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/mv.png)
 
 ### 获取 mv 点赞转发评论数数据
 

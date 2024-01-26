@@ -116,11 +116,11 @@ async function checkVersion() {
             ? VERSION_CHECK_RESULT.NOT_LATEST
             : VERSION_CHECK_RESULT.LATEST,
         )
+      } else {
+        resolve({
+          status: VERSION_CHECK_RESULT.FAILED,
+        })
       }
-    })
-
-    resolve({
-      status: VERSION_CHECK_RESULT.FAILED,
     })
   })
 }

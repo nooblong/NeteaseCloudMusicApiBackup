@@ -291,6 +291,7 @@
 273. 本地歌曲文件匹配网易云歌曲信息
 274. 歌曲音质详情
 275. 歌曲红心数量
+276. 私人 FM 模式选择
 
 ## 安装
 
@@ -4538,6 +4539,20 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 **接口地址:** `/song/red/count`
 
 **调用例子:** `/song/red/count?id=186016`
+
+### 私人 FM 模式选择
+
+说明: 调用此接口返回私人 FM 内容, 并可以选择模式
+
+**必选参数：**     
+
+`mode`: 模式 (aidj, DEFAULT, FAMILIAR, EXPLORE, SCENE_RCMD)
+
+**可选参数：**  
+
+`submode`: 当 mode 为 SCENE_RCMD 是可为 ( EXERCISE, FOCUS, NIGHT_EMO )
+
+**接口地址:** `/personal/fm/mode`
 
 ## 离线访问此文档
 

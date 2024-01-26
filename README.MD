@@ -61,6 +61,14 @@ windows 下使用 git-bash 或者 cmder 等终端执行以下命令:
 $ set PORT=4000 && node app.js
 ```
 
+## npx 方式运行
+可在终端直接执行
+```bash
+npx NeteaseCloudMusicApi@latest
+```
+使用此命令，可直接启动服务，无需下载或者 clone 项目
+
+
 ## Vercel 部署
 
 v4.0.8 加入了 Vercel 配置文件,可以直接在 Vercel 下部署了,不需要自己的服务器
@@ -406,10 +414,13 @@ banner({ type:0 }).then(res=>{
 268. 用户贡献条目、积分、云贝数量
 269. 年度听歌报告
 270. 播客声音搜索
+271. 播客声音排序
+272. 播客列表详情
+273. 本地歌曲文件匹配网易云歌曲信息
+274. 歌曲音质详情
+275. 歌曲红心数量
+276. 私人 FM 模式选择
 
-## 更新日志
-
-[changelog](https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/CHANGELOG.MD)
 
 ## 单元测试
 

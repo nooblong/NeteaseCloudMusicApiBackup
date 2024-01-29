@@ -7,3 +7,4 @@ node_modules
 examples/moddef.json
 bin
 anonymous_token
+.vercel

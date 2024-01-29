@@ -31,7 +31,7 @@ module.exports = async (query, request) => {
   const imgX = query.imgX || 0
   const imgY = query.imgY || 0
   const res3 = await request(
-    'POST',
+    'GET',
     `https://music.163.com/upload/img/op?id=${res.body.result.docId}&op=${imgX}y${imgY}y${imgSize}y${imgSize}`,
     {},
     { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy },

@@ -296,7 +296,7 @@
 ## 安装
 
 ```shell
-$ git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
+$ git clone git@gitlab.com:Binaryify/NeteaseCloudMusicApi.git
 $ cd NeteaseCloudMusicApi
 $ npm install
 ```
@@ -353,7 +353,7 @@ v4.0.8 加入了 Vercel 配置文件,可以直接在 Vercel 下部署了,不需�
 
 ### 操作方法
 
-1. fork 此项目
+1. [fork](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/forks/new) 此项目
 2. 在 Vercel 官网点击 `New Project`
 3. 点击 `Import Git Repository` 并选择你 fork 的此项目并点击`import`
 4. 点击 `PERSONAL ACCOUNT` 的 `select`
@@ -364,7 +364,7 @@ v4.0.8 加入了 Vercel 配置文件,可以直接在 Vercel 下部署了,不需�
 ## 腾讯云 serverless 部署
 因 `Vercel` 在国内访问太慢(不绑定自己的域名的情况下),在此提供腾讯云 serverless 部署方法(注意:腾讯云 serverless 并不是免费的,前三个月有免费额度,之后收费)
 ### 操作方法
-1. fork 此项目
+1. [fork](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/forks/new)  此项目
 2. 在腾讯云serverless应用管理页面( https://console.cloud.tencent.com/sls ),点击`新建应用`
 3. 顶部`创建方式`选择 `Web 应用`
 4. 选择 `Express框架`,点击底部`下一步按钮`
@@ -428,9 +428,6 @@ banner({ type: 0 }).then((res) => {
 })
 ```
 
-## 更新到 v3.0 说明
-
-!>2018.10.14 更新到 3.0.0,使用了模块化机制,因为部分接口参数和 url 做了调整,如还不想升级到 3.0.0,请查看 [v2 的文档](http://binaryify.github.io/NeteaseCloudMusicApi/#/v2), [更新日志](https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/CHANGELOG.MD), [2.0+下载地址](https://github.com/Binaryify/NeteaseCloudMusicApi/releases/tag/v2.20.5), 同时 2.0+ 将不再维护
 
 ## Docker 容器运行
 
@@ -465,7 +462,7 @@ docker run -d -p 3000:3000 -e http_proxy= -e https_proxy= -e no_proxy= -e HTTP_P
 > 以下是自行 build docker 镜像方式
 
 ```
-$ git clone https://github.com/Binaryify/NeteaseCloudMusicApi && cd NeteaseCloudMusicApi
+$ git clone https://gitlab.com/Binaryify/neteasecloudmusicapi.git && cd NeteaseCloudMusicApi
 
 $ sudo docker build . -t netease-music-api
 
@@ -819,7 +816,7 @@ signature：用户签名
 
 ### 更新头像
 
-说明 : 登录后调用此接口,使用`'Content-Type': 'multipart/form-data'`上传图片 formData(name 为'imgFile'),可更新头像(参考: https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/public/avatar_update.html  ),支持命令行调用,参考module_example目录下`avatar_upload.js`
+说明 : 登录后调用此接口,使用`'Content-Type': 'multipart/form-data'`上传图片 formData(name 为'imgFile'),可更新头像(参考: https://gitlab.com/Binaryify/NeteaseCloudMusicApi/blob/main/public/avatar_update.html  ),支持命令行调用,参考module_example目录下`avatar_upload.js`
 
 **可选参数 :**
 
@@ -936,7 +933,7 @@ tags: 歌单标签
 
 ### 歌单封面上传
 
-说明 : 登录后调用此接口,使用`'Content-Type': 'multipart/form-data'`上传图片 formData(name 为'imgFile'),可更新歌单封面(参考:https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/public/playlist_cover_update.html)
+说明 : 登录后调用此接口,使用`'Content-Type': 'multipart/form-data'`上传图片 formData(name 为'imgFile'),可更新歌单封面(参考:https://gitlab.com/Binaryify/NeteaseCloudMusicApi/blob/main/public/playlist_cover_update.html)
 
 **必选参数 :**  
 `id`: 歌单 id 3143833470
@@ -2996,7 +2993,7 @@ type : 地区
 
 说明 : 登录后调用此接口,使用`'Content-Type': 'multipart/form-data'`上传 mp3 formData(name 为'songFile'),可上传歌曲到云盘
 
-参考: https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/public/cloud.html
+参考: https://gitlab.com/Binaryify/NeteaseCloudMusicApi/blob/main/public/cloud.html
 
 访问地址: http://localhost:3000/cloud.html)
 
@@ -3661,7 +3658,7 @@ type='1009' 获取其 id, 如`/search?keywords= 代码时间 &type=1009`
 
 主机模式:
 
-代码可参考: https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/public/listen_together_host.html
+代码可参考: https://gitlab.com/Binaryify/NeteaseCloudMusicApi/blob/main/public/listen_together_host.html
 
 访问地址: http://localhost:3000/listen_together_host.html
 
@@ -4564,4 +4561,4 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 
 ## License
 
-[The MIT License (MIT)](https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/LICENSE)
+[The MIT License (MIT)](https://gitlab.com/Binaryify/NeteaseCloudMusicApi/blob/main/LICENSE)

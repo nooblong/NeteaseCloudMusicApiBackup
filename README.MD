@@ -29,7 +29,7 @@
 ## 安装
 
 ```shell
-$ git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
+$ git clone git@gitlab.com:Binaryify/NeteaseCloudMusicApi.git
 $ cd NeteaseCloudMusicApi
 $ npm install
 ```
@@ -37,7 +37,7 @@ $ npm install
 或者
 
 ```shell
-$ git clone https://github.com/Binaryify/NeteaseCloudMusicApi.git
+$ git clone https://gitlab.com/Binaryify/NeteaseCloudMusicApi.git
 $ cd NeteaseCloudMusicApi
 $ npm install
 ```
@@ -428,8 +428,6 @@ banner({ type:0 }).then(res=>{
 $ npm test
 ```
 
-![单元测试](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/public/static/screenshot1.png)
-![单元测试](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/public/static/screenshot2.png)
 
 ## SDK
 
@@ -447,4 +445,4 @@ $ npm test
 
 ## License
 
-[The MIT License (MIT)](https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/LICENSE)
+[The MIT License (MIT)](https://gitlab.com/Binaryify/NeteaseCloudMusicApi/blob/main/LICENSE)

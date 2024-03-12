@@ -8,6 +8,11 @@
 </head>
 
 <body>
+  <div>
+    <a href="/qrlogin-nocookie.html">
+      如果没登录,请先登录
+    </a>
+  </div>
   <div id="app">
     <ul>
       <li v-for="(item,index) in voicelist" @click="currentVoiceIndex=index"
@@ -61,31 +66,10 @@
           const file = document.querySelector('input[type=file]').files[0]
           this.upload(file)
         },
-        async login() {
-          const phone = '' // 这里填手机号
-          const password = '' // 这里填密码
-          const fileUpdateTime = {}
-          let fileLength = 0
-          if (!phone || !password) {
-            const msg = '请设置你的手机号码和密码'
-            alert(msg)
-            throw new Error(msg)
-          }
 
-          const res = await axios({
-            url: `/login/cellphone`,
-            method: 'post',
-            data: {
-              phone,
-              password,
-            },
-          })
-          this.cookieToken = res.data.cookie
-        },
         async getData() {
-          await this.login()
           const res = await axios({
-            url: `/voicelist/search?cookie=${this.cookieToken}`,
+            url: `/voicelist/search?cookie=${localStorage.getItem('cookie')}`,
           })
 
           console.log(res.data.data)
@@ -103,15 +87,11 @@
           formData.append('songFile', file)
           axios({
             method: 'post',
-            url: `/voice/upload?time=${Date.now()}&cookie=${
-              this.cookieToken
-            }&songName=${this.songName}&voiceListId=${
-              this.currentVoice.voiceListId
-            }&categoryId=${this.currentVoice.categoryId}&coverImgId=${
-              this.currentVoice.coverImgId
-            }&secondCategoryId=${this.currentVoice.secondCategoryId}&description=${
-              this.description
-            }&privacy=1`,
+            url: `/voice/upload?time=${Date.now()}&cookie=${localStorage.getItem('cookie')
+              }&songName=${this.songName}&voiceListId=${this.currentVoice.voiceListId
+              }&categoryId=${this.currentVoice.categoryId}&coverImgId=${this.currentVoice.coverImgId
+              }&secondCategoryId=${this.currentVoice.secondCategoryId}&description=${this.description
+              }&privacy=1`,
             headers: {
               'Content-Type': 'multipart/form-data',
             },

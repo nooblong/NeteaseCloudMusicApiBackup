@@ -13,22 +13,6 @@
   <script src="https://cdn.jsdelivr.net/npm/axios@0.26.1/dist/axios.min.js
     "></script>
   <script>
-    async function checkStatus(key) {
-      const res = await axios({
-        url: `/login/qr/check?key=${key}&timestamp=${Date.now()}`,
-      })
-      return res.data
-    }
-    async function getLoginStatus(cookie = '') {
-      const res = await axios({
-        url: `/login/status?timestamp=${Date.now()}`,
-        method: 'post',
-        data: {
-          cookie,
-        },
-      })
-      document.querySelector('#info').innerText = JSON.stringify(res.data, null, 2)
-    }
     async function login() {
       let timer
       let timestamp = Date.now()
@@ -59,6 +43,23 @@
       }, 3000)
     }
     login()
+
+    async function checkStatus(key) {
+      const res = await axios({
+        url: `/login/qr/check?key=${key}&timestamp=${Date.now()}`,
+      })
+      return res.data
+    }
+    async function getLoginStatus(cookie = '') {
+      const res = await axios({
+        url: `/login/status?timestamp=${Date.now()}`,
+        method: 'post',
+        data: {
+          cookie,
+        },
+      })
+      document.querySelector('#info').innerText = JSON.stringify(res.data, null, 2)
+    }
   </script>
   <style>
     .info {

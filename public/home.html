@@ -8,32 +8,18 @@
 </head>
 
 <body>
+  <div>
+    <a href="/qrlogin-nocookie.html">
+      如果没登录,请先登录
+    </a>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/axios@0.26.1/dist/axios.min.js"></script>
   <script>
-    const phone = '' // 这里填手机号
-    const password = '' // 这里填密码
-    const fileUpdateTime = {}
-    let cookieToken = ''
-    if (!phone || !password) {
-      const msg = '请设置你的手机号码和密码'
-      alert(msg)
-      throw new Error(msg)
-    }
-
-    async function login() {
-      const res = await axios({
-        url: `/login/cellphone?phone=${phone}&password=${encodeURIComponent(
-          password,
-        )}`,
-      })
-      cookieToken = res.data.cookie
-    }
     async function main() {
-      await login()
       const res = await axios({
         url: `/homepage/block/page`,
         data: {
-          cookie: cookieToken,
+          cookie: localStorage.getItem('cookie'),
         },
         method: 'post',
       })
@@ -44,7 +30,7 @@
         const res2 = await axios({
           url: `/homepage/block/page?time=${Date.now()}`,
           data: {
-            cookie: cookieToken,
+            cookie: localStorage.getItem('cookie'),
             cursor: cursor,
           },
           method: 'post',

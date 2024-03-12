@@ -10,7 +10,6 @@
 <a href="https://codeclimate.com/github/Binaryify/NeteaseCloudMusicApi"><img src="https://codeclimate.com/github/Binaryify/NeteaseCloudMusicApi/badges/gpa.svg" /></a>
 </p>
 
-
 ## 灵感来自
 
 [disoul/electron-cloud-music](https://github.com/disoul/electron-cloud-music)
@@ -20,7 +19,6 @@
 [sqaiyan/netmusic-node](https://github.com/sqaiyan/netmusic-node)
 
 [greats3an/pyncm](https://github.com/greats3an/pyncm)
-
 
 ## 环境要求
 
@@ -43,6 +41,7 @@ $ npm install
 ```
 
 ## 运行
+
 调用前务必阅读文档的`调用前须知`
 
 ```shell
@@ -62,12 +61,14 @@ $ set PORT=4000 && node app.js
 ```
 
 ## npx 方式运行
+
 可在终端直接执行
+
 ```bash
 npx NeteaseCloudMusicApi@latest
 ```
-使用此命令，可直接启动服务，无需下载或者 clone 项目
 
+使用此命令，可直接启动服务，无需下载或者 clone 项目
 
 ## Vercel 部署
 
@@ -80,27 +81,32 @@ v4.0.8 加入了 Vercel 配置文件,可以直接在 Vercel 下部署了,不需�
 3. 点击 `Import Git Repository` 并选择你 fork 的此项目并点击`import`
 4. 点击 `PERSONAL ACCOUNT` 的 `select`
 5. 直接点`Continue`
-6. `PROJECT NAME`自己填,`FRAMEWORK PRESET` 选 `Other` 然后直接点 `Deploy` 接着等部署完成即可  
+6. `PROJECT NAME`自己填,`FRAMEWORK PRESET` 选 `Other` 然后直接点 `Deploy` 接着等部署完成即可
 
 ## 腾讯云 serverless 部署
+
 因 `Vercel` 在国内访问太慢,在此提供腾讯云 serverless 部署方法(注意:腾讯云 serverless 并不是免费的,前三个月有免费额度,之后收费)
+
 ### 操作方法
+
 1. fork 此项目
-2. 在腾讯云serverless应用管理页面( https://console.cloud.tencent.com/sls ),点击`新建应用`
+2. 在腾讯云 serverless 应用管理页面( https://console.cloud.tencent.com/sls ),点击`新建应用`
 3. 顶部`创建方式`选择 `Web 应用`
 4. 选择 `Express框架`,点击底部`下一步按钮`
-5. 输入`应用名`,上传方式选择`代码仓库`,进行GitHub授权(如已授权可跳过这一步),代码仓库选择刚刚fork的项目
+5. 输入`应用名`,上传方式选择`代码仓库`,进行 GitHub 授权(如已授权可跳过这一步),代码仓库选择刚刚 fork 的项目
 6. 启动文件填入:
+
 ```
 #!/bin/bash
 export PORT=9000
 /var/lang/node16/bin/node app.js
-``` 
+```
+
 7. 点击`完成`,等待部署完成,点击`资源列表`的 `API网关` 里的 `URL`,正常情况会打开文档地址,点击文档`例子`可查看接口调用效果
 
-## 可以在Node.js调用
+## 可以在 Node.js 调用
 
-v3.31.0后支持Node.js调用,导入的方法为`module`内的文件名,返回内容包含`status`和`body`,`status`为状态码,`body`为请求返回内容,参考`module_example` 文件夹下的 `test.js`
+v3.31.0 后支持 Node.js 调用,导入的方法为`module`内的文件名,返回内容包含`status`和`body`,`status`为状态码,`body`为请求返回内容,参考`module_example` 文件夹下的 `test.js`
 
 ```js
 const { login_cellphone, user_cloud } = require('NeteaseCloudMusicApi')
@@ -108,14 +114,13 @@ async function main() {
   try {
     const result = await login_cellphone({
       phone: '手机号',
-      password: '密码'
+      password: '密码',
     })
     console.log(result)
     const result2 = await user_cloud({
-      cookie: result.body.cookie // 凭证
+      cookie: result.body.cookie, // 凭证
     })
     console.log(result2.body)
-      
   } catch (error) {
     console.log(error)
   }
@@ -128,19 +133,14 @@ main()
 ```ts
 // test.ts
 import { banner } from 'NeteaseCloudMusicApi'
-banner({ type:0 }).then(res=>{
+banner({ type: 0 }).then((res) => {
   console.log(res)
 })
 ```
 
-
 ## 使用文档
 
-[文档地址](https://docs-neteasecloudmusicapi.vercel.app) 
-
-
-![文档](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/public/static/docs.png)
-
+[文档地址](https://docs-neteasecloudmusicapi.vercel.app)
 
 ## 功能特性
 
@@ -259,10 +259,10 @@ banner({ type:0 }).then(res=>{
 113. 云盘数据详情
 114. 私信内容
 115. 我的数字专辑
-116. batch批量请求接口
+116. batch 批量请求接口
 117. 获取视频标签列表
-118. 全部mv
-119. 网易出品mv
+118. 全部 mv
+119. 网易出品 mv
 120. 收藏/取消收藏专辑
 121. 专辑动态信息
 122. 热搜列表(详细)
@@ -274,7 +274,7 @@ banner({ type:0 }).then(res=>{
 128. 更新歌单标签
 129. 默认搜索关键词
 130. 删除歌单
-131. 电台banner
+131. 电台 banner
 132. 用户电台
 133. 热门电台
 134. 电台 - 节目详情
@@ -282,12 +282,12 @@ banner({ type:0 }).then(res=>{
 136. 电台 - 新晋电台榜/热门电台榜
 137. 类别热门电台
 138. 云村热评
-139. 电台24小时节目榜
-140. 电台24小时主播榜
+139. 电台 24 小时节目榜
+140. 电台 24 小时主播榜
 141. 电台最热主播榜
 142. 电台主播新人榜
 143. 电台付费精品榜
-144. 歌手热门50首歌曲
+144. 歌手热门 50 首歌曲
 145. 购买数字专辑
 146. 获取 mv 点赞转发评论数数据
 147. 获取视频点赞转发评论数数据
@@ -295,7 +295,7 @@ banner({ type:0 }).then(res=>{
 149. 调整歌曲顺序
 150. 独家放送列表
 151. 获取推荐视频
-152. 获取视频分类列表 
+152. 获取视频分类列表
 153. 获取全部视频列表接口
 154. 获取历史日推可用日期列表
 155. 获取历史日推详细数据
@@ -326,7 +326,7 @@ banner({ type:0 }).then(res=>{
 180. 云贝签到信息
 181. 云贝签到
 182. 云贝所有任务
-183. 云贝todo任务
+183. 云贝 todo 任务
 184. 云贝今日签到信息
 185. 云贝完成任务
 186. 云贝收入
@@ -339,7 +339,7 @@ banner({ type:0 }).then(res=>{
 193. 评论抱一抱列表
 194. 收藏的专栏
 195. 关注歌手新歌
-196. 关注歌手新MV
+196. 关注歌手新 MV
 197. 歌手详情
 198. 云盘上传
 199. 二维码登录
@@ -353,12 +353,12 @@ banner({ type:0 }).then(res=>{
 207. 云贝推歌
 208. 云贝推歌历史记录
 209. 已购单曲
-210. 获取mlog播放地址
-211. 将mlog id转为视频id
-212. vip成长值
-213. vip成长值获取记录
-214. vip任务
-215. 领取vip成长值
+210. 获取 mlog 播放地址
+211. 将 mlog id 转为视频 id
+212. vip 成长值
+213. vip 成长值获取记录
+214. vip 任务
+215. 领取 vip 成长值
 216. 歌手粉丝
 217. 数字专辑详情
 218. 数字专辑销量
@@ -403,12 +403,12 @@ banner({ type:0 }).then(res=>{
 257. 验证接口-二维码生成
 258. 验证接口-二维码检测
 259. 听歌识曲
-260. 根据nickname获取userid接口
+260. 根据 nickname 获取 userid 接口
 261. 播客声音列表
 262. 专辑简要百科信息
 263. 歌曲简要百科信息
 264. 歌手简要百科信息
-265. mv简要百科信息
+265. mv 简要百科信息
 266. 搜索歌手
 267. 用户贡献内容
 268. 用户贡献条目、积分、云贝数量
@@ -421,27 +421,23 @@ banner({ type:0 }).then(res=>{
 275. 歌曲红心数量
 276. 私人 FM 模式选择
 
-
 ## 单元测试
 
 ```shell
 $ npm test
 ```
 
-
 ## SDK
 
-| 语言   |                    作者                     |                             地址                             |  类型  |
-| :--:   | :-----------------------------------------: | :----------------------------------------------------------: | :----: |
-| Java   |    [JackuXL](https://github.com/JackuXL)    | [https://github.com/JackuXL/NeteaseCloudMusicApi-SDK](https://github.com/JackuXL/NeteaseCloudMusicApi-SDK) | 第三方 |
-| Java   | [1015770492](https://github.com/1015770492) |       https://github.com/1015770492/yumbo-music-utils        | 第三方 |
-| Python |    [盧瞳](https://github.com/2061360308)    |  [NeteaseCloudMusic_PythonSDK](https://github.com/2061360308/NeteaseCloudMusic_PythonSDK)  | 第三方 |
-
+|  语言  |                    作者                     |                                                    地址                                                    |  类型  |
+| :----: | :-----------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :----: |
+|  Java  |    [JackuXL](https://github.com/JackuXL)    | [https://github.com/JackuXL/NeteaseCloudMusicApi-SDK](https://github.com/JackuXL/NeteaseCloudMusicApi-SDK) | 第三方 |
+|  Java  | [1015770492](https://github.com/1015770492) |                              https://github.com/1015770492/yumbo-music-utils                               | 第三方 |
+| Python |    [盧瞳](https://github.com/2061360308)    |          [NeteaseCloudMusic_PythonSDK](https://github.com/2061360308/NeteaseCloudMusic_PythonSDK)          | 第三方 |
 
 ## 贡献者
 
 ![](https://opencollective.com/NeteaseCloudMusicApi/contributors.svg?width=890)
-
 
 ## License
 

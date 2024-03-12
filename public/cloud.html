@@ -8,29 +8,48 @@
 </head>
 
 <body>
+  <div>
+    <a href="/qrlogin-nocookie.html">
+      如果没登录,请先登录
+    </a>
+  </div>
   <input id="file" type="file" multiple />
+  <div id="app">
+    <ul>
+      <li v-for="(item,index) in songs" :key="index">
+        {{item.songName}}
+      </li>
+    </ul>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios@0.26.1/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script>
-    const phone = '' // 这里填手机号
-    const password = '' // 这里填密码
+    const app = Vue.createApp({
+      data() {
+        return {
+          songs: []
+        }
+      },
+      created() {
+        this.getData()
+      },
+      methods: {
+        getData() {
+          console.log('getdata');
+          const _this = this
+          axios({
+            url: `/user/cloud?time=${Date.now()}&cookie=${localStorage.getItem('cookie')}`,
+          }).then(res => {
+            console.log(res.data)
+            _this.songs = res.data.data
+          })
+        }
+      }
+    }).mount('#app')
     const fileUpdateTime = {}
     let fileLength = 0
-    let cookieToken = ''
-    if (!phone || !password) {
-      const msg = '请设置你的手机号码和密码'
-      alert(msg)
-      throw new Error(msg)
-    }
-    login()
-    main()
-    async function login() {
-      const res = await axios({
-        url: `/login/cellphone?phone=${phone}&password=${encodeURIComponent(password)}`,
-        withCredentials: true, //跨域的话必须设置
-      })
-      cookieToken = res.data.cookie
-    }
+
     function main() {
       document
         .querySelector('input[type="file"]')
@@ -44,13 +63,14 @@
           }
         })
     }
+    main()
 
     function upload(file, currentIndx) {
       var formData = new FormData()
       formData.append('songFile', file)
       axios({
         method: 'post',
-        url: `/cloud?time=${Date.now()}&cookie=${cookieToken}`,
+        url: `/cloud?time=${Date.now()}&cookie=${localStorage.getItem('cookie')}`,
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -58,6 +78,7 @@
       }).then(res => {
         console.log(`${file.name} 上传成功`)
         if (currentIndx >= fileLength) { console.log('上传完毕') }
+        app.getData()
       }).catch(async err => {
         console.log(err)
         console.log(fileUpdateTime)

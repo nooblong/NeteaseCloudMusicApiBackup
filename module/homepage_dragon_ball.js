@@ -5,7 +5,7 @@
 module.exports = (query, request) => {
   const data = {}
   query.cookie.os = 'ios'
-  query.cookie.appver = '8.20.21'
+  query.cookie.appver = '9.0.65'
   return request(
     'POST',
     `https://music.163.com/eapi/homepage/dragon/ball/static`,
@@ -13,6 +13,7 @@ module.exports = (query, request) => {
     {
       crypto: 'eapi',
       cookie: query.cookie,
+      ua: query.ua || '',
       proxy: query.proxy,
       url: '/api/homepage/dragon/ball/static',
       realIP: query.realIP,

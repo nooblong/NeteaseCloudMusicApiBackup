@@ -14,6 +14,7 @@ module.exports = (query, request) => {
     proxy: query.proxy,
     url: '/api/batch',
     cookie: query.cookie,
+    ua: query.ua || '',
     realIP: query.realIP,
   })
 }

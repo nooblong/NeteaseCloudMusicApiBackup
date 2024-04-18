@@ -503,6 +503,8 @@ $ sudo docker run -d -p 3000:3000 netease-music-api
 
 !> 如果不需要接口headers携带cookies信息,可以加上noCookie参数,如`?noCookie=true`
 
+!> 接口支持手动传入 ua 参数,修改 user-agent,如 `?ua=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.0.0`
+
 ### 登录
 
 说明 : 登录有三个接口,建议使用`encodeURIComponent`对密码编码或者使用`POST`请求,避免某些特殊字符无法解析,如`#`(`#`在 url 中会被识别为 hash,而不是 query)

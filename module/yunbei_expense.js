@@ -10,6 +10,7 @@ module.exports = (query, request) => {
     {
       crypto: 'api',
       cookie: query.cookie,
+      ua: query.ua || '',
       proxy: query.proxy,
       realIP: query.realIP,
     },

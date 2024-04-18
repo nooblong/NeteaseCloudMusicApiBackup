@@ -8,6 +8,7 @@ module.exports = (query, request) => {
     {
       crypto: 'eapi',
       cookie: query.cookie,
+      ua: query.ua || '',
       proxy: query.proxy,
       url: '/api/search/defaultkeyword/get',
       realIP: query.realIP,

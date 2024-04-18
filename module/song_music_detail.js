@@ -11,6 +11,7 @@ module.exports = (query, request) => {
     {
       crypto: 'eapi',
       cookie: query.cookie,
+      ua: query.ua || '',
       proxy: query.proxy,
       url: '/api/song/music/detail/get',
       realIP: query.realIP,

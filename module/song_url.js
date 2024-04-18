@@ -13,6 +13,7 @@ module.exports = async (query, request) => {
     {
       crypto: 'eapi',
       cookie: query.cookie,
+      ua: query.ua || '',
       proxy: query.proxy,
       realIP: query.realIP,
       url: '/api/song/enhance/player/url',

@@ -14,6 +14,7 @@ module.exports = (query, request) => {
     {
       crypto: 'weapi',
       cookie: query.cookie,
+      ua: query.ua || '',
       proxy: query.proxy,
       url: '/api/playlist/desc/update',
       realIP: query.realIP,

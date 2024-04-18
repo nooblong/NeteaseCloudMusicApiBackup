@@ -6,6 +6,7 @@ module.exports = (query, request) => {
   return request('POST', `https://music.163.com/weapi/rep/ugc/song/get`, data, {
     crypto: 'eapi',
     cookie: query.cookie,
+    ua: query.ua || '',
     proxy: query.proxy,
     realIP: query.realIP,
     url: '/api/rep/ugc/song/get',

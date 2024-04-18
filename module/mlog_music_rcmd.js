@@ -15,6 +15,7 @@ module.exports = (query, request) => {
     {
       crypto: 'eapi',
       cookie: query.cookie,
+      ua: query.ua || '',
       proxy: query.proxy,
       url: '/api/mlog/rcmd/feed/list',
       realIP: query.realIP,

@@ -6,8 +6,9 @@ module.exports = (query, request) => {
     `https://music.163.com/playlist?id=${query.id}`,
     {},
     {
-      ua: 'pc',
+      uaType: 'pc',
       cookie: query.cookie,
+      ua: query.ua || '',
       proxy: query.proxy,
       realIP: query.realIP,
     },

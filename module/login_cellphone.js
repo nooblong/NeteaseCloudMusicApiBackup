@@ -4,7 +4,7 @@ const crypto = require('crypto')
 
 module.exports = async (query, request) => {
   query.cookie.os = 'ios'
-  query.cookie.appver = '8.20.21'
+  query.cookie.appver = '9.0.65'
   const data = {
     phone: query.phone,
     countrycode: query.countrycode || '86',
@@ -21,8 +21,9 @@ module.exports = async (query, request) => {
     data,
     {
       crypto: 'weapi',
-      ua: 'pc',
+      uaType: 'pc',
       cookie: query.cookie,
+      ua: query.ua || '',
       proxy: query.proxy,
       realIP: query.realIP,
     },

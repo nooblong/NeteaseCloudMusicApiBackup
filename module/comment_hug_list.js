@@ -1,7 +1,7 @@
 const { resourceTypeMap } = require('../util/config.json')
 module.exports = (query, request) => {
   query.cookie.os = 'ios'
-  query.cookie.appver = '8.20.21'
+  query.cookie.appver = '9.0.65'
   query.type = resourceTypeMap[query.type || 0]
   const threadId = query.type + query.sid
   const data = {
@@ -20,6 +20,7 @@ module.exports = (query, request) => {
     {
       crypto: 'api',
       cookie: query.cookie,
+      ua: query.ua || '',
       proxy: query.proxy,
       realIP: query.realIP,
     },

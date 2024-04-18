@@ -14,7 +14,12 @@ module.exports = async (query, request) => {
     'POST',
     `https://music.163.com/weapi/nos/token/alloc`,
     data,
-    { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy },
+    {
+      crypto: 'weapi',
+      cookie: query.cookie,
+      ua: query.ua || '',
+      proxy: query.proxy,
+    },
   )
   //   上传图片
   const res2 = await axios({
@@ -34,7 +39,12 @@ module.exports = async (query, request) => {
     'GET',
     `https://music.163.com/upload/img/op?id=${res.body.result.docId}&op=${imgX}y${imgY}y${imgSize}y${imgSize}`,
     {},
-    { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy },
+    {
+      crypto: 'weapi',
+      cookie: query.cookie,
+      ua: query.ua || '',
+      proxy: query.proxy,
+    },
   )
 
   return {

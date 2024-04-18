@@ -14,6 +14,7 @@ module.exports = (query, request) => {
   return request('POST', `https://music.163.com/weapi/point/dailyTask`, data, {
     crypto: 'weapi',
     cookie: query.cookie,
+    ua: query.ua || '',
     proxy: query.proxy,
     realIP: query.realIP,
   })

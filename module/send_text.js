@@ -1,7 +1,8 @@
 // 私信
 
 module.exports = (query, request) => {
-  query.cookie.os = 'pc'
+  query.cookie.os = 'ios'
+  query.cookie.appver = '9.0.65'
   const data = {
     type: 'text',
     msg: query.msg,

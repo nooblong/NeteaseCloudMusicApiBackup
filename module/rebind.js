@@ -1,6 +1,8 @@
 // 更换手机
 
 module.exports = (query, request) => {
+  query.cookie.os = 'ios'
+  query.cookie.appver = '9.0.65'
   const data = {
     captcha: query.captcha,
     phone: query.phone,

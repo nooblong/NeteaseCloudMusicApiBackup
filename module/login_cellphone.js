@@ -1,6 +1,6 @@
 // 手机登录
 
-const crypto = require('crypto')
+const CryptoJS = require('crypto-js')
 
 module.exports = async (query, request) => {
   query.cookie.os = 'ios'
@@ -11,8 +11,7 @@ module.exports = async (query, request) => {
     captcha: query.captcha,
     [query.captcha ? 'captcha' : 'password']: query.captcha
       ? query.captcha
-      : query.md5_password ||
-        crypto.createHash('md5').update(query.password).digest('hex'),
+      : query.md5_password || CryptoJS.MD5(query.password).toString(),
     rememberLogin: 'true',
   }
   let result = await request(

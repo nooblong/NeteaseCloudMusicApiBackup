@@ -15,7 +15,7 @@ const anonymous_token = fs.readFileSync(
 const { URLSearchParams, URL } = require('url')
 // request.debug = true // 开启可看到更详细信息
 
-const chooseUserAgent = (uaType = false) => {
+const chooseUserAgent = (uaType) => {
   const userAgentMap = {
     mobile:
       'Mozilla/5.0 (iPhone; CPU iPhone OS 17_2_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Mobile/15E148 Safari/604.1',
@@ -80,8 +80,7 @@ const createRequest = (method, url, data = {}, options) => {
     }
     // console.log(options.cookie, headers['Cookie'])
     if (options.crypto === 'weapi') {
-      headers['User-Agent'] =
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.69'
+      headers['User-Agent'] = options.ua || chooseUserAgent('pc')
       let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
       data.csrf_token = csrfToken ? csrfToken[1] : ''
       data = encrypt.weapi(data)

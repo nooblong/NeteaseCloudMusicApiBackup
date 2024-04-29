@@ -3,8 +3,6 @@
 const CryptoJS = require('crypto-js')
 
 module.exports = async (query, request) => {
-  query.cookie.os = 'ios'
-  query.cookie.appver = '9.0.65'
   const data = {
     username: query.email,
     password: query.md5_password || CryptoJS.MD5(query.password).toString(),

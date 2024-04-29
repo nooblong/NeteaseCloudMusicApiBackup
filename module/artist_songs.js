@@ -1,5 +1,6 @@
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
+  query.cookie.appver = '2.9.7'
   const data = {
     id: query.id,
     private_cloud: 'true',

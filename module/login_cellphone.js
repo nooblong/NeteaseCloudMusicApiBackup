@@ -3,8 +3,6 @@
 const CryptoJS = require('crypto-js')
 
 module.exports = async (query, request) => {
-  query.cookie.os = 'ios'
-  query.cookie.appver = '9.0.65'
   const data = {
     phone: query.phone,
     countrycode: query.countrycode || '86',

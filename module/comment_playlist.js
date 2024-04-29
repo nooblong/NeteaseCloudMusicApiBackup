@@ -2,6 +2,7 @@
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
+  query.cookie.appver = '2.9.7'
   const data = {
     rid: query.id,
     limit: query.limit || 20,

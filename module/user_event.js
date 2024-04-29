@@ -1,8 +1,6 @@
 // 用户动态
 
 module.exports = (query, request) => {
-  query.cookie.os = 'ios'
-  query.cookie.appver = '9.0.65'
   const data = {
     getcounts: true,
     time: query.lasttime || -1,

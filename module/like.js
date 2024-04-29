@@ -1,8 +1,6 @@
 // 红心与取消红心歌曲
 
 module.exports = (query, request) => {
-  query.cookie.os = 'ios'
-  query.cookie.appver = '9.0.65'
   query.like = query.like == 'false' ? false : true
   const data = {
     alg: 'itembased',

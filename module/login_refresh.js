@@ -1,8 +1,6 @@
 // 登录刷新
 
 module.exports = async (query, request) => {
-  query.cookie.os = 'ios'
-  query.cookie.appver = '9.0.65'
   let result = await request(
     'POST',
     `https://music.163.com/weapi/login/token/refresh`,

@@ -2,6 +2,7 @@
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
+  query.cookie.appver = '2.9.7'
   const data = {
     forwards: query.forwards,
     id: query.evId,

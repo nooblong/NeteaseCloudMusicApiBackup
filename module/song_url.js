@@ -1,22 +1,26 @@
 // 歌曲链接
 module.exports = async (query, request) => {
-  query.cookie.os = 'pc'
   const ids = String(query.id).split(',')
   const data = {
-    ids: JSON.stringify(ids),
-    br: parseInt(query.br || 999000),
+    trialMode: 2,
+    immerseType: 'ste',
+    ids: '["1328146041"]',
+    os: 'iOS',
+    level: 'exhigh',
+    deviceId: 'a8c8c4d613b999dc5d13277b43c7e925',
+    encodeType: 'aac',
+    extPlay: 0,
   }
   const res = await request(
     'POST',
-    `https://interface3.music.163.com/eapi/song/enhance/player/url`,
+    `https://music.163.com/api/song/enhance/player/url/v1`,
     data,
     {
-      crypto: 'eapi',
+      crypto: 'weapi',
       cookie: query.cookie,
       ua: query.ua || '',
       proxy: query.proxy,
       realIP: query.realIP,
-      url: '/api/song/enhance/player/url',
     },
   )
   // 根据id排序

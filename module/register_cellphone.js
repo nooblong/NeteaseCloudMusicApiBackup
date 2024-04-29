@@ -3,6 +3,7 @@ const CryptoJS = require('crypto-js')
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
+  query.cookie.appver = '2.9.7'
   const data = {
     captcha: query.captcha,
     phone: query.phone,

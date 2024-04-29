@@ -3,6 +3,7 @@ const { resourceTypeMap } = require('../util/config.json')
 
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
+  query.cookie.appver = '2.9.7'
   query.type = resourceTypeMap[query.type]
   const data = {
     rid: query.id,

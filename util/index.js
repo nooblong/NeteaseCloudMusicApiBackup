@@ -14,6 +14,14 @@ module.exports = {
     })
     return obj
   },
+  cookieObjToString(cookie) {
+    return Object.keys(cookie)
+      .map(
+        (key) =>
+          `${encodeURIComponent(key)}=${encodeURIComponent(cookie[key])}`,
+      )
+      .join('; ')
+  },
   getRandom(num) {
     var random = Math.floor(
       (Math.random() + Math.floor(Math.random() * 9 + 1)) *

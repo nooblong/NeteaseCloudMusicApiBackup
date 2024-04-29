@@ -3,8 +3,6 @@
 // 而是采用 standard, exhigh, lossless, hires, jyeffect(高清环绕声), sky(沉浸环绕声), jymaster(超清母带) 进行音质判断
 
 module.exports = (query, request) => {
-  query.cookie.os = 'android'
-  query.cookie.appver = '8.10.05'
   const data = {
     ids: '[' + query.id + ']',
     level: query.level,

@@ -1,7 +1,7 @@
 // 专辑评论
 
 module.exports = (query, request) => {
-  query.cookie.os = 'pc'
+  // query.cookie.os = 'pc'
   // query.cookie.appver = '2.9.7'
   const data = {
     rid: query.id,
@@ -11,7 +11,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/v1/resource/comments/R_AL_3_${query.id}`,
+    `https://music.163.com/api/v1/resource/comments/R_AL_3_${query.id}`,
     data,
     {
       crypto: 'weapi',

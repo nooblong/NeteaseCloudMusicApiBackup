@@ -1810,3 +1810,24 @@ export function voicelist_list_search(
     radioId?: string
   } & RequestBaseConfig,
 ): Promise<Response>
+
+export function voice_delete(
+  params: {
+    ids: number | string
+  } & RequestBaseConfig,
+): Promise<Response>
+
+export function djRadio_top(
+  params: {
+    djRadioId?: number | string
+    sortIndex?: number | string
+    dataGapDays?: number | string
+    dataType?: number | string
+  } & RequestBaseConfig,
+): Promise<Response>
+
+export function voice_lyric(
+  params: {
+    id: number | string
+  } & RequestBaseConfig,
+): Promise<Response>

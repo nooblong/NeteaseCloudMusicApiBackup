@@ -1,10 +1,11 @@
 const fs = require('fs')
 const path = require('path')
 const { register_anonimous } = require('./main')
-const { cookieToJson } = require('./util/index')
-
+const { cookieToJson, generateRandomChineseIP } = require('./util/index')
 const tmpPath = require('os').tmpdir()
+
 async function generateConfig() {
+  global.cnIp = generateRandomChineseIP()
   try {
     const res = await register_anonimous()
     const cookie = res.body.cookie

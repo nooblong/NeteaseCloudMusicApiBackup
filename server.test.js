@@ -8,6 +8,8 @@ if (!fs.existsSync(path.resolve(tmpPath, 'anonymous_token'))) {
 }
 const serverMod = require('./server')
 before(async () => {
+  const generateConfig = require('./generateConfig')
+  await generateConfig()
   app = await serverMod.serveNcmApi({})
 
   if (app.server && app.server.address) {

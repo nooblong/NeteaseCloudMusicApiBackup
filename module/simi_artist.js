@@ -1,5 +1,4 @@
 // 相似歌手
-const config = require('../util/config.json')
 module.exports = (query, request) => {
   const data = {
     artistid: query.id,

@@ -227,6 +227,9 @@ async function consturctServer(moduleDefs) {
           if (ip.substr(0, 7) == '::ffff:') {
             ip = ip.substr(7)
           }
+          if (ip == '::1') {
+            ip = global.cnIp
+          }
           // console.log(ip)
           obj[3] = {
             ...obj[3],

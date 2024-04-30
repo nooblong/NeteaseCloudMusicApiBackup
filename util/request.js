@@ -105,7 +105,7 @@ const createRequest = (method, url, data = {}, options) => {
       const csrfToken = cookie['__csrf'] || ''
       const header = {
         osver: cookie.osver || '17.4.1', //系统版本
-        deviceId: cookie.deviceId || '', //encrypt.base64.encode(imei + '\t02:00:00:00:00:00\t5106025eb79a5247\t70ffbaac7')
+        deviceId: cookie.deviceId || global.deviceId,
         appver: cookie.appver || iosAppVersion, // app版本
         versioncode: cookie.versioncode || '140', //版本号
         mobilename: cookie.mobilename || '', //设备model
@@ -113,7 +113,7 @@ const createRequest = (method, url, data = {}, options) => {
         resolution: cookie.resolution || '1920x1080', //设备分辨率
         __csrf: csrfToken,
         os: cookie.os || 'ios',
-        channel: cookie.channel,
+        channel: cookie.channel || '',
         requestId: `${Date.now()}_${Math.floor(Math.random() * 1000)
           .toString()
           .padStart(4, '0')}`,

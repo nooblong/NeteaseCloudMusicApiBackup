@@ -29,4 +29,21 @@ module.exports = {
     )
     return random
   },
+  generateRandomChineseIP() {
+    const chinaIPPrefixes = ['116.25', '116.76', '116.77', '116.78']
+
+    const randomPrefix =
+      chinaIPPrefixes[Math.floor(Math.random() * chinaIPPrefixes.length)]
+    return `${randomPrefix}.${generateIPSegment()}.${generateIPSegment()}}`
+  },
+}
+
+// 生成一个随机整数
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+// 生成一个随机IP地址段
+function generateIPSegment() {
+  return getRandomInt(1, 255)
 }

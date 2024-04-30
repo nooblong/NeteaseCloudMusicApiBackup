@@ -1,12 +1,11 @@
 const assert = require('assert')
 const { default: axios } = require('axios')
 const host = global.host || 'http://localhost:3000'
-const config = require('../util/config.json')
 describe('测试获取评论是否正常', () => {
   it('数据的 code 应该为200', (done) => {
     const qs = {
       id: 32311,
-      realIP: '116.25.146.177',
+      realIP: global.cnIp,
     }
 
     axios

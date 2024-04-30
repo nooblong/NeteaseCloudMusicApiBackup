@@ -34,7 +34,7 @@ module.exports = {
 
     const randomPrefix =
       chinaIPPrefixes[Math.floor(Math.random() * chinaIPPrefixes.length)]
-    return `${randomPrefix}.${generateIPSegment()}.${generateIPSegment()}}`
+    return `${randomPrefix}.${generateIPSegment()}.${generateIPSegment()}`
   },
 }
 

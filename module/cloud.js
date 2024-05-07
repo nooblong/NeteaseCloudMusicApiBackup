@@ -10,7 +10,8 @@ module.exports = async (query, request) => {
     .replace('.' + ext, '')
     .replace(/\s/g, '')
     .replace(/\./g, '_')
-
+  query.cookie.os = 'pc'
+  query.cookie.appver = '2.9.7'
   const bitrate = 999000
   if (!query.songFile) {
     return Promise.reject({

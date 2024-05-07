@@ -22,7 +22,9 @@
       <label for="noFormat" class="ml-2">不格式化(针对返回内容解析)</label>
     </div>
     <div>
-      <p>解密结果: {{ result }}</p>
+      <p>解密结果:
+      <pre>{{ JSON.stringify(JSON.parse(result), null, 2) }}</pre>
+      </p>
     </div>
   </div>
 
@@ -34,7 +36,7 @@
       data() {
         return {
           hexString: 'AD96DDB984491E79B6F429DD650C6E2AE524627AC223AC9A123C66BB0997965950FED137544A93DFC718E16F57C8C121AF537086F395570A5602A3922366D11964DAFACD7830AACABF62E5650E67F457E79C1D2E13502391FC3487216CC5BF8681843FCB8E05559487EB18AAC1BE0EFEA4F7B6A050478366153A9426C238B8869600B275704555A9EB94C92E4F3FDABE9E0BCE07645410D0AA7B675698A4CAE6CD3620633ABF0B849A4244CC8DFC5DB2646D5EA9B3954E62BFEF19AFEAFDDC34E55C3E9A1DD3167CF53D443617108141',
-          result: '',
+          result: '{}',
           isFormat: true
         }
       },
@@ -48,11 +50,11 @@
               url: `/eapi/decrypt?hexString=${this.hexString}&isFormat=${this.isFormat}`,
               method: 'post'
             })
-            this.result = res.data
+            this.result = JSON.stringify(res.data)
             console.log(res.data);
           } catch (error) {
             console.error(error)
-            alert(error.response.data.message)
+            alert(error?.response?.data?.message || '解密失败,数据格式错误')
           }
         }
       }

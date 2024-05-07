@@ -47,8 +47,11 @@
         async decrypt() {
           try {
             const res = await axios({
-              url: `/eapi/decrypt?hexString=${this.hexString}&isReq=${this.isReq}`,
-              method: 'post'
+              url: `/eapi/decrypt?isReq=${this.isReq}`,
+              method: 'post',
+              data: {
+                hexString: this.hexString
+              }
             })
             this.result = JSON.stringify(res.data.data)
             console.log(res.data);

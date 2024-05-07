@@ -16,10 +16,10 @@
       解密
     </button>
     <div class="mt-3">
-      <input type="radio" id="format" name="format" v-model="isFormat" value="true">
-      <label for="format" class="ml-2">格式化(针对请求数据的 params)</label>
-      <input type="radio" id="noFormat" name="format" v-model="isFormat" value="false" class="ml-5">
-      <label for="noFormat" class="ml-2">不格式化(针对返回内容解析)</label>
+      <input type="radio" id="format" name="format" v-model="isReq" value="true">
+      <label for="format" class="ml-2">请求数据request params(针对请求数据的 params)</label>
+      <input type="radio" id="noFormat" name="format" v-model="isReq" value="false" class="ml-5">
+      <label for="noFormat" class="ml-2">返回数据 response 二进制数据(针对返回内容解析)</label>
     </div>
     <div>
       <p>解密结果:
@@ -37,7 +37,7 @@
         return {
           hexString: 'AD96DDB984491E79B6F429DD650C6E2AE524627AC223AC9A123C66BB0997965950FED137544A93DFC718E16F57C8C121AF537086F395570A5602A3922366D11964DAFACD7830AACABF62E5650E67F457E79C1D2E13502391FC3487216CC5BF8681843FCB8E05559487EB18AAC1BE0EFEA4F7B6A050478366153A9426C238B8869600B275704555A9EB94C92E4F3FDABE9E0BCE07645410D0AA7B675698A4CAE6CD3620633ABF0B849A4244CC8DFC5DB2646D5EA9B3954E62BFEF19AFEAFDDC34E55C3E9A1DD3167CF53D443617108141',
           result: '{}',
-          isFormat: true
+          isReq: true
         }
       },
       mounted() {
@@ -47,7 +47,7 @@
         async decrypt() {
           try {
             const res = await axios({
-              url: `/eapi/decrypt?hexString=${this.hexString}&isFormat=${this.isFormat}`,
+              url: `/eapi/decrypt?hexString=${this.hexString}&isReq=${this.isReq}`,
               method: 'post'
             })
             this.result = JSON.stringify(res.data)

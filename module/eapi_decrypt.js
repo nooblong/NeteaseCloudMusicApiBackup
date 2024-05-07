@@ -2,7 +2,7 @@ const { eapiResDecrypt, eapiReqDecrypt } = require('../util/crypto')
 
 module.exports = async (query, request) => {
   const hexString = query.hexString
-  const isFormat = query.isFormat != 'false'
+  const isReq = query.isReq != 'false'
   if (!hexString) {
     return {
       status: 400,
@@ -18,7 +18,7 @@ module.exports = async (query, request) => {
     status: 200,
     body: {
       code: 200,
-      data: isFormat
+      data: isReq
         ? eapiReqDecrypt(pureHexString)
         : eapiResDecrypt(pureHexString),
     },

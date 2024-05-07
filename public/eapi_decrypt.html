@@ -50,7 +50,7 @@
               url: `/eapi/decrypt?hexString=${this.hexString}&isReq=${this.isReq}`,
               method: 'post'
             })
-            this.result = JSON.stringify(res.data)
+            this.result = JSON.stringify(res.data.data)
             console.log(res.data);
           } catch (error) {
             console.error(error)

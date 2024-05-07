@@ -25,7 +25,27 @@ const aesEncrypt = (text, mode, key, iv, format = 'base64') => {
 
   return encrypted.ciphertext.toString().toUpperCase()
 }
-
+const aesDecrypt = (ciphertext, key, iv, format = 'base64') => {
+  let bytes
+  if (format === 'base64') {
+    bytes = CryptoJS.AES.decrypt(ciphertext, CryptoJS.enc.Utf8.parse(key), {
+      iv: CryptoJS.enc.Utf8.parse(iv),
+      mode: CryptoJS.mode.ECB,
+      padding: CryptoJS.pad.Pkcs7,
+    })
+  } else {
+    bytes = CryptoJS.AES.decrypt(
+      { ciphertext: CryptoJS.enc.Hex.parse(ciphertext) },
+      CryptoJS.enc.Utf8.parse(key),
+      {
+        iv: CryptoJS.enc.Utf8.parse(iv),
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7,
+      },
+    )
+  }
+  return bytes.toString(CryptoJS.enc.Utf8)
+}
 const rsaEncrypt = (str, key) => {
   const forgePublicKey = forge.pki.publicKeyFromPem(key)
   const encrypted = forgePublicKey.encrypt(str, 'NONE')
@@ -65,7 +85,25 @@ const eapi = (url, object) => {
     params: aesEncrypt(data, 'ecb', eapiKey, '', 'hex'),
   }
 }
+const eapiResDecrypt = (encryptedParams) => {
+  // 使用aesDecrypt解密参数
+  const decryptedData = aesDecrypt(encryptedParams, eapiKey, '', 'hex')
+  return decryptedData
+}
+const eapiReqDecrypt = (encryptedParams) => {
+  // 使用aesDecrypt解密参数
+  const decryptedData = aesDecrypt(encryptedParams, eapiKey, '', 'hex')
+  // 使用正则表达式解析出URL和数据
+  const match = decryptedData.match(/(.*?)-36cd479b6b5-(.*?)-36cd479b6b5-(.*)/)
+  if (match) {
+    const url = match[1]
+    const data = JSON.parse(match[2])
+    return { url, data }
+  }
 
+  // 如果没有匹配到，返回null
+  return null
+}
 const decrypt = (cipher) => {
   const decipher = CryptoJS.AES.decrypt(
     {
@@ -80,4 +118,13 @@ const decrypt = (cipher) => {
   return decryptedBytes
 }
 
-module.exports = { weapi, linuxapi, eapi, decrypt, aesEncrypt }
+module.exports = {
+  weapi,
+  linuxapi,
+  eapi,
+  decrypt,
+  aesEncrypt,
+  aesDecrypt,
+  eapiReqDecrypt,
+  eapiResDecrypt,
+}

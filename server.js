@@ -135,8 +135,6 @@ async function consturctServer(moduleDefs) {
   const app = express()
   const { CORS_ALLOW_ORIGIN } = process.env
   app.set('trust proxy', true)
-  app.use(express.json({ limit: '50mb' }))
-  app.use(express.urlencoded({ limit: '50mb' }))
 
   /**
    * Serving static files
@@ -178,8 +176,8 @@ async function consturctServer(moduleDefs) {
   /**
    * Body Parser and File Upload
    */
-  app.use(express.json())
-  app.use(express.urlencoded({ extended: false }))
+  app.use(express.json({ limit: '50mb' }))
+  app.use(express.urlencoded({ extended: false, limit: '50mb' }))
 
   app.use(fileUpload())
 

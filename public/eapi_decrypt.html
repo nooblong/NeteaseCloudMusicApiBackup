@@ -26,6 +26,13 @@
       <pre>{{ JSON.stringify(JSON.parse(result), null, 2) }}</pre>
       </p>
     </div>
+
+
+    <div>
+      <p>使用例子:</p>
+      <img src="/static/eapi_params.png" />
+      <img src="/static/eapi_response.png" />
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios"></script>
@@ -47,7 +54,7 @@
         async decrypt() {
           try {
             const res = await axios({
-              url: `/eapi/decrypt?isReq=${this.isReq}`,
+              url: `/eapi/decrypt?isReq=${this.isReq}&timestamp=${Date.now()}`,
               method: 'post',
               data: {
                 hexString: this.hexString

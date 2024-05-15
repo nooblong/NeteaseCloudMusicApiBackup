@@ -271,20 +271,20 @@ export function batch(
 ): Promise<Response>
 
 export function captcha_sent(
-  params: { cellphone: string; ctcode?: number | string } & RequestBaseConfig,
+  params: { phone: string; ctcode?: number | string } & RequestBaseConfig,
 ): Promise<Response>
 
 export function captcha_verify(
   params: {
     ctcode?: number | string
-    cellphone: number | string
+    phone: number | string
     captcha: string
   } & RequestBaseConfig,
 ): Promise<Response>
 
 export function cellphone_existence_check(
   params: {
-    cellphone: number | string
+    phone: number | string
     countrycode: number | string
   } & RequestBaseConfig,
 ): Promise<Response>

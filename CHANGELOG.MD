@@ -1,4 +1,8 @@
 # 更新日志
+### 4.19.7 | 2024.05.14
+- 文档更新
+- 类型声明问题修复 [#6](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/6)
+
 ### 4.19.6 | 2024.05.11
 - 例子更新
 

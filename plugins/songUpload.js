@@ -41,7 +41,7 @@ module.exports = async (query, request) => {
     ).data
     await axios({
       method: 'post',
-      url: `http://${lbs.upload[0]}/${bucket}/${objectKey}?offset=0&complete=true&version=1.0`,
+      url: `${lbs.upload[0]}/${bucket}/${objectKey}?offset=0&complete=true&version=1.0`,
       headers: {
         'x-nos-token': tokenRes.body.result.token,
         'Content-MD5': query.songFile.md5,

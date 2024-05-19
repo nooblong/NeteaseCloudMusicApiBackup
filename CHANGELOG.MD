@@ -1,4 +1,7 @@
 # 更新日志
+### 4.19.8 | 2024.05.19
+- 云盘上传问题修复 [#7](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/7)
+
 ### 4.19.7 | 2024.05.14
 - 文档更新
 - 类型声明问题修复 [#6](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/6)

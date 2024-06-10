@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>一起听 - 主机模式</title>
+  <title>一起听</title>
   <script src="https://unpkg.com/petite-vue"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios@0.26.1/dist/axios.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
@@ -14,7 +14,7 @@
 
 <body class="mdui-container">
   <div>
-    <a href="/qrlogin-nocookie.html">
+    <a href="/qrlogin.html">
       如果没登录,请先登录
     </a>
   </div>
@@ -29,10 +29,16 @@
   <br />
   <div v-if="account.login">
     <button v-if="!roomInfo.roomId" @click="createRoom">创建房间</button>
+    <details>
+      <summary>加入房间</summary>
+      <div><span>房间ID: </span><input v-model="roomInfo.roomId" /></div>
+      <div><span>邀请者 ID: </span><input v-model="roomInfo.inviterId" /></div>
+      <button @click="joinRoom">点击加入</button>
+    </details>
 
     <div v-if="roomInfo.roomId">
       <div>分享链接为:
-        https://st.music.163.com/listen-together/share/?songId=1372188635&roomId={{roomInfo.roomId}}&inviterId={{account.userId}}
+        https://st.music.163.com/listen-together/share/?songId=1372188635&roomId={{roomInfo.roomId}}&inviterId={{roomInfo.inviterId}}
       </div>
       <br />
       <button @click="refreshRoom">刷新房间状态</button>
@@ -81,6 +87,7 @@
     },
     roomInfo: {
       roomId: null,
+      inviterId: 0,
       roomUsers: [],
     },
     playlistInfo: {
@@ -97,7 +104,7 @@
     clientSeq: 1,
     login: async function () {
       const res = await axios({
-        url: `/login/status`,
+        url: `/login/status?timestamp=${new Date().getTime()}`,
         method: 'get',
         data: {
           cookie: localStorage.getItem('cookie'),
@@ -112,6 +119,57 @@
         this.message = '成功登录, 请创建房间'
       }
     },
+    joinRoom: async function () {
+      const res = await axios({
+        url: 'listentogether/accept',
+        method: 'post',
+        data: {
+          roomId: this.roomInfo.roomId,
+          inviterId: this.roomInfo.inviterId,
+          cookie: localStorage.getItem('cookie'),
+        },
+      })
+      console.log(res)
+      if (res.data.code != 200) {
+        this.message = '加入房间出现问题: ' + res.data.message
+      } else {
+        this.message = '加入房间成功: ' + this.roomInfo.roomId
+        const res2 = await axios({
+          url: 'listentogether/room/check',
+          method: 'post',
+          data: {
+            roomId: this.roomInfo.roomId,
+            cookie: localStorage.getItem('cookie'),
+          },
+        })
+        console.log(res2)
+        const res3 = await axios({
+          url: 'listentogether/sync/playlist/get',
+          method: 'post',
+          data: {
+            roomId: this.roomInfo.roomId,
+            cookie: localStorage.getItem('cookie'),
+          },
+        })
+
+        this.playlistInfo.playlistName = "其他人的歌单"
+        this.playlistInfo.playlistTrackIds = res3.data.data.playlist.displayList.result
+          .join(',')
+        const resa = await axios({
+          url: '/song/detail',
+          method: 'post',
+          data: {
+            ids: this.playlistInfo.playlistTrackIds,
+            cookie: localStorage.getItem('cookie'),
+          },
+        })
+        console.log(resa)
+        this.playlistInfo.playlistTracks = resa.data.songs
+
+
+      }
+
+    },
     createRoom: async function () {
       const res = await axios({
         url: 'listentogether/room/create',
@@ -125,6 +183,7 @@
         this.message = '创建房间出现问题: ' + res.data.message
       } else {
         this.message = '创建房间成功: ' + res.data.data.roomInfo.roomId
+        this.roomInfo.inviterId = this.account.userId
         this.roomInfo.roomId = res.data.data.roomInfo.roomId
         const res2 = await axios({
           url: 'listentogether/room/check',

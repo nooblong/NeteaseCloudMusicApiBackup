@@ -3,8 +3,11 @@ const uploadPlugin = require('../plugins/songUpload')
 const md5 = require('md5')
 module.exports = async (query, request) => {
   let ext = 'mp3'
-  if (query.songFile.name.indexOf('flac') > -1) {
-    ext = 'flac'
+  // if (query.songFile.name.indexOf('flac') > -1) {
+  //   ext = 'flac'
+  // }
+  if (query.songFile.name.includes('.')) {
+    ext = query.songFile.name.split('.').pop()
   }
   query.songFile.name = Buffer.from(query.songFile.name, 'latin1').toString(
     'utf-8',

@@ -1,4 +1,4 @@
-// 数字专辑-新碟上架
+// 私信和通知接口
 module.exports = (query, request) => {
   const data = {}
   return request('POST', `https://music.163.com/weapi/pl/count`, data, {

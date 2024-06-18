@@ -1,20 +1,19 @@
-// 歌单动态信息
+// 歌手动态信息
 
 module.exports = (query, request) => {
   const data = {
     id: query.id,
-    n: 100000,
-    s: query.s || 8,
   }
   return request(
     'POST',
-    `https://music.163.com/api/playlist/detail/dynamic`,
+    `https://interface.music.163.com/eapi/artist/detail/dynamic`,
     data,
     {
-      crypto: 'api',
+      crypto: 'eapi',
       cookie: query.cookie,
       ua: query.ua || '',
       proxy: query.proxy,
+      url: '/api/artist/detail/dynamic',
       realIP: query.realIP,
     },
   )

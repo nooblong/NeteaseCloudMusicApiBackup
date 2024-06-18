@@ -1,20 +1,17 @@
-// 歌单动态信息
+// 最近听歌列表
 
 module.exports = (query, request) => {
-  const data = {
-    id: query.id,
-    n: 100000,
-    s: query.s || 8,
-  }
+  const data = {}
   return request(
     'POST',
-    `https://music.163.com/api/playlist/detail/dynamic`,
+    `https://interface.music.163.com/eapi/pc/recent/listen/list`,
     data,
     {
-      crypto: 'api',
+      crypto: 'eapi',
       cookie: query.cookie,
       ua: query.ua || '',
       proxy: query.proxy,
+      url: '/api/pc/recent/listen/list',
       realIP: query.realIP,
     },
   )

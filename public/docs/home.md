@@ -295,6 +295,9 @@
 277. 播客删除
 278. 电台排行榜获取
 279. 获取声音歌词
+280. 获取专辑歌曲的音质
+281. 歌手动态信息
+282. 最近听歌列表
 
 ## 安装
 
@@ -4594,6 +4597,35 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 `submode`: 当 mode 为 SCENE_RCMD 是可为 ( EXERCISE, FOCUS, NIGHT_EMO )
 
 **接口地址:** `/personal/fm/mode`
+
+
+### 获取专辑歌曲的音质
+
+说明 : 调用后可获取专辑歌曲的音质
+
+**必选参数 :** `id` : 专辑 id
+
+**接口地址 :** `/album/privilege`
+
+**调用例子 :** `/album/privilege?id=168223858`
+
+
+### 歌手详情动态
+
+说明 : 调用后可获取歌手详情动态部分,如是否关注,视频数
+
+**必选参数 :** `id` : 歌手 id
+
+**接口地址 :** `/artist/detail/dynamic`
+
+**调用例子 :** `/artist/detail/dynamic?id=15396`
+
+
+### 最近听歌列表
+
+说明 : 调用后可获取最近听歌列表
+
+**接口地址 :** `/recent/listen/list`
 
 ## 离线访问此文档
 

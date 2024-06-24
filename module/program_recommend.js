@@ -1,5 +1,6 @@
 // 推荐节目
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     cateId: query.type,

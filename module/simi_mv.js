@@ -1,5 +1,6 @@
 // 相似MV
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     mvid: query.mvid,

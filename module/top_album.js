@@ -1,5 +1,6 @@
 // 新碟上架
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const date = new Date()
 

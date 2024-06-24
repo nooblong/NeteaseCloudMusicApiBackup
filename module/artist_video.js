@@ -1,5 +1,6 @@
 // 歌手相关视频
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     artistId: query.id,

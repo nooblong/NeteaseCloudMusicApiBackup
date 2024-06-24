@@ -1,5 +1,6 @@
 // 关注歌手列表
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     limit: query.limit || 25,

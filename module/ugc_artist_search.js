@@ -1,5 +1,6 @@
 // 搜索歌手
 // 可传关键字或者歌手id
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     keyword: query.keyword,
@@ -7,15 +8,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/rep/ugc/artist/search`,
+    `/api/rep/ugc/artist/search`,
     data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api/rep/ugc/artist/search',
-    },
+    createOption(query),
   )
 }

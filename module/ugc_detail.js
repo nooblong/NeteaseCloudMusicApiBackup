@@ -1,4 +1,5 @@
 // 用户贡献内容
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     auditStatus: query.auditStatus || '',

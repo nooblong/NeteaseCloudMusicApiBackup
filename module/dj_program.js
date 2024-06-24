@@ -1,5 +1,6 @@
 // 电台节目列表
 const { toBoolean } = require('../util')
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     radioId: query.rid,

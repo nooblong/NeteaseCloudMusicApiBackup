@@ -2,6 +2,7 @@
 
 const CryptoJS = require('crypto-js')
 
+const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   const data = {
     phone: query.phone,

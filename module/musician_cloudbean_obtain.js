@@ -1,5 +1,6 @@
 // 领取云豆
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     userMissionId: query.id,

@@ -1,5 +1,6 @@
 // 校验验证码
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     ctcode: query.ctcode || '86',

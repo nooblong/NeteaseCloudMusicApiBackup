@@ -1,5 +1,6 @@
 // 获取 VIP 信息
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   return request(
     'POST',

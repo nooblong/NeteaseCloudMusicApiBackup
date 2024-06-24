@@ -1,5 +1,6 @@
 // 动态
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     pagesize: query.pagesize || 20,

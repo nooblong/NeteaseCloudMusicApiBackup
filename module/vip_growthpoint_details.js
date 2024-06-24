@@ -1,5 +1,6 @@
 // 会员成长值领取记录
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     limit: query.limit || 20,

@@ -17,6 +17,7 @@
     initial 取值 a-z/A-Z
 */
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     initial: isNaN(query.initial)

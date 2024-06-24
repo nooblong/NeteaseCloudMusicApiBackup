@@ -1,5 +1,6 @@
 // 用户歌单
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     uid: query.uid,

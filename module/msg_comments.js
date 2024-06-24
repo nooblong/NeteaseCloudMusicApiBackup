@@ -1,5 +1,6 @@
 // 评论
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     beforeTime: query.before || '-1',

@@ -1,21 +1,10 @@
 // 更新歌单标签
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     id: query.id,
     tags: query.tags,
   }
-  return request(
-    'POST',
-    `https://interface3.music.163.com/eapi/playlist/tags/update`,
-    data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      url: '/api/playlist/tags/update',
-      realIP: query.realIP,
-    },
-  )
+  return request('POST', `/api/playlist/tags/update`, data, createOption(query))
 }

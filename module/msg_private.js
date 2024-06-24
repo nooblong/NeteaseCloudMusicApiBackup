@@ -1,5 +1,6 @@
 // 私信
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     offset: query.offset || 0,

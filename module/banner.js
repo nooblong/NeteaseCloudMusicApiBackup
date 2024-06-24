@@ -1,5 +1,5 @@
 // 首页轮播图
-
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const type =
     {
@@ -10,14 +10,8 @@ module.exports = (query, request) => {
     }[query.type || 0] || 'pc'
   return request(
     'POST',
-    `https://music.163.com/api/v2/banner/get`,
+    `/api/v2/banner/get`,
     { clientType: type },
-    {
-      crypto: 'api',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query),
   )
 }

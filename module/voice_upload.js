@@ -1,6 +1,7 @@
 const { default: axios } = require('axios')
 var xml2js = require('xml2js')
 
+const createOption = require('../util/option.js')
 var parser = new xml2js.Parser(/* options */)
 function createDupkey() {
   // 格式:3b443c7c-a87f-468d-ba38-46d407aaf23a

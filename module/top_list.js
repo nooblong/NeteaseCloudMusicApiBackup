@@ -1,4 +1,5 @@
 // 排行榜
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
   query.cookie.appver = '2.9.7'

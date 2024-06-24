@@ -1,5 +1,6 @@
 // 多类型搜索
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     type: query.type || 1,

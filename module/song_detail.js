@@ -1,5 +1,6 @@
 // 歌曲详情
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.ids = query.ids.split(/\s*,\s*/)
   const data = {

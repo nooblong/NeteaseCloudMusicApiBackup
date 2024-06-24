@@ -1,5 +1,6 @@
 // 全部MV
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     tags: JSON.stringify({

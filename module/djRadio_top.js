@@ -1,4 +1,5 @@
 //电台排行榜获取
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     djRadioId: query.djRadioId || null, // 电台id

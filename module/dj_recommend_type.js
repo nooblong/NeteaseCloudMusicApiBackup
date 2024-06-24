@@ -23,6 +23,7 @@
     旅途|城市 12
 */
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     cateId: query.type,

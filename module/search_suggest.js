@@ -1,5 +1,6 @@
 // 搜索建议
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     s: query.keywords || '',

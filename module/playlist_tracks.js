@@ -1,5 +1,6 @@
 // 收藏单曲到歌单 从歌单删除歌曲
 
+const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   //
   const tracks = query.tracks.split(',')

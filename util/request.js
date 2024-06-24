@@ -15,6 +15,7 @@ const anonymous_token = fs.readFileSync(
 )
 const { URLSearchParams, URL } = require('url')
 const iosAppVersion = '9.0.65'
+const { APP_CONF } = require('../util/config.json')
 // request.debug = true // 开启可看到更详细信息
 
 const chooseUserAgent = (uaType) => {
@@ -28,7 +29,7 @@ const chooseUserAgent = (uaType) => {
   }
   return userAgentMap.pc
 }
-const createRequest = (method, url, data = {}, options) => {
+const createRequest = (method, uri, data = {}, options) => {
   const cookie = options.cookie || {}
   return new Promise((resolve, reject) => {
     let headers = {
@@ -43,7 +44,7 @@ const createRequest = (method, url, data = {}, options) => {
     }
     if (method.toUpperCase() === 'POST')
       headers['Content-Type'] = 'application/x-www-form-urlencoded'
-    if (url.includes('music.163.com'))
+    if (uri.includes('music.163.com'))
       headers['Referer'] = 'https://music.163.com'
     let ip = options.realIP || options.ip || ''
     // console.log(ip)
@@ -62,7 +63,7 @@ const createRequest = (method, url, data = {}, options) => {
         appver:
           options.cookie.appver || (cookie.os != 'pc' ? iosAppVersion : ''),
       }
-      if (url.indexOf('login') === -1) {
+      if (uri.indexOf('login') === -1) {
         options.cookie['NMTID'] = CryptoJS.lib.WordArray.random(16).toString()
       }
       if (!options.cookie.MUSIC_U) {
@@ -85,22 +86,8 @@ const createRequest = (method, url, data = {}, options) => {
       headers['Cookie'] = cookieObjToString(cookie)
     }
     // console.log(options.cookie, headers['Cookie'])
-    if (options.crypto === 'weapi') {
-      headers['User-Agent'] = options.ua || chooseUserAgent('pc')
-      let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
-      data.csrf_token = csrfToken ? csrfToken[1] : ''
-      data = encrypt.weapi(data)
-      url = url.replace(/\w*api/, 'weapi')
-    } else if (options.crypto === 'linuxapi') {
-      data = encrypt.linuxapi({
-        method: method,
-        url: url.replace(/\w*api/, 'api'),
-        params: data,
-      })
-      headers['User-Agent'] =
-        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
-      url = 'https://music.163.com/api/linux/forward'
-    } else if (options.crypto === 'eapi') {
+    let eapiEncrypt = () => {
+      options['url'] = uri
       const cookie = options.cookie || {}
       const csrfToken = cookie['__csrf'] || ''
       const header = {
@@ -128,13 +115,37 @@ const createRequest = (method, url, data = {}, options) => {
         .join('; ')
       data.header = header
       data = encrypt.eapi(options.url, data)
-      url = url.replace(/\w*api/, 'eapi')
+      uri = APP_CONF.apiDomain + '/eapi/' + uri.substr(5)
+    }
+    if (options.crypto === 'weapi') {
+      headers['User-Agent'] = options.ua || chooseUserAgent('pc')
+      let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
+      data.csrf_token = csrfToken ? csrfToken[1] : ''
+      data = encrypt.weapi(data)
+      uri = uri.replace(/\w*api/, 'weapi')
+    } else if (options.crypto === 'linuxapi') {
+      data = encrypt.linuxapi({
+        method: method,
+        url: uri.replace(/\w*api/, 'api'),
+        params: data,
+      })
+      headers['User-Agent'] =
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
+      uri = 'https://music.163.com/api/linux/forward'
+    } else if (options.crypto === 'eapi') {
+      eapiEncrypt()
+    } else if (options.crypto === 'api') {
+      uri = APP_CONF.apiDomain + uri
+    } else if (options.crypto === '') {
+      if (APP_CONF.encrypt) {
+        eapiEncrypt()
+      } else uri = APP_CONF.apiDomain + uri
     }
     const answer = { status: 500, body: {}, cookie: [] }
     // console.log(headers, 'headers')
     let settings = {
       method: method,
-      url: url,
+      url: uri,
       headers: headers,
       data: new URLSearchParams(data).toString(),
       httpAgent: new http.Agent({ keepAlive: true }),

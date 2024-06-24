@@ -1,5 +1,6 @@
 // 会员任务
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {}
   return request(

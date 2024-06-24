@@ -1,5 +1,6 @@
 // 相似用户
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     songid: query.id,

@@ -3,6 +3,7 @@ const typeMap = {
   new: 0,
   hot: 1,
 }
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     limit: query.limit || 100,

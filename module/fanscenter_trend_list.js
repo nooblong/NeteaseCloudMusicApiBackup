@@ -1,4 +1,5 @@
 // 粉丝来源
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     startTime: query.startTime || Date.now() - 7 * 24 * 3600 * 1000,
@@ -7,15 +8,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://interface.music.163.com/weapi/fanscenter/trend/list`,
+    `/api/fanscenter/trend/list`,
     data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api/fanscenter/trend/list',
-    },
+    createOption(query),
   )
 }

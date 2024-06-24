@@ -1,5 +1,6 @@
 // 关注TA的人(粉丝)
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     userId: query.uid,
@@ -10,15 +11,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/eapi/user/getfolloweds/${query.uid}`,
+    `/api/user/getfolloweds/${query.uid}`,
     data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      url: '/api/user/getfolloweds',
-      realIP: query.realIP,
-    },
+    createOption(query),
   )
 }

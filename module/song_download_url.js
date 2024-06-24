@@ -1,5 +1,6 @@
 // 获取客户端歌曲下载链接
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     id: query.id,
@@ -7,15 +8,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://interface.music.163.com/eapi/song/enhance/download/url`,
+    `/api/song/enhance/download/url`,
     data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api/song/enhance/download/url',
-    },
+    createOption(query),
   )
 }

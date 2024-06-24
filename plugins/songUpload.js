@@ -1,4 +1,5 @@
 const { default: axios } = require('axios')
+const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   let ext = 'mp3'
   // if (query.songFile.name.indexOf('flac') > -1) {

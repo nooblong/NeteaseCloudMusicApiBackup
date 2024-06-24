@@ -7,6 +7,7 @@
     未登录 {'android': {'code': 301}, 'web': {'code': 301}}
 */
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     type: query.type || 0,

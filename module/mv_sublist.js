@@ -1,5 +1,6 @@
 // 已收藏MV列表
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     limit: query.limit || 25,

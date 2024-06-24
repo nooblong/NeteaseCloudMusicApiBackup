@@ -1,5 +1,6 @@
 // 黑胶时光机
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {}
   if (query.startTime && query.endTime) {

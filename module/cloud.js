@@ -1,6 +1,7 @@
 const mm = require('music-metadata')
 const uploadPlugin = require('../plugins/songUpload')
 const md5 = require('md5')
+const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   let ext = 'mp3'
   // if (query.songFile.name.indexOf('flac') > -1) {

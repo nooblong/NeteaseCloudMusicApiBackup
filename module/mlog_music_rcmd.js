@@ -1,5 +1,6 @@
 // 歌曲相关视频
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     id: query.mvid || 0,
@@ -8,17 +9,5 @@ module.exports = (query, request) => {
     limit: query.limit || 10,
     extInfo: JSON.stringify({ songId: query.songid }),
   }
-  return request(
-    'POST',
-    `https://interface.music.163.com/eapi/mlog/rcmd/feed/list`,
-    data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      url: '/api/mlog/rcmd/feed/list',
-      realIP: query.realIP,
-    },
-  )
+  return request('POST', `/api/mlog/rcmd/feed/list`, data, createOption(query))
 }

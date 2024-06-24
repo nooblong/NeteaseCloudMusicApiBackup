@@ -1,5 +1,6 @@
 // 曲风-歌手
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     cursor: query.cursor || 0,

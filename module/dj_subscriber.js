@@ -1,5 +1,6 @@
 // 电台详情
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     time: query.time || '-1',

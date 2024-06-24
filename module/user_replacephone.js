@@ -1,3 +1,4 @@
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     phone: query.phone,

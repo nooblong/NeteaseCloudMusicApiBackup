@@ -1,5 +1,6 @@
 // 红心与取消红心歌曲
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.like = query.like == 'false' ? false : true
   const data = {

@@ -1,5 +1,6 @@
 // 编辑用户信息
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     // avatarImgId: '0',

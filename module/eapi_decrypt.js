@@ -1,5 +1,6 @@
 const { eapiResDecrypt, eapiReqDecrypt } = require('../util/crypto')
 
+const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   const hexString = query.hexString
   const isReq = query.isReq != 'false'

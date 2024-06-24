@@ -1,5 +1,6 @@
 // 歌曲可用性
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     ids: '[' + parseInt(query.id) + ']',

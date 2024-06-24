@@ -1,5 +1,6 @@
 // TA关注的人(关注)
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     offset: query.offset || 0,

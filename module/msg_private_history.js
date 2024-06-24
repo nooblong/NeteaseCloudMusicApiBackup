@@ -1,5 +1,6 @@
 // 私信内容
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     userId: query.uid,

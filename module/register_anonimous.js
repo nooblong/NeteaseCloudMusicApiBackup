@@ -7,6 +7,7 @@ const deviceidText = fs.readFileSync(
   'utf-8',
 )
 
+const createOption = require('../util/option.js')
 const deviceidList = deviceidText.split('\n')
 
 function getRandomFromList(list) {

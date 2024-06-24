@@ -1,5 +1,6 @@
 // 音乐人歌曲播放趋势
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     startTime: query.startTime,

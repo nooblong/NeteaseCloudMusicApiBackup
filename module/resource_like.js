@@ -1,5 +1,6 @@
 // 点赞与取消点赞资源
 const { resourceTypeMap } = require('../util/config.json')
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.cookie.os = 'android'
   query.t = query.t == 1 ? 'like' : 'unlike'

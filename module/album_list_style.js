@@ -1,4 +1,5 @@
 // 数字专辑-语种风格馆
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     limit: query.limit || 10,

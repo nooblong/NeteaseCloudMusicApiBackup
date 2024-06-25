@@ -9,12 +9,6 @@ module.exports = (query, request) => {
     'POST',
     `https://interface3.music.163.com/api/content/activity/music/first/listen/info`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

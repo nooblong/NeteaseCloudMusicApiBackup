@@ -7,11 +7,10 @@ module.exports = (query, request) => {
   const data = {
     ids: '[' + query.id + ']',
   }
-  return request('POST', `https://music.163.com/weapi/playlist/remove`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `https://music.163.com/weapi/playlist/remove`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

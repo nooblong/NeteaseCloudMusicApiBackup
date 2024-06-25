@@ -14,13 +14,6 @@ module.exports = (query, request) => {
     'POST',
     `https://interface3.music.163.com/eapi/v1/radio/get`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api/v1/radio/get',
-    },
+    createOption(query, 'weapi'),
   )
 }

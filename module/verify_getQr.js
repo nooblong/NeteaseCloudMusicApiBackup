@@ -16,13 +16,7 @@ module.exports = async (query, request) => {
     'POST',
     `https://music.163.com/weapi/frontrisk/verify/getqrcode`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
   const result = `https://st.music.163.com/encrypt-pages?qrCode=${
     res.body.data.qrCode

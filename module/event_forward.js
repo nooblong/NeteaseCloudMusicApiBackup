@@ -9,11 +9,10 @@ module.exports = (query, request) => {
     id: query.evId,
     eventUserId: query.uid,
   }
-  return request('POST', `https://music.163.com/weapi/event/forward`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `https://music.163.com/weapi/event/forward`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

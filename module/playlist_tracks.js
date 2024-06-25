@@ -16,13 +16,7 @@ module.exports = async (query, request) => {
       'POST',
       `https://music.163.com/weapi/playlist/manipulate/tracks`,
       data,
-      {
-        crypto: 'weapi',
-        cookie: query.cookie,
-        ua: query.ua || '',
-        proxy: query.proxy,
-        realIP: query.realIP,
-      },
+      createOption(query, 'weapi'),
     )
     return {
       status: 200,
@@ -41,13 +35,7 @@ module.exports = async (query, request) => {
           trackIds: JSON.stringify([...tracks, ...tracks]),
           imme: 'true',
         },
-        {
-          crypto: 'weapi',
-          cookie: query.cookie,
-          ua: query.ua || '',
-          proxy: query.proxy,
-          realIP: query.realIP,
-        },
+        createOption(query, 'weapi'),
       )
     } else {
       return {

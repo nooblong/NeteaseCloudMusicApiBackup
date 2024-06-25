@@ -11,11 +11,6 @@ module.exports = (query, request) => {
     'POST',
     'https://interface.music.163.com/weapi/expert/worksdata/works/top/get',
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

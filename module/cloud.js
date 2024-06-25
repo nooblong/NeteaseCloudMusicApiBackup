@@ -45,13 +45,7 @@ module.exports = async (query, request) => {
       songId: '0',
       version: 1,
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
   let artist = ''
   let album = ''
@@ -111,12 +105,7 @@ module.exports = async (query, request) => {
       type: 'audio',
       md5: query.songFile.md5,
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-    },
+    createOption(query, 'weapi'),
   )
 
   if (res.body.needUpload) {
@@ -137,13 +126,7 @@ module.exports = async (query, request) => {
       bitrate: String(bitrate),
       resourceId: tokenRes.body.result.resourceId,
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
   // console.log({ res2, privateCloud: res2.body.privateCloud })
   // console.log(res.body.songId, 'songid')
@@ -153,13 +136,7 @@ module.exports = async (query, request) => {
     {
       songid: res2.body.songId,
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
   // console.log({ res3 })
   return {

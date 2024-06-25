@@ -7,11 +7,10 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     total: true,
   }
-  return request('POST', `https://music.163.com/api/topic/sublist`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `https://music.163.com/api/topic/sublist`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

@@ -9,12 +9,6 @@ module.exports = (query, request) => {
     'POST',
     `https://interface.music.163.com/weapi/voice/workbench/voices/by/voicelist`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

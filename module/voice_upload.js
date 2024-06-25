@@ -48,12 +48,7 @@ module.exports = async (query, request) => {
       nos_product: 0,
       type: 'other',
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-    },
+    createOption(query, 'weapi'),
   )
 
   const objectKey = tokenRes.body.result.objectKey.replace('/', '%2F')
@@ -146,10 +141,7 @@ module.exports = async (query, request) => {
       ]),
     },
     {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
+      ...createOption(query, 'weapi'),
       headers: {
         'x-nos-token': tokenRes.body.result.token,
       },
@@ -181,10 +173,7 @@ module.exports = async (query, request) => {
       ]),
     },
     {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
+      ...createOption(query, 'weapi'),
       headers: {
         'x-nos-token': tokenRes.body.result.token,
       },

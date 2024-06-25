@@ -4,11 +4,10 @@ module.exports = (query, request) => {
     startTime: query.startTime || Date.now(),
     endTime: query.endTime || Date.now(),
   }
-  return request('POST', `https://music.163.com/api/mcalendar/detail`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `https://music.163.com/api/mcalendar/detail`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

@@ -7,11 +7,10 @@ module.exports = (query, request) => {
     limit: query.limit || 20,
     offset: query.offset || 0,
   }
-  return request('POST', `https://music.163.com/weapi/artist/fans/get`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `https://music.163.com/weapi/artist/fans/get`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

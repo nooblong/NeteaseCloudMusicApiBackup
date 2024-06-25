@@ -6,13 +6,7 @@ module.exports = async (query, request) => {
     'POST',
     `https://music.163.com/weapi/v1/user/detail/${query.uid}`,
     {},
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
   const result = JSON.stringify(res).replace(
     /avatarImgId_str/g,

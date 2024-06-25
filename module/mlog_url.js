@@ -7,11 +7,10 @@ module.exports = (query, request) => {
     resolution: query.res || 1080,
     type: 1,
   }
-  return request('POST', `https://music.163.com/weapi/mlog/detail/v1`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `https://music.163.com/weapi/mlog/detail/v1`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

@@ -10,11 +10,10 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     limit: query.limit || 100,
   }
-  return request('POST', `https://music.163.com/api/v1/artist/songs`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `https://music.163.com/api/v1/artist/songs`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

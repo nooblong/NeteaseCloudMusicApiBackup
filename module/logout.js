@@ -7,12 +7,8 @@ module.exports = (query, request) => {
     `https://music.163.com/weapi/logout`,
     {},
     {
-      crypto: 'weapi',
+      ...createOption(query, 'weapi'),
       uaType: 'pc',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
     },
   )
 }

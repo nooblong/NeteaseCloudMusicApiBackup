@@ -11,12 +11,6 @@ module.exports = (query, request) => {
     'POST',
     `https://interface.music.163.com/api/voice/workbench/radio/program/trans`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

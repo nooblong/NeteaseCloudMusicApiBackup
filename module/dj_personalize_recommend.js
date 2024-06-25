@@ -8,12 +8,6 @@ module.exports = (query, request) => {
     {
       limit: query.limit || 6,
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

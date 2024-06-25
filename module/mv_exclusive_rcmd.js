@@ -10,12 +10,6 @@ module.exports = (query, request) => {
     'POST',
     `https://interface.music.163.com/api/mv/exclusive/rcmd`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

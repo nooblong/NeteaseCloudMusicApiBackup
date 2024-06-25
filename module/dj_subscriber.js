@@ -8,11 +8,10 @@ module.exports = (query, request) => {
     limit: query.limit || '20',
     total: 'true',
   }
-  return request('POST', `https://music.163.com/api/djradio/subscriber`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `https://music.163.com/api/djradio/subscriber`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

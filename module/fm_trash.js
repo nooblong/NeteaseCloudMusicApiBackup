@@ -11,12 +11,6 @@ module.exports = (query, request) => {
       query.id
     }&time=${query.time || 25}`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

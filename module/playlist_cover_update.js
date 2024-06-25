@@ -18,13 +18,7 @@ module.exports = async (query, request) => {
       id: query.id,
       coverImgId: uploadInfo.imgId,
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
   return {
     status: 200,

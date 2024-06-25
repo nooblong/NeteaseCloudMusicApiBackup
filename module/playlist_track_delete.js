@@ -18,12 +18,6 @@ module.exports = async (query, request) => {
     'POST',
     `https://music.163.com/api/playlist/track/delete`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

@@ -33,13 +33,7 @@ module.exports = (query, request) => {
       'POST',
       `https://music.163.com/api/v3/song/detail`,
       idsData,
-      {
-        crypto: 'weapi',
-        cookie: query.cookie,
-        ua: query.ua || '',
-        proxy: query.proxy,
-        realIP: query.realIP,
-      },
+      createOption(query, 'weapi'),
     )
   })
 }

@@ -8,12 +8,6 @@ module.exports = (query, request) => {
     {
       userId: query.uid || '',
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

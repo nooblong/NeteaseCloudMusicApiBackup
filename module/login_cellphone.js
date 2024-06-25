@@ -18,12 +18,8 @@ module.exports = async (query, request) => {
     `https://music.163.com/weapi/login/cellphone`,
     data,
     {
-      crypto: 'weapi',
+      ...createOption(query, 'weapi'),
       uaType: 'pc',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
     },
   )
 

@@ -22,12 +22,6 @@ module.exports = (query, request) => {
     'POST',
     `https://interface3.music.163.com/api/playlist/v4/detail`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

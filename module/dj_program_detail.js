@@ -5,11 +5,10 @@ module.exports = (query, request) => {
   const data = {
     id: query.id,
   }
-  return request('POST', `https://music.163.com/api/dj/program/detail`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `https://music.163.com/api/dj/program/detail`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

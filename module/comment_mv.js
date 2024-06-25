@@ -14,12 +14,6 @@ module.exports = (query, request) => {
     'POST',
     `https://music.163.com/weapi/v1/resource/comments/R_MV_5_${query.id}`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

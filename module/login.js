@@ -10,12 +10,8 @@ module.exports = async (query, request) => {
     rememberLogin: 'true',
   }
   let result = await request('POST', `https://music.163.com/api/login`, data, {
-    crypto: 'weapi',
+    ...createOption(query, 'weapi'),
     uaType: 'pc',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
   })
   if (result.body.code === 502) {
     return {

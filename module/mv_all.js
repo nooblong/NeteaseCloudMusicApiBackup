@@ -12,10 +12,5 @@ module.exports = (query, request) => {
     total: 'true',
     limit: query.limit || 30,
   }
-  return request(
-    'POST',
-    `https://interface.music.163.com/api/mv/all`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request('POST', `/api/mv/all`, data, createOption(query))
 }

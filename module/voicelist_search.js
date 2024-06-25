@@ -8,8 +8,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://interface.music.163.com/weapi/voice/workbench/voicelist/search`,
+    `/api/voice/workbench/voicelist/search`,
     data,
-    createOption(query, 'weapi'),
+    createOption(query),
   )
 }

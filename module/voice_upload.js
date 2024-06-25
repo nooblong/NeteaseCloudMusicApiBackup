@@ -117,7 +117,7 @@ module.exports = async (query, request) => {
   // preCheck
   await request(
     'post',
-    `https://interface.music.163.com/weapi/voice/workbench/voice/batch/upload/preCheck`,
+    `/api/voice/workbench/voice/batch/upload/preCheck`,
     {
       dupkey: createDupkey(),
       voiceData: JSON.stringify([
@@ -141,7 +141,7 @@ module.exports = async (query, request) => {
       ]),
     },
     {
-      ...createOption(query, 'weapi'),
+      ...createOption(query),
       headers: {
         'x-nos-token': tokenRes.body.result.token,
       },
@@ -149,7 +149,7 @@ module.exports = async (query, request) => {
   )
   const result = await request(
     'post',
-    `https://interface.music.163.com/weapi/voice/workbench/voice/batch/upload/v2`,
+    `/api/voice/workbench/voice/batch/upload/v2`,
     {
       dupkey: createDupkey(),
       voiceData: JSON.stringify([
@@ -173,7 +173,7 @@ module.exports = async (query, request) => {
       ]),
     },
     {
-      ...createOption(query, 'weapi'),
+      ...createOption(query),
       headers: {
         'x-nos-token': tokenRes.body.result.token,
       },

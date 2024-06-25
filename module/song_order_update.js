@@ -10,8 +10,8 @@ module.exports = (query, request) => {
 
   return request(
     'POST',
-    `http://interface.music.163.com/api/playlist/manipulate/tracks`,
+    `/api/playlist/manipulate/tracks`,
     data,
-    createOption(query, 'weapi'),
+    createOption(query),
   )
 }

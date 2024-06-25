@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     limit: query.limit || 30,
   }
-  return request(
-    'POST',
-    `https://interface.music.163.com/api/mv/exclusive/rcmd`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request('POST', `/api/mv/exclusive/rcmd`, data, createOption(query))
 }

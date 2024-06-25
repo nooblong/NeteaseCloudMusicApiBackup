@@ -9,8 +9,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    'https://interface.music.163.com/weapi/expert/worksdata/works/top/get',
+    '/api/expert/worksdata/works/top/get',
     data,
-    createOption(query, 'weapi'),
+    createOption(query),
   )
 }

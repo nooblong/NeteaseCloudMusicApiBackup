@@ -9,8 +9,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://interface.music.163.com/api/voice/workbench/radio/program/trans`,
+    `/api/voice/workbench/radio/program/trans`,
     data,
-    createOption(query, 'weapi'),
+    createOption(query),
   )
 }

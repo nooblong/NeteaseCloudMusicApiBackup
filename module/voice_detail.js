@@ -5,8 +5,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://interface.music.163.com/weapi/voice/workbench/voice/detail`,
+    `/api/voice/workbench/voice/detail`,
     data,
-    createOption(query, 'weapi'),
+    createOption(query),
   )
 }

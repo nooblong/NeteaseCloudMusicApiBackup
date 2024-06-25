@@ -3,10 +3,5 @@ module.exports = (query, request) => {
   const data = {
     ids: query.ids,
   }
-  return request(
-    'POST',
-    'https://interface.music.163.com/api/content/voice/delete',
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request('POST', '/api/content/voice/delete', data, createOption(query))
 }

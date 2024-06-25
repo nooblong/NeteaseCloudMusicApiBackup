@@ -7,7 +7,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/act/modules/signin/v2/progress`,
+    `/api/act/modules/signin/v2/progress`,
     data,
     createOption(query, 'weapi'),
   )

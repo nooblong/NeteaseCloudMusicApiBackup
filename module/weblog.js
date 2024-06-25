@@ -4,7 +4,7 @@ const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   return request(
     'POST',
-    `https://music.163.com/weapi/feedback/weblog`,
+    `/api/feedback/weblog`,
     query.data || {},
     createOption(query, 'weapi'),
   )

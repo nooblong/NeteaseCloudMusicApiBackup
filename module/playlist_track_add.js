@@ -15,7 +15,7 @@ module.exports = async (query, request) => {
 
   return request(
     'POST',
-    `https://music.163.com/api/playlist/track/add`,
+    `/api/playlist/track/add`,
     data,
     createOption(query, 'weapi'),
   )

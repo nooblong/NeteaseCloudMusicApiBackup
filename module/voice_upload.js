@@ -39,7 +39,7 @@ module.exports = async (query, request) => {
 
   const tokenRes = await request(
     'POST',
-    `https://music.163.com/weapi/nos/token/alloc`,
+    `/api/nos/token/alloc`,
     {
       bucket: 'ymusic',
       ext: ext,

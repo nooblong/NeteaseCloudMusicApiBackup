@@ -5,7 +5,7 @@ module.exports = async (query, request) => {
   }
   const res = await request(
     'POST',
-    `https://music.163.com/weapi/frontrisk/verify/qrcodestatus`,
+    `/api/frontrisk/verify/qrcodestatus`,
     data,
     createOption(query, 'weapi'),
   )

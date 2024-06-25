@@ -10,10 +10,5 @@ module.exports = (query, request) => {
     subMode: query.submode,
     limit: query.limit || 3,
   }
-  return request(
-    'POST',
-    `https://interface3.music.163.com/eapi/v1/radio/get`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request('POST', `/api/v1/radio/get`, data, createOption(query))
 }

@@ -10,7 +10,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/resource/comment/floor/get`,
+    `/api/resource/comment/floor/get`,
     data,
     createOption(query, 'weapi'),
   )

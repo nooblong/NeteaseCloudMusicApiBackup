@@ -8,7 +8,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/comment/commentthread/info`,
+    `/api/comment/commentthread/info`,
     data,
     createOption(query, 'weapi'),
   )

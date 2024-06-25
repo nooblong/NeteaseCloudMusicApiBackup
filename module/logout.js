@@ -4,7 +4,7 @@ const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   return request(
     'POST',
-    `https://music.163.com/weapi/logout`,
+    `/api/logout`,
     {},
     {
       ...createOption(query, 'weapi'),

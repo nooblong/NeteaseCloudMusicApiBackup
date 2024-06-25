@@ -4,7 +4,7 @@ module.exports = (query, request) => {
   const data = {}
   return request(
     'POST',
-    `https://music.163.com/api/playlist/highquality/tags`,
+    `/api/playlist/highquality/tags`,
     data,
     createOption(query, 'weapi'),
   )

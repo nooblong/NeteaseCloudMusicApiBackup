@@ -18,10 +18,5 @@ module.exports = (query, request) => {
     n: '500',
     s: '0',
   }
-  return request(
-    'POST',
-    `https://interface3.music.163.com/api/playlist/v4/detail`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request('POST', `/api/playlist/v4/detail`, data, createOption(query))
 }

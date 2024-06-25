@@ -5,7 +5,7 @@ module.exports = (query, request) => {
   const data = {}
   return request(
     'POST',
-    `https://music.163.com/weapi/nmusician/workbench/mission/cycle/list`,
+    `/api/nmusician/workbench/mission/cycle/list`,
     data,
     createOption(query, 'weapi'),
   )

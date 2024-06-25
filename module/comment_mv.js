@@ -12,7 +12,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/v1/resource/comments/R_MV_5_${query.id}`,
+    `/api/v1/resource/comments/R_MV_5_${query.id}`,
     data,
     createOption(query, 'weapi'),
   )

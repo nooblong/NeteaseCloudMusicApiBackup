@@ -6,7 +6,7 @@ module.exports = (query, request) => {
   const data = { refresh: query.refresh || false, cursor: query.cursor }
   return request(
     'POST',
-    `https://music.163.com/api/homepage/block/page`,
+    `/api/homepage/block/page`,
     data,
     createOption(query, 'weapi'),
   )

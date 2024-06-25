@@ -30,7 +30,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/djradio/recommend`,
+    `/api/djradio/recommend`,
     data,
     createOption(query, 'weapi'),
   )

@@ -5,7 +5,7 @@ module.exports = (query, request) => {
   const data = {}
   return request(
     'POST',
-    `https://music.163.com/api/msg/recentcontact/get`,
+    `/api/msg/recentcontact/get`,
     data,
     createOption(query, 'weapi'),
   )

@@ -11,7 +11,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/event/forward`,
+    `/api/event/forward`,
     data,
     createOption(query, 'weapi'),
   )

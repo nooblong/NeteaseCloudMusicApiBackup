@@ -14,7 +14,7 @@ module.exports = async (query, request) => {
   try {
     const res = await request(
       'POST',
-      `https://music.163.com/weapi/playlist/manipulate/tracks`,
+      `/api/playlist/manipulate/tracks`,
       data,
       createOption(query, 'weapi'),
     )
@@ -28,7 +28,7 @@ module.exports = async (query, request) => {
     if (error.body.code === 512) {
       return request(
         'POST',
-        `https://music.163.com/api/playlist/manipulate/tracks`,
+        `/api/playlist/manipulate/tracks`,
         {
           op: query.op, // del,add
           pid: query.pid, // 歌单id

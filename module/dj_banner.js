@@ -6,7 +6,7 @@ module.exports = (query, request) => {
   query.cookie.appver = '2.9.7'
   return request(
     'POST',
-    `https://music.163.com/weapi/djradio/banner/get`,
+    `/api/djradio/banner/get`,
     {},
     createOption(query, 'weapi'),
   )

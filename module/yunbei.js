@@ -4,7 +4,7 @@ module.exports = (query, request) => {
   // /api/point/today/get
   return request(
     'POST',
-    `https://music.163.com/api/point/signed/get`,
+    `/api/point/signed/get`,
     data,
     createOption(query, 'weapi'),
   )

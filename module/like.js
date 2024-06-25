@@ -9,10 +9,5 @@ module.exports = (query, request) => {
     like: query.like,
     time: '3',
   }
-  return request(
-    'POST',
-    `https://music.163.com/api/radio/like`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request('POST', `/api/radio/like`, data, createOption(query, 'weapi'))
 }

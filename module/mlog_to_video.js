@@ -7,7 +7,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/mlog/video/convert/id`,
+    `/api/mlog/video/convert/id`,
     data,
     createOption(query, 'weapi'),
   )

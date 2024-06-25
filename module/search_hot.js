@@ -5,7 +5,7 @@ module.exports = (query, request) => {
   const data = {
     type: 1111,
   }
-  return request('POST', `https://music.163.com/weapi/search/hot`, data, {
+  return request('POST', `/api/search/hot`, data, {
     ...createOption(query, 'weapi'),
     uaType: 'mobile',
   })

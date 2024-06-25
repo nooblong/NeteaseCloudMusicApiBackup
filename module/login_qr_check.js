@@ -7,7 +7,7 @@ module.exports = async (query, request) => {
   try {
     let result = await request(
       'POST',
-      `https://music.163.com/weapi/login/qrcode/client/login`,
+      `/api/login/qrcode/client/login`,
       data,
       createOption(query, 'weapi'),
     )

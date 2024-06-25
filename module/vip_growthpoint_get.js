@@ -7,7 +7,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/vipnewcenter/app/level/task/reward/get`,
+    `/api/vipnewcenter/app/level/task/reward/get`,
     data,
     createOption(query, 'weapi'),
   )

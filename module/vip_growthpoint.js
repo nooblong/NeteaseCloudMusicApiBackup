@@ -5,7 +5,7 @@ module.exports = (query, request) => {
   const data = {}
   return request(
     'POST',
-    `https://music.163.com/weapi/vipnewcenter/app/level/growhpoint/basic`,
+    `/api/vipnewcenter/app/level/growhpoint/basic`,
     data,
     createOption(query, 'weapi'),
   )

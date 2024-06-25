@@ -12,7 +12,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/djradio/toplist`,
+    `/api/djradio/toplist`,
     data,
     createOption(query, 'weapi'),
   )

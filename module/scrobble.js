@@ -22,7 +22,7 @@ module.exports = (query, request) => {
 
   return request(
     'POST',
-    `https://music.163.com/weapi/feedback/weblog`,
+    `/api/feedback/weblog`,
     data,
     createOption(query, 'weapi'),
   )

@@ -8,7 +8,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/dj/program/${query.uid}`,
+    `/api/dj/program/${query.uid}`,
     data,
     createOption(query, 'weapi'),
   )

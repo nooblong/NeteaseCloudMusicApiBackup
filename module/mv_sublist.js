@@ -9,7 +9,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/cloudvideo/allvideo/sublist`,
+    `/api/cloudvideo/allvideo/sublist`,
     data,
     createOption(query, 'weapi'),
   )

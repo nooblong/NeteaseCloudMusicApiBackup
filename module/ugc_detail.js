@@ -15,7 +15,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/rep/ugc/detail`,
+    `/api/rep/ugc/detail`,
     data,
     createOption(query, 'weapi'),
   )

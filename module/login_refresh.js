@@ -4,7 +4,7 @@ const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   let result = await request(
     'POST',
-    `https://music.163.com/weapi/login/token/refresh`,
+    `/api/login/token/refresh`,
     {},
     {
       ...createOption(query, 'weapi'),

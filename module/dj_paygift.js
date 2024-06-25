@@ -5,10 +5,11 @@ module.exports = (query, request) => {
   const data = {
     limit: query.limit || 30,
     offset: query.offset || 0,
+    _nmclfl: 1,
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/djradio/home/paygift/list?_nmclfl=1`,
+    `/api/djradio/home/paygift/list`,
     data,
     createOption(query, 'weapi'),
   )

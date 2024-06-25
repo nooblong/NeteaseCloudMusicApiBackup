@@ -3,7 +3,7 @@ module.exports = async (query, request) => {
   const data = {}
   let result = await request(
     'POST',
-    `https://music.163.com/weapi/w/nuser/account/get`,
+    `/api/w/nuser/account/get`,
     data,
     createOption(query, 'weapi'),
   )

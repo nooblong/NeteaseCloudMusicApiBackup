@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     limit: query.limit || 30,
     time: query.lasttime || -1,
   }
-  return request(
-    'POST',
-    `https://music.163.com/api/msg/notices`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request('POST', `/api/msg/notices`, data, createOption(query, 'weapi'))
 }

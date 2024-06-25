@@ -11,10 +11,5 @@ module.exports = (query, request) => {
     '/api/playlist/tags/update': `{"id":${query.id},"tags":"${query.tags}"}`,
     '/api/playlist/update/name': `{"id":${query.id},"name":"${query.name}"}`,
   }
-  return request(
-    'POST',
-    `https://music.163.com/weapi/batch`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request('POST', `/api/batch`, data, createOption(query, 'weapi'))
 }

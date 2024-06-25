@@ -13,7 +13,7 @@ module.exports = async (query, request) => {
   //   获取key和token
   const res = await request(
     'POST',
-    `https://music.163.com/weapi/nos/token/alloc`,
+    `/api/nos/token/alloc`,
     data,
     createOption(query, 'weapi'),
   )
@@ -27,23 +27,12 @@ module.exports = async (query, request) => {
     },
     data: query.imgFile.data,
   })
-  //   获取裁剪后图片的id
-  const imgSize = query.imgSize || 300
-  const imgX = query.imgX || 0
-  const imgY = query.imgY || 0
-  const res3 = await request(
-    'GET',
-    `https://music.163.com/upload/img/op?id=${res.body.result.docId}&op=${imgX}y${imgY}y${imgSize}y${imgSize}`,
-    {},
-    createOption(query, 'weapi'),
-  )
 
   return {
     // ...res.body.result,
     // ...res2.data,
     // ...res3.body,
     url_pre: 'https://p1.music.126.net/' + res.body.result.objectKey,
-    url: res3.body.url,
-    imgId: res3.body.id,
+    imgId: res.body.result.docId,
   }
 }

@@ -11,7 +11,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/yunbei/rcmd/song/submit`,
+    `/api/yunbei/rcmd/song/submit`,
     data,
     createOption(query, 'weapi'),
   )

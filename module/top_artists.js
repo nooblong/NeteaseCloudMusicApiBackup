@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     total: true,
   }
-  return request(
-    'POST',
-    `https://music.163.com/weapi/artist/top`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request('POST', `/api/artist/top`, data, createOption(query, 'weapi'))
 }

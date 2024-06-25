@@ -86,6 +86,7 @@ const createRequest = (method, uri, data = {}, options) => {
       headers['Cookie'] = cookieObjToString(cookie)
     }
     // console.log(options.cookie, headers['Cookie'])
+    let url = ''
     let eapiEncrypt = () => {
       options['url'] = uri
       const cookie = options.cookie || {}
@@ -115,14 +116,14 @@ const createRequest = (method, uri, data = {}, options) => {
         .join('; ')
       data.header = header
       data = encrypt.eapi(options.url, data)
-      uri = APP_CONF.apiDomain + '/eapi/' + uri.substr(5)
+      url = APP_CONF.apiDomain + '/eapi/' + uri.substr(5)
     }
     if (options.crypto === 'weapi') {
       headers['User-Agent'] = options.ua || chooseUserAgent('pc')
       let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
       data.csrf_token = csrfToken ? csrfToken[1] : ''
       data = encrypt.weapi(data)
-      uri = uri.replace(/\w*api/, 'weapi')
+      url = APP_CONF.domain + '/weapi/' + uri.substr(5)
     } else if (options.crypto === 'linuxapi') {
       data = encrypt.linuxapi({
         method: method,
@@ -131,21 +132,21 @@ const createRequest = (method, uri, data = {}, options) => {
       })
       headers['User-Agent'] =
         'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
-      uri = 'https://music.163.com/api/linux/forward'
+      url = 'https://music.163.com/api/linux/forward'
     } else if (options.crypto === 'eapi') {
       eapiEncrypt()
     } else if (options.crypto === 'api') {
-      uri = APP_CONF.apiDomain + uri
+      url = APP_CONF.apiDomain + uri
     } else if (options.crypto === '') {
       if (APP_CONF.encrypt) {
         eapiEncrypt()
-      } else uri = APP_CONF.apiDomain + uri
+      } else url = APP_CONF.apiDomain + uri
     }
     const answer = { status: 500, body: {}, cookie: [] }
     // console.log(headers, 'headers')
     let settings = {
       method: method,
-      url: uri,
+      url: url,
       headers: headers,
       data: new URLSearchParams(data).toString(),
       httpAgent: new http.Agent({ keepAlive: true }),

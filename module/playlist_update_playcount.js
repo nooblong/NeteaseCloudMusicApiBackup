@@ -7,7 +7,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/playlist/update/playcount`,
+    `/api/playlist/update/playcount`,
     data,
     createOption(query, 'weapi'),
   )

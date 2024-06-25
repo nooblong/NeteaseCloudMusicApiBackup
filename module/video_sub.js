@@ -8,7 +8,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/cloudvideo/video/${query.t}`,
+    `/api/cloudvideo/video/${query.t}`,
     data,
     createOption(query, 'weapi'),
   )

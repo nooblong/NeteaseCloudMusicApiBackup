@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     total: true,
     area: query.area || 'ALL', //ALL:全部,ZH:华语,EA:欧美,KR:韩国,JP:日本
   }
-  return request(
-    'POST',
-    `https://music.163.com/weapi/album/new`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request('POST', `/api/album/new`, data, createOption(query, 'weapi'))
 }

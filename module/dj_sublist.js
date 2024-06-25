@@ -9,7 +9,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/djradio/get/subed`,
+    `/api/djradio/get/subed`,
     data,
     createOption(query, 'weapi'),
   )

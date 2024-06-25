@@ -16,7 +16,7 @@ module.exports = async (query, request) => {
   //   获取key和token
   const tokenRes = await request(
     'POST',
-    `https://music.163.com/weapi/nos/token/alloc`,
+    `/api/nos/token/alloc`,
     {
       bucket: bucket,
       ext: ext,

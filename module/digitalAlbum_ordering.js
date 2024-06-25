@@ -16,7 +16,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/ordering/web/digital`,
+    `/api/ordering/web/digital`,
     data,
     createOption(query, 'weapi'),
   )

@@ -25,7 +25,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/resource/comments/${query.t}`,
+    `/api/resource/comments/${query.t}`,
     data,
     createOption(query, 'weapi'),
   )

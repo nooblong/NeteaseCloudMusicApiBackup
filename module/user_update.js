@@ -13,7 +13,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/user/profile/update`,
+    `/api/user/profile/update`,
     data,
     createOption(query, 'weapi'),
   )

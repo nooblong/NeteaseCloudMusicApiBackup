@@ -8,7 +8,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/vipnewcenter/app/level/growth/details`,
+    `/api/vipnewcenter/app/level/growth/details`,
     data,
     createOption(query, 'weapi'),
   )

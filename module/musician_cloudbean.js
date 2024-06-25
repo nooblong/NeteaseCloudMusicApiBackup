@@ -5,7 +5,7 @@ module.exports = (query, request) => {
   const data = {}
   return request(
     'POST',
-    `https://music.163.com/weapi/cloudbean/get`,
+    `/api/cloudbean/get`,
     data,
     createOption(query, 'weapi'),
   )

@@ -7,8 +7,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://interface3.music.163.com/api/content/activity/music/first/listen/info`,
+    `/api/content/activity/music/first/listen/info`,
     data,
-    createOption(query, 'weapi'),
+    createOption(query),
   )
 }

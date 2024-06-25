@@ -9,7 +9,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/sms/captcha/verify`,
+    `/api/sms/captcha/verify`,
     data,
     createOption(query, 'weapi'),
   )

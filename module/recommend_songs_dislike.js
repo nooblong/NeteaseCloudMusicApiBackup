@@ -8,7 +8,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/v2/discovery/recommend/dislike`,
+    `/api/v2/discovery/recommend/dislike`,
     data,
     createOption(query, 'weapi'),
   )

@@ -9,7 +9,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/topic/sublist`,
+    `/api/topic/sublist`,
     data,
     createOption(query, 'weapi'),
   )

@@ -14,7 +14,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/point/dailyTask`,
+    `/api/point/dailyTask`,
     data,
     createOption(query, 'weapi'),
   )

@@ -11,7 +11,7 @@ module.exports = async (query, request) => {
   }
   const res = await request(
     'POST',
-    `https://music.163.com/weapi/playlist/list`,
+    `/api/playlist/list`,
     data,
     createOption(query, 'weapi'),
   )

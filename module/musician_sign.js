@@ -5,7 +5,7 @@ module.exports = (query, request) => {
   const data = {}
   return request(
     'POST',
-    `https://music.163.com/weapi/creator/user/access`,
+    `/api/creator/user/access`,
     data,
     createOption(query, 'weapi'),
   )

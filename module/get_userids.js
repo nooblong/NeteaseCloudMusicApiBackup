@@ -5,7 +5,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/user/getUserIds`,
+    `/api/user/getUserIds`,
     data,
     createOption(query, 'weapi'),
   )

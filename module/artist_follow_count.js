@@ -7,7 +7,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/artist/follow/count/get`,
+    `/api/artist/follow/count/get`,
     data,
     createOption(query, 'weapi'),
   )

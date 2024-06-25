@@ -6,7 +6,7 @@ module.exports = (query, request) => {
   const data = {}
   return request(
     'POST',
-    `https://music.163.com/api/v3/discovery/recommend/songs`,
+    `/api/v3/discovery/recommend/songs`,
     data,
     createOption(query, 'weapi'),
   )

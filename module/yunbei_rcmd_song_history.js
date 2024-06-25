@@ -10,7 +10,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/yunbei/rcmd/song/history/list`,
+    `/api/yunbei/rcmd/song/history/list`,
     data,
     createOption(query, 'weapi'),
   )

@@ -9,7 +9,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/forwards/get`,
+    `/api/forwards/get`,
     data,
     createOption(query, 'weapi'),
   )

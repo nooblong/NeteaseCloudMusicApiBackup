@@ -6,7 +6,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/artist/top/song`,
+    `/api/artist/top/song`,
     data,
     createOption(query, 'weapi'),
   )

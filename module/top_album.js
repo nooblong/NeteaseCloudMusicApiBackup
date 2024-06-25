@@ -16,7 +16,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/discovery/new/albums/area`,
+    `/api/discovery/new/albums/area`,
     data,
     createOption(query, 'weapi'),
   )

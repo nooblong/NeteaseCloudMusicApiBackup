@@ -8,7 +8,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/sms/captcha/sent`,
+    `/api/sms/captcha/sent`,
     data,
     createOption(query, 'weapi'),
   )

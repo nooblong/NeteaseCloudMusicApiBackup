@@ -6,7 +6,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/usertool/task/point/receive`,
+    `/api/usertool/task/point/receive`,
     data,
     createOption(query, 'weapi'),
   )

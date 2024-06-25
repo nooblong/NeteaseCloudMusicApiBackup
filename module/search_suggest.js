@@ -8,7 +8,7 @@ module.exports = (query, request) => {
   let type = query.type == 'mobile' ? 'keyword' : 'web'
   return request(
     'POST',
-    `https://music.163.com/weapi/search/suggest/` + type,
+    `/api/search/suggest/` + type,
     data,
     createOption(query, 'weapi'),
   )

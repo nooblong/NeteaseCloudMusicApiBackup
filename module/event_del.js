@@ -7,7 +7,7 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/eapi/event/delete`,
+    `/api/event/delete`,
     data,
     createOption(query, 'weapi'),
   )

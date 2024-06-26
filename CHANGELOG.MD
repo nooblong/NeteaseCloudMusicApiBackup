@@ -1,4 +1,8 @@
 # 更新日志
+### 4.21.0 | 2024.06.26
+- 新增云盘导入歌曲接口 [#11](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/11)
+- 代码优化 [#12](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/12)
+
 ### 4.20.0 | 2024.06.12
 - 一起听从机模式完善 [#8](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/8)
 - 云盘上传后缀名判断完善

@@ -1,5 +1,6 @@
 // 一起听 发送播放状态
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     roomId: query.roomId,
@@ -14,15 +15,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `http://interface.music.163.com/eapi/listen/together/play/command/report`,
+    `/api/listen/together/play/command/report`,
     data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api/listen/together/play/command/report',
-    },
+    createOption(query),
   )
 }

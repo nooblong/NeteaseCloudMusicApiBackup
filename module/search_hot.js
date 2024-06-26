@@ -1,15 +1,12 @@
 // 热门搜索
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     type: 1111,
   }
-  return request('POST', `https://music.163.com/weapi/search/hot`, data, {
-    crypto: 'weapi',
+  return request('POST', `/api/search/hot`, data, {
+    ...createOption(query, 'weapi'),
     uaType: 'mobile',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
   })
 }

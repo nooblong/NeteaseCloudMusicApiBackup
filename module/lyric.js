@@ -1,5 +1,6 @@
 // 歌词
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.cookie.os = 'ios'
 
@@ -9,17 +10,7 @@ module.exports = (query, request) => {
     lv: -1,
     rv: -1,
     kv: -1,
+    _nmclfl: 1,
   }
-  return request(
-    'POST',
-    `https://music.163.com/api/song/lyric?_nmclfl=1`,
-    data,
-    {
-      crypto: 'api',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
-  )
+  return request('POST', `/api/song/lyric`, data, createOption(query))
 }

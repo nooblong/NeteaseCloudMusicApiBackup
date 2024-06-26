@@ -1,19 +1,8 @@
 // 专辑简要百科信息
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     albumId: query.id,
   }
-  return request(
-    'POST',
-    `https://music.163.com/weapi/rep/ugc/album/get`,
-    data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api/rep/ugc/album/get',
-    },
-  )
+  return request('POST', `/api/rep/ugc/album/get`, data, createOption(query))
 }

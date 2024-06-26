@@ -1,5 +1,6 @@
 const QRCode = require('qrcode')
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   return new Promise(async (resolve) => {
     const url = `https://music.163.com/login?codekey=${query.key}`

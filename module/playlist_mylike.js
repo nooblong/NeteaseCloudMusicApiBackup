@@ -1,3 +1,4 @@
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     time: query.time || '-1',
@@ -5,14 +6,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/mlog/playlist/mylike/bytime/get`,
+    `/api/mlog/playlist/mylike/bytime/get`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

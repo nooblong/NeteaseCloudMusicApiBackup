@@ -1,19 +1,13 @@
 // 乐谱预览
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     id: query.id,
   }
   return request(
     'POST',
-    `https://interface3.music.163.com/eapi//music/sheet/preview/info?id=${query.id}`,
+    `/api/music/sheet/preview/info`,
     data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api//music/sheet/preview/info', // 我没写错! 他们就是这么请求的!
-    },
+    createOption(query),
   )
 }

@@ -1,5 +1,6 @@
 // 云贝推歌
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     songId: query.id,
@@ -10,14 +11,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/yunbei/rcmd/song/submit`,
+    `/api/yunbei/rcmd/song/submit`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

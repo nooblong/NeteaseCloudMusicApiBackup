@@ -1,6 +1,7 @@
 const mm = require('music-metadata')
 const uploadPlugin = require('../plugins/songUpload')
 const md5 = require('md5')
+const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   let ext = 'mp3'
   // if (query.songFile.name.indexOf('flac') > -1) {
@@ -35,7 +36,7 @@ module.exports = async (query, request) => {
   }
   const res = await request(
     'POST',
-    `https://interface.music.163.com/api/cloud/upload/check`,
+    `/api/cloud/upload/check`,
     {
       bitrate: String(bitrate),
       ext: '',
@@ -44,13 +45,7 @@ module.exports = async (query, request) => {
       songId: '0',
       version: 1,
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query),
   )
   let artist = ''
   let album = ''
@@ -100,7 +95,7 @@ module.exports = async (query, request) => {
   }
   const tokenRes = await request(
     'POST',
-    `https://music.163.com/weapi/nos/token/alloc`,
+    `/api/nos/token/alloc`,
     {
       bucket: '',
       ext: ext,
@@ -110,12 +105,7 @@ module.exports = async (query, request) => {
       type: 'audio',
       md5: query.songFile.md5,
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-    },
+    createOption(query),
   )
 
   if (res.body.needUpload) {
@@ -125,7 +115,7 @@ module.exports = async (query, request) => {
   // console.log(tokenRes.body.result)
   const res2 = await request(
     'POST',
-    `https://music.163.com/api/upload/cloud/info/v2`,
+    `/api/upload/cloud/info/v2`,
     {
       md5: query.songFile.md5,
       songid: res.body.songId,
@@ -136,29 +126,17 @@ module.exports = async (query, request) => {
       bitrate: String(bitrate),
       resourceId: tokenRes.body.result.resourceId,
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query),
   )
   // console.log({ res2, privateCloud: res2.body.privateCloud })
   // console.log(res.body.songId, 'songid')
   const res3 = await request(
     'POST',
-    `https://interface.music.163.com/api/cloud/pub/v2`,
+    `/api/cloud/pub/v2`,
     {
       songid: res2.body.songId,
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query),
   )
   // console.log({ res3 })
   return {

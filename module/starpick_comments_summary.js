@@ -1,4 +1,5 @@
 // 云村星评馆 - 简要评论列表
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     cursor: JSON.stringify({
@@ -7,17 +8,5 @@ module.exports = (query, request) => {
       refresh: true,
     }),
   }
-  return request(
-    'POST',
-    `https://interface3.music.163.com/eapi/homepage/block/page`,
-    data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      url: '/api/homepage/block/page',
-      realIP: query.realIP,
-    },
-  )
+  return request('POST', `/api/homepage/block/page`, data, createOption(query))
 }

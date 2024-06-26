@@ -1,5 +1,6 @@
 // 精品歌单
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     cat: query.cat || '全部', // 全部,华语,欧美,韩语,日语,粤语,小语种,运动,ACG,影视原声,流行,摇滚,后摇,古风,民谣,轻音乐,电子,器乐,说唱,古典,爵士
@@ -9,14 +10,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/playlist/highquality/list`,
+    `/api/playlist/highquality/list`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

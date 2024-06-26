@@ -1,5 +1,6 @@
 // 收藏与取消收藏视频
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.t = query.t == 1 ? 'sub' : 'unsub'
   const data = {
@@ -7,14 +8,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/cloudvideo/video/${query.t}`,
+    `/api/cloudvideo/video/${query.t}`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

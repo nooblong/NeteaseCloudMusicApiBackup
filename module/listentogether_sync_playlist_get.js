@@ -1,20 +1,14 @@
 // 一起听 当前列表获取
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     roomId: query.roomId,
   }
   return request(
     'POST',
-    `http://interface.music.163.com/eapi/listen/together/sync/playlist/get`,
+    `/api/listen/together/sync/playlist/get`,
     data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api/listen/together/sync/playlist/get',
-    },
+    createOption(query),
   )
 }

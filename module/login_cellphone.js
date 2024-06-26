@@ -2,6 +2,7 @@
 
 const CryptoJS = require('crypto-js')
 
+const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   const data = {
     phone: query.phone,
@@ -12,19 +13,10 @@ module.exports = async (query, request) => {
       : query.md5_password || CryptoJS.MD5(query.password).toString(),
     rememberLogin: 'true',
   }
-  let result = await request(
-    'POST',
-    `https://music.163.com/weapi/login/cellphone`,
-    data,
-    {
-      crypto: 'weapi',
-      uaType: 'pc',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
-  )
+  let result = await request('POST', `/api/login/cellphone`, data, {
+    ...createOption(query, 'weapi'),
+    uaType: 'pc',
+  })
 
   if (result.body.code === 200) {
     result = {

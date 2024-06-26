@@ -1,5 +1,6 @@
 // 曲风-歌手
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     cursor: query.cursor || 0,
@@ -9,14 +10,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/style-tag/home/artist`,
+    `/api/style-tag/home/artist`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

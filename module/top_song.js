@@ -1,5 +1,6 @@
 // 新歌速递
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     areaId: query.type || 0, // 全部:0 华语:7 欧美:96 日本:8 韩国:16
@@ -9,14 +10,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/v1/discovery/new/songs`,
+    `/api/v1/discovery/new/songs`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

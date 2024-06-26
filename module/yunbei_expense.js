@@ -1,18 +1,8 @@
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     limit: query.limit || 10,
     offset: query.offset || 0,
   }
-  return request(
-    'POST',
-    `https://music.163.com/store/api/point/expense`,
-    data,
-    {
-      crypto: 'api',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
-  )
+  return request('POST', `/api/point/expense`, data, createOption(query))
 }

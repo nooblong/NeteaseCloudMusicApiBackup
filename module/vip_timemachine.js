@@ -1,5 +1,6 @@
 // 黑胶时光机
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {}
   if (query.startTime && query.endTime) {
@@ -10,14 +11,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/vipmusic/newrecord/weekflow`,
+    `/api/vipmusic/newrecord/weekflow`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

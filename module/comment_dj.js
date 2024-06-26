@@ -1,5 +1,6 @@
 // 电台评论
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
   query.cookie.appver = '2.9.7'
@@ -11,14 +12,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/v1/resource/comments/A_DJ_1_${query.id}`,
+    `/api/v1/resource/comments/A_DJ_1_${query.id}`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

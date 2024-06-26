@@ -1,20 +1,14 @@
 // 一起听 房间情况
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     roomId: query.roomId,
   }
   return request(
     'POST',
-    `http://interface.music.163.com/eapi/listen/together/room/check`,
+    `/api/listen/together/room/check`,
     data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api/listen/together/room/check',
-    },
+    createOption(query),
   )
 }

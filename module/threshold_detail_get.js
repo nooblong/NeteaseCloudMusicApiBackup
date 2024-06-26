@@ -1,17 +1,11 @@
 // 获取达人达标信息
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {}
   return request(
     'POST',
-    `https://music.163.com/weapi/influencer/web/apply/threshold/detail/get`,
+    `/api/influencer/web/apply/threshold/detail/get`,
     data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api/influencer/web/apply/threshold/detail/get',
-    },
+    createOption(query),
   )
 }

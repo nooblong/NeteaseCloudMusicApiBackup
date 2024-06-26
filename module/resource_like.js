@@ -1,5 +1,6 @@
 // 点赞与取消点赞资源
 const { resourceTypeMap } = require('../util/config.json')
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.cookie.os = 'android'
   query.t = query.t == 1 ? 'like' : 'unlike'
@@ -12,14 +13,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/resource/${query.t}`,
+    `/api/resource/${query.t}`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

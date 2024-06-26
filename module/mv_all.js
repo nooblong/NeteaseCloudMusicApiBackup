@@ -1,5 +1,6 @@
 // 全部MV
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     tags: JSON.stringify({
@@ -11,11 +12,5 @@ module.exports = (query, request) => {
     total: 'true',
     limit: query.limit || 30,
   }
-  return request('POST', `https://interface.music.163.com/api/mv/all`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request('POST', `/api/mv/all`, data, createOption(query))
 }

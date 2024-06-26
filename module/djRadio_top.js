@@ -1,4 +1,5 @@
 //电台排行榜获取
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     djRadioId: query.djRadioId || null, // 电台id
@@ -8,13 +9,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    'https://interface.music.163.com/weapi/expert/worksdata/works/top/get',
+    '/api/expert/worksdata/works/top/get',
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query),
   )
 }

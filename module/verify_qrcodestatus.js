@@ -1,18 +1,13 @@
+const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   const data = {
     qrCode: query.qr,
   }
   const res = await request(
     'POST',
-    `https://music.163.com/weapi/frontrisk/verify/qrcodestatus`,
+    `/api/frontrisk/verify/qrcodestatus`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
   return res
 }

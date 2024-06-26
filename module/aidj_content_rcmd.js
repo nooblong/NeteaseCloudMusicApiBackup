@@ -4,6 +4,7 @@
 // 可按需修改此 API 的代码
 /* {"extInfo":"{\"lastRequestTimestamp\":1692358373509,\"lbsInfoList\":[{\"lat\":40.23076381,\"lon\":129.07545186,\"time\":1692358543},{\"lat\":40.23076381,\"lon\":129.07545186,\"time\":1692055283}],\"listenedTs\":false,\"noAidjToAidj\":true}","header":"{}","e_r":true} */
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   var extInfo = {}
   if (query.latitude != undefined) {
@@ -24,15 +25,8 @@ module.exports = (query, request) => {
   // console.log(data)
   return request(
     'POST',
-    `https://interface3.music.163.com/eapi/aidj/content/rcmd/info`,
+    `/api/aidj/content/rcmd/info`,
     data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api/aidj/content/rcmd/info',
-    },
+    createOption(query),
   )
 }

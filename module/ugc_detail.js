@@ -1,4 +1,5 @@
 // 用户贡献内容
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     auditStatus: query.auditStatus || '',
@@ -12,11 +13,10 @@ module.exports = (query, request) => {
     //曲库纠错 ARTIST:1 ALBUM:2 SONG:3 MV:4 LYRIC:5 TLYRIC:6
     //曲库补充 ALBUM:101 MV:103
   }
-  return request('POST', `https://music.163.com/weapi/rep/ugc/detail`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `/api/rep/ugc/detail`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

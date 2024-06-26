@@ -1,15 +1,10 @@
 // 通知
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     limit: query.limit || 30,
     time: query.lasttime || -1,
   }
-  return request('POST', `https://music.163.com/api/msg/notices`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request('POST', `/api/msg/notices`, data, createOption(query, 'weapi'))
 }

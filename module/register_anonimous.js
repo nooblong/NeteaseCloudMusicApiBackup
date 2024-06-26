@@ -7,6 +7,7 @@ const deviceidText = fs.readFileSync(
   'utf-8',
 )
 
+const createOption = require('../util/option.js')
 const deviceidList = deviceidText.split('\n')
 
 function getRandomFromList(list) {
@@ -38,15 +39,9 @@ module.exports = async (query, request) => {
   }
   let result = await request(
     'POST',
-    `https://music.163.com/api/register/anonimous`,
+    `/api/register/anonimous`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
   if (result.body.code === 200) {
     result = {

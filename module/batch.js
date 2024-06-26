@@ -1,5 +1,6 @@
 // 批量请求接口
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     e_r: true,
@@ -9,12 +10,5 @@ module.exports = (query, request) => {
       data[i] = query[i]
     }
   })
-  return request('POST', `https://music.163.com/eapi/batch`, data, {
-    crypto: 'eapi',
-    proxy: query.proxy,
-    url: '/api/batch',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    realIP: query.realIP,
-  })
+  return request('POST', `/api/batch`, data, createOption(query))
 }

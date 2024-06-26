@@ -1,5 +1,6 @@
 // 歌曲可用性
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     ids: '[' + parseInt(query.id) + ']',
@@ -7,15 +8,9 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/song/enhance/player/url`,
+    `/api/song/enhance/player/url`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   ).then((response) => {
     let playable = false
     if (response.body.code == 200) {

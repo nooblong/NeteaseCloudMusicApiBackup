@@ -1,3 +1,4 @@
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
   query.cookie.appver = '2.9.7'
@@ -9,11 +10,10 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     limit: query.limit || 100,
   }
-  return request('POST', `https://music.163.com/api/v1/artist/songs`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `/api/v1/artist/songs`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

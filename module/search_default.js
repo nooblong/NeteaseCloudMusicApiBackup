@@ -1,17 +1,11 @@
 // 默认搜索关键词
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   return request(
     'POST',
-    `https://interface3.music.163.com/eapi/search/defaultkeyword/get`,
+    `/api/search/defaultkeyword/get`,
     {},
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      url: '/api/search/defaultkeyword/get',
-      realIP: query.realIP,
-    },
+    createOption(query),
   )
 }

@@ -1,5 +1,6 @@
 // 电台节目列表
 const { toBoolean } = require('../util')
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     radioId: query.rid,
@@ -9,14 +10,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/dj/program/byradio`,
+    `/api/dj/program/byradio`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

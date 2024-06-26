@@ -1,4 +1,5 @@
 // 数字专辑&数字单曲-榜单
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   let data = {
     albumType: query.albumType || 0, //0为数字专辑,1为数字单曲
@@ -12,14 +13,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/feealbum/songsaleboard/${type}/type`,
+    `/api/feealbum/songsaleboard/${type}/type`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

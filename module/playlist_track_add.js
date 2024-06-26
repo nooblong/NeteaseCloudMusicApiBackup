@@ -1,3 +1,4 @@
+const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   query.cookie.os = 'pc'
   query.cookie.appver = '2.9.7'
@@ -12,11 +13,10 @@ module.exports = async (query, request) => {
   }
   console.log(data)
 
-  return request('POST', `https://music.163.com/api/playlist/track/add`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `/api/playlist/track/add`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

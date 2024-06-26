@@ -1,5 +1,6 @@
 // 搜索建议
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     s: query.keywords || '',
@@ -7,14 +8,8 @@ module.exports = (query, request) => {
   let type = query.type == 'mobile' ? 'keyword' : 'web'
   return request(
     'POST',
-    `https://music.163.com/weapi/search/suggest/` + type,
+    `/api/search/suggest/` + type,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

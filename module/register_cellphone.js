@@ -1,6 +1,7 @@
 // 注册账号
 const CryptoJS = require('crypto-js')
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.cookie.os = 'pc'
   query.cookie.appver = '2.9.7'
@@ -11,11 +12,10 @@ module.exports = (query, request) => {
     nickname: query.nickname,
     countrycode: query.countrycode || '86',
   }
-  return request('POST', `https://music.163.com/api/register/cellphone`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `/api/register/cellphone`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

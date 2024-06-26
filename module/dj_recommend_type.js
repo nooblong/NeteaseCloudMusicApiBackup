@@ -23,20 +23,15 @@
     旅途|城市 12
 */
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     cateId: query.type,
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/djradio/recommend`,
+    `/api/djradio/recommend`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

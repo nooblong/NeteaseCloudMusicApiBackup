@@ -1,16 +1,16 @@
 // 收藏与取消收藏MV
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.t = query.t == 1 ? 'sub' : 'unsub'
   const data = {
     mvId: query.mvid,
     mvIds: '["' + query.mvid + '"]',
   }
-  return request('POST', `https://music.163.com/weapi/mv/${query.t}`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `/api/mv/${query.t}`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

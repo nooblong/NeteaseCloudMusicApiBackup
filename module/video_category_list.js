@@ -1,5 +1,6 @@
 // 视频分类列表
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     offset: query.offset || 0,
@@ -8,14 +9,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/cloudvideo/category/list`,
+    `/api/cloudvideo/category/list`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

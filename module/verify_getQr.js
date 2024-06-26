@@ -1,4 +1,5 @@
 const QRCode = require('qrcode')
+const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   const data = {
     verifyConfigId: query.vid,
@@ -13,15 +14,9 @@ module.exports = async (query, request) => {
 
   const res = await request(
     'POST',
-    `https://music.163.com/weapi/frontrisk/verify/getqrcode`,
+    `/api/frontrisk/verify/getqrcode`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
   const result = `https://st.music.163.com/encrypt-pages?qrCode=${
     res.body.data.qrCode

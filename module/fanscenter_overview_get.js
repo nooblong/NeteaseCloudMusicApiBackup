@@ -1,17 +1,11 @@
 // 粉丝数量
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {}
   return request(
     'POST',
-    `https://interface.music.163.com/weapi/fanscenter/overview/get`,
+    `/api/fanscenter/overview/get`,
     data,
-    {
-      crypto: 'eapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-      url: '/api/fanscenter/overview/get',
-    },
+    createOption(query),
   )
 }

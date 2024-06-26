@@ -1,15 +1,15 @@
 // 电台节目榜
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     limit: query.limit || 100,
     offset: query.offset || 0,
   }
-  return request('POST', `https://music.163.com/api/program/toplist/v1`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `/api/program/toplist/v1`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

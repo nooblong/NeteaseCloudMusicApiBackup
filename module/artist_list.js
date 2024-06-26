@@ -17,6 +17,7 @@
     initial 取值 a-z/A-Z
 */
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     initial: isNaN(query.initial)
@@ -28,11 +29,10 @@ module.exports = (query, request) => {
     type: query.type || '1',
     area: query.area,
   }
-  return request('POST', `https://music.163.com/api/v1/artist/list`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `/api/v1/artist/list`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

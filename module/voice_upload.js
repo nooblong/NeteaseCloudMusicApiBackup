@@ -1,6 +1,7 @@
 const { default: axios } = require('axios')
 var xml2js = require('xml2js')
 
+const createOption = require('../util/option.js')
 var parser = new xml2js.Parser(/* options */)
 function createDupkey() {
   // 格式:3b443c7c-a87f-468d-ba38-46d407aaf23a
@@ -38,7 +39,7 @@ module.exports = async (query, request) => {
 
   const tokenRes = await request(
     'POST',
-    `https://music.163.com/weapi/nos/token/alloc`,
+    `/api/nos/token/alloc`,
     {
       bucket: 'ymusic',
       ext: ext,
@@ -47,12 +48,7 @@ module.exports = async (query, request) => {
       nos_product: 0,
       type: 'other',
     },
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-    },
+    createOption(query, 'weapi'),
   )
 
   const objectKey = tokenRes.body.result.objectKey.replace('/', '%2F')
@@ -121,7 +117,7 @@ module.exports = async (query, request) => {
   // preCheck
   await request(
     'post',
-    `https://interface.music.163.com/weapi/voice/workbench/voice/batch/upload/preCheck`,
+    `/api/voice/workbench/voice/batch/upload/preCheck`,
     {
       dupkey: createDupkey(),
       voiceData: JSON.stringify([
@@ -145,10 +141,7 @@ module.exports = async (query, request) => {
       ]),
     },
     {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
+      ...createOption(query),
       headers: {
         'x-nos-token': tokenRes.body.result.token,
       },
@@ -156,7 +149,7 @@ module.exports = async (query, request) => {
   )
   const result = await request(
     'post',
-    `https://interface.music.163.com/weapi/voice/workbench/voice/batch/upload/v2`,
+    `/api/voice/workbench/voice/batch/upload/v2`,
     {
       dupkey: createDupkey(),
       voiceData: JSON.stringify([
@@ -180,10 +173,7 @@ module.exports = async (query, request) => {
       ]),
     },
     {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
+      ...createOption(query),
       headers: {
         'x-nos-token': tokenRes.body.result.token,
       },

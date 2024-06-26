@@ -1,5 +1,6 @@
 // 歌单动态信息
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     id: query.id,
@@ -8,14 +9,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/playlist/detail/dynamic`,
+    `/api/playlist/detail/dynamic`,
     data,
-    {
-      crypto: 'api',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query),
   )
 }

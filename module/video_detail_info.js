@@ -1,5 +1,6 @@
 // 视频点赞转发评论数数据
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     threadid: `R_VI_62_${query.vid}`,
@@ -7,14 +8,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/api/comment/commentthread/info`,
+    `/api/comment/commentthread/info`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

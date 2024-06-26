@@ -1,21 +1,16 @@
 // 垃圾桶
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {
     songId: query.id,
+    alg: 'RT',
+    time: query.time || 25,
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/radio/trash/add?alg=RT&songId=${
-      query.id
-    }&time=${query.time || 25}`,
+    `/api/radio/trash/add`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

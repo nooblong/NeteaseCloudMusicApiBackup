@@ -1,6 +1,7 @@
 const { resourceTypeMap } = require('../util/config.json')
 // 发送与删除评论
 
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.cookie.os = 'android'
   query.t = {
@@ -24,14 +25,8 @@ module.exports = (query, request) => {
   }
   return request(
     'POST',
-    `https://music.163.com/weapi/resource/comments/${query.t}`,
+    `/api/resource/comments/${query.t}`,
     data,
-    {
-      crypto: 'weapi',
-      cookie: query.cookie,
-      ua: query.ua || '',
-      proxy: query.proxy,
-      realIP: query.realIP,
-    },
+    createOption(query, 'weapi'),
   )
 }

@@ -1,10 +1,10 @@
+const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {}
-  return request('POST', `https://music.163.com/api/nuser/account/get`, data, {
-    crypto: 'weapi',
-    cookie: query.cookie,
-    ua: query.ua || '',
-    proxy: query.proxy,
-    realIP: query.realIP,
-  })
+  return request(
+    'POST',
+    `/api/nuser/account/get`,
+    data,
+    createOption(query, 'weapi'),
+  )
 }

@@ -44,8 +44,6 @@ const createRequest = (method, uri, data = {}, options) => {
     }
     if (method.toUpperCase() === 'POST')
       headers['Content-Type'] = 'application/x-www-form-urlencoded'
-    if (uri.includes('music.163.com'))
-      headers['Referer'] = 'https://music.163.com'
     let ip = options.realIP || options.ip || ''
     // console.log(ip)
     if (ip) {
@@ -87,8 +85,28 @@ const createRequest = (method, uri, data = {}, options) => {
     }
     // console.log(options.cookie, headers['Cookie'])
     let url = ''
-    let eapiEncrypt = () => {
-      options['url'] = uri
+    if (options.crypto === 'weapi') {
+      headers['Referer'] = 'https://music.163.com'
+      headers['User-Agent'] = options.ua || chooseUserAgent('pc')
+      let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
+      data.csrf_token = csrfToken ? csrfToken[1] : ''
+      data = encrypt.weapi(data)
+      url = APP_CONF.domain + '/weapi/' + uri.substr(5)
+    } else if (options.crypto === 'linuxapi') {
+      data = encrypt.linuxapi({
+        method: method,
+        url: APP_CONF.apiDomain + uri,
+        params: data,
+      })
+      headers['User-Agent'] =
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
+      url = 'https://music.163.com/api/linux/forward'
+    } else if (
+      options.crypto === 'eapi' ||
+      options.crypto === 'api' ||
+      options.crypto === ''
+    ) {
+      // 两种加密方式，都应生成客户端的cookie
       const cookie = options.cookie || {}
       const csrfToken = cookie['__csrf'] || ''
       const header = {
@@ -114,33 +132,22 @@ const createRequest = (method, uri, data = {}, options) => {
             encodeURIComponent(key) + '=' + encodeURIComponent(header[key]),
         )
         .join('; ')
-      data.header = header
-      data = encrypt.eapi(options.url, data)
-      url = APP_CONF.apiDomain + '/eapi/' + uri.substr(5)
-    }
-    if (options.crypto === 'weapi') {
-      headers['User-Agent'] = options.ua || chooseUserAgent('pc')
-      let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
-      data.csrf_token = csrfToken ? csrfToken[1] : ''
-      data = encrypt.weapi(data)
-      url = APP_CONF.domain + '/weapi/' + uri.substr(5)
-    } else if (options.crypto === 'linuxapi') {
-      data = encrypt.linuxapi({
-        method: method,
-        url: uri.replace(/\w*api/, 'api'),
-        params: data,
-      })
-      headers['User-Agent'] =
-        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
-      url = 'https://music.163.com/api/linux/forward'
-    } else if (options.crypto === 'eapi') {
-      eapiEncrypt()
-    } else if (options.crypto === 'api') {
-      url = APP_CONF.apiDomain + uri
-    } else if (options.crypto === '') {
-      if (APP_CONF.encrypt) {
+
+      let eapiEncrypt = () => {
+        data.header = header
+        data = encrypt.eapi(uri, data)
+        url = APP_CONF.apiDomain + '/eapi/' + uri.substr(5)
+      }
+      if (options.crypto === 'eapi') {
         eapiEncrypt()
-      } else url = APP_CONF.apiDomain + uri
+      } else if (options.crypto === 'api') {
+        url = APP_CONF.apiDomain + uri
+      } else if (options.crypto === '') {
+        // 加密方式为空，以配置文件的加密方式为准
+        if (APP_CONF.encrypt) {
+          eapiEncrypt()
+        } else url = APP_CONF.apiDomain + uri
+      }
     }
     const answer = { status: 500, body: {}, cookie: [] }
     // console.log(headers, 'headers')

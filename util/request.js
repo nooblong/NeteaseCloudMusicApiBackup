@@ -204,11 +204,7 @@ const createRequest = (method, uri, data = {}, options) => {
           x.replace(/\s*Domain=[^(;|$)]+;*/, ''),
         )
         try {
-          if (options.crypto === 'eapi') {
-            answer.body = JSON.parse(encrypt.decrypt(body))
-          } else {
-            answer.body = body
-          }
+          answer.body = JSON.parse(body.toString())
           if (answer.body.code) {
             answer.body.code = Number(answer.body.code)
           }
@@ -224,7 +220,7 @@ const createRequest = (method, uri, data = {}, options) => {
         } catch (e) {
           // console.log(e)
           try {
-            answer.body = JSON.parse(body.toString())
+            answer.body = JSON.parse(encrypt.decrypt(body))
           } catch (err) {
             // console.log(err)
             // can't decrypt and can't parse directly

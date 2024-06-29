@@ -2,9 +2,7 @@
 
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  const data = {
-    e_r: true,
-  }
+  const data = {}
   Object.keys(query).forEach((i) => {
     if (/^\/api\//.test(i)) {
       data[i] = query[i]

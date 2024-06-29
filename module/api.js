@@ -6,6 +6,6 @@ module.exports = (query, request) => {
     typeof query.data === 'string' ? JSON.parse(query.data) : query.data || {}
   const crypto = query.crypto || ''
 
-  let res = request(method, uri, data, createOption(query, crypto))
+  const res = request(method, uri, data, createOption(query, crypto))
   return res
 }

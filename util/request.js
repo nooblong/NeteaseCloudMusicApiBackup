@@ -84,7 +84,9 @@ const createRequest = (method, uri, data = {}, options) => {
       headers['Cookie'] = cookieObjToString(cookie)
     }
     // console.log(options.cookie, headers['Cookie'])
+
     let url = ''
+    // 目前任意uri都支持三种加密方式
     if (options.crypto === 'weapi') {
       headers['Referer'] = 'https://music.163.com'
       headers['User-Agent'] = options.ua || chooseUserAgent('pc')
@@ -93,13 +95,13 @@ const createRequest = (method, uri, data = {}, options) => {
       data = encrypt.weapi(data)
       url = APP_CONF.domain + '/weapi/' + uri.substr(5)
     } else if (options.crypto === 'linuxapi') {
+      headers['User-Agent'] =
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
       data = encrypt.linuxapi({
         method: method,
         url: APP_CONF.apiDomain + uri,
         params: data,
       })
-      headers['User-Agent'] =
-        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
       url = 'https://music.163.com/api/linux/forward'
     } else if (
       options.crypto === 'eapi' ||
@@ -148,6 +150,9 @@ const createRequest = (method, uri, data = {}, options) => {
           eapiEncrypt()
         } else url = APP_CONF.apiDomain + uri
       }
+    } else {
+      // 未知的加密方式
+      console.log('[ERR]', 'Unknown Crypto:', options.crypto)
     }
     const answer = { status: 500, body: {}, cookie: [] }
     // console.log(headers, 'headers')
@@ -159,8 +164,6 @@ const createRequest = (method, uri, data = {}, options) => {
       httpAgent: new http.Agent({ keepAlive: true }),
       httpsAgent: new https.Agent({ keepAlive: true }),
     }
-
-    if (options.crypto === 'eapi') settings.encoding = null
 
     if (options.proxy) {
       if (options.proxy.indexOf('pac') > -1) {
@@ -190,12 +193,6 @@ const createRequest = (method, uri, data = {}, options) => {
       }
     } else {
       settings.proxy = false
-    }
-    if (options.crypto === 'eapi') {
-      settings = {
-        ...settings,
-        responseType: 'arraybuffer',
-      }
     }
     axios(settings)
       .then((res) => {

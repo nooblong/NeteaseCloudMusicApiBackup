@@ -44,8 +44,6 @@ const createRequest = (method, uri, data = {}, options) => {
     }
     if (method.toUpperCase() === 'POST')
       headers['Content-Type'] = 'application/x-www-form-urlencoded'
-    if (uri.includes('music.163.com'))
-      headers['Referer'] = 'https://music.163.com'
     let ip = options.realIP || options.ip || ''
     // console.log(ip)
     if (ip) {
@@ -86,9 +84,31 @@ const createRequest = (method, uri, data = {}, options) => {
       headers['Cookie'] = cookieObjToString(cookie)
     }
     // console.log(options.cookie, headers['Cookie'])
+
     let url = ''
-    let eapiEncrypt = () => {
-      options['url'] = uri
+    // 目前任意uri都支持三种加密方式
+    if (options.crypto === 'weapi') {
+      headers['Referer'] = 'https://music.163.com'
+      headers['User-Agent'] = options.ua || chooseUserAgent('pc')
+      let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
+      data.csrf_token = csrfToken ? csrfToken[1] : ''
+      data = encrypt.weapi(data)
+      url = APP_CONF.domain + '/weapi/' + uri.substr(5)
+    } else if (options.crypto === 'linuxapi') {
+      headers['User-Agent'] =
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
+      data = encrypt.linuxapi({
+        method: method,
+        url: APP_CONF.apiDomain + uri,
+        params: data,
+      })
+      url = 'https://music.163.com/api/linux/forward'
+    } else if (
+      options.crypto === 'eapi' ||
+      options.crypto === 'api' ||
+      options.crypto === ''
+    ) {
+      // 两种加密方式，都应生成客户端的cookie
       const cookie = options.cookie || {}
       const csrfToken = cookie['__csrf'] || ''
       const header = {
@@ -114,33 +134,25 @@ const createRequest = (method, uri, data = {}, options) => {
             encodeURIComponent(key) + '=' + encodeURIComponent(header[key]),
         )
         .join('; ')
-      data.header = header
-      data = encrypt.eapi(options.url, data)
-      url = APP_CONF.apiDomain + '/eapi/' + uri.substr(5)
-    }
-    if (options.crypto === 'weapi') {
-      headers['User-Agent'] = options.ua || chooseUserAgent('pc')
-      let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
-      data.csrf_token = csrfToken ? csrfToken[1] : ''
-      data = encrypt.weapi(data)
-      url = APP_CONF.domain + '/weapi/' + uri.substr(5)
-    } else if (options.crypto === 'linuxapi') {
-      data = encrypt.linuxapi({
-        method: method,
-        url: uri.replace(/\w*api/, 'api'),
-        params: data,
-      })
-      headers['User-Agent'] =
-        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
-      url = 'https://music.163.com/api/linux/forward'
-    } else if (options.crypto === 'eapi') {
-      eapiEncrypt()
-    } else if (options.crypto === 'api') {
-      url = APP_CONF.apiDomain + uri
-    } else if (options.crypto === '') {
-      if (APP_CONF.encrypt) {
+
+      let eapiEncrypt = () => {
+        data.header = header
+        data = encrypt.eapi(uri, data)
+        url = APP_CONF.apiDomain + '/eapi/' + uri.substr(5)
+      }
+      if (options.crypto === 'eapi') {
         eapiEncrypt()
-      } else url = APP_CONF.apiDomain + uri
+      } else if (options.crypto === 'api') {
+        url = APP_CONF.apiDomain + uri
+      } else if (options.crypto === '') {
+        // 加密方式为空，以配置文件的加密方式为准
+        if (APP_CONF.encrypt) {
+          eapiEncrypt()
+        } else url = APP_CONF.apiDomain + uri
+      }
+    } else {
+      // 未知的加密方式
+      console.log('[ERR]', 'Unknown Crypto:', options.crypto)
     }
     const answer = { status: 500, body: {}, cookie: [] }
     // console.log(headers, 'headers')
@@ -152,8 +164,6 @@ const createRequest = (method, uri, data = {}, options) => {
       httpAgent: new http.Agent({ keepAlive: true }),
       httpsAgent: new https.Agent({ keepAlive: true }),
     }
-
-    if (options.crypto === 'eapi') settings.encoding = null
 
     if (options.proxy) {
       if (options.proxy.indexOf('pac') > -1) {
@@ -184,12 +194,6 @@ const createRequest = (method, uri, data = {}, options) => {
     } else {
       settings.proxy = false
     }
-    if (options.crypto === 'eapi') {
-      settings = {
-        ...settings,
-        responseType: 'arraybuffer',
-      }
-    }
     axios(settings)
       .then((res) => {
         const body = res.data
@@ -197,11 +201,7 @@ const createRequest = (method, uri, data = {}, options) => {
           x.replace(/\s*Domain=[^(;|$)]+;*/, ''),
         )
         try {
-          if (options.crypto === 'eapi') {
-            answer.body = JSON.parse(encrypt.decrypt(body))
-          } else {
-            answer.body = body
-          }
+          answer.body = JSON.parse(body.toString())
           if (answer.body.code) {
             answer.body.code = Number(answer.body.code)
           }
@@ -217,7 +217,7 @@ const createRequest = (method, uri, data = {}, options) => {
         } catch (e) {
           // console.log(e)
           try {
-            answer.body = JSON.parse(body.toString())
+            answer.body = JSON.parse(encrypt.decrypt(body))
           } catch (err) {
             // console.log(err)
             // can't decrypt and can't parse directly

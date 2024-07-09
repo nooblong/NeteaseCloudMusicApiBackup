@@ -1,4 +1,7 @@
 # 更新日志
+### 4.21.2 | 2024.07.09
+- 问题修复 [#14](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/14)
+  
 ### 4.21.1 | 2024.06.27
 - 问题修复 [#13](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/13)
 

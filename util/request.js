@@ -86,18 +86,19 @@ const createRequest = (method, uri, data = {}, options) => {
     // console.log(options.cookie, headers['Cookie'])
 
     let url = ''
+    let encryptData = ''
     // 目前任意uri都支持三种加密方式
     if (options.crypto === 'weapi') {
       headers['Referer'] = 'https://music.163.com'
       headers['User-Agent'] = options.ua || chooseUserAgent('pc')
       let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
       data.csrf_token = csrfToken ? csrfToken[1] : ''
-      data = encrypt.weapi(data)
+      encryptData = encrypt.weapi(data)
       url = APP_CONF.domain + '/weapi/' + uri.substr(5)
     } else if (options.crypto === 'linuxapi') {
       headers['User-Agent'] =
         'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
-      data = encrypt.linuxapi({
+      encryptData = encrypt.linuxapi({
         method: method,
         url: APP_CONF.apiDomain + uri,
         params: data,
@@ -137,18 +138,22 @@ const createRequest = (method, uri, data = {}, options) => {
 
       let eapiEncrypt = () => {
         data.header = header
-        data = encrypt.eapi(uri, data)
+        encryptData = encrypt.eapi(uri, data)
         url = APP_CONF.apiDomain + '/eapi/' + uri.substr(5)
       }
       if (options.crypto === 'eapi') {
         eapiEncrypt()
       } else if (options.crypto === 'api') {
         url = APP_CONF.apiDomain + uri
+        encryptData = data
       } else if (options.crypto === '') {
         // 加密方式为空，以配置文件的加密方式为准
         if (APP_CONF.encrypt) {
           eapiEncrypt()
-        } else url = APP_CONF.apiDomain + uri
+        } else {
+          url = APP_CONF.apiDomain + uri
+          encryptData = data
+        }
       }
     } else {
       // 未知的加密方式
@@ -160,7 +165,7 @@ const createRequest = (method, uri, data = {}, options) => {
       method: method,
       url: url,
       headers: headers,
-      data: new URLSearchParams(data).toString(),
+      data: new URLSearchParams(encryptData).toString(),
       httpAgent: new http.Agent({ keepAlive: true }),
       httpsAgent: new https.Agent({ keepAlive: true }),
     }

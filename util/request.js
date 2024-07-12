@@ -140,6 +140,7 @@ const createRequest = (method, uri, data = {}, options) => {
         data.header = header
         encryptData = encrypt.eapi(uri, data)
         url = APP_CONF.apiDomain + '/eapi/' + uri.substr(5)
+        data.e_r = data.e_r != undefined ? data.e_r : APP_CONF.encryptResponse // 用于加密eapi接口的返回值
       }
       if (options.crypto === 'eapi') {
         eapiEncrypt()
@@ -168,6 +169,14 @@ const createRequest = (method, uri, data = {}, options) => {
       data: new URLSearchParams(encryptData).toString(),
       httpAgent: new http.Agent({ keepAlive: true }),
       httpsAgent: new https.Agent({ keepAlive: true }),
+    }
+
+    if (data.e_r) {
+      settings = {
+        ...settings,
+        encoding: null,
+        responseType: 'arraybuffer',
+      }
     }
 
     if (options.proxy) {
@@ -206,7 +215,15 @@ const createRequest = (method, uri, data = {}, options) => {
           x.replace(/\s*Domain=[^(;|$)]+;*/, ''),
         )
         try {
-          answer.body = JSON.parse(body.toString())
+          if (data.e_r) {
+            // eapi接口返回值被加密
+            answer.body = encrypt.eapiResDecrypt(
+              body.toString('hex').toUpperCase(),
+            )
+          } else {
+            answer.body = JSON.parse(body.toString())
+          }
+
           if (answer.body.code) {
             answer.body.code = Number(answer.body.code)
           }
@@ -221,13 +238,8 @@ const createRequest = (method, uri, data = {}, options) => {
           }
         } catch (e) {
           // console.log(e)
-          try {
-            answer.body = JSON.parse(encrypt.decrypt(body))
-          } catch (err) {
-            // console.log(err)
-            // can't decrypt and can't parse directly
-            answer.body = body
-          }
+          // can't decrypt and can't parse directly
+          answer.body = body
           answer.status = res.status
         }
 

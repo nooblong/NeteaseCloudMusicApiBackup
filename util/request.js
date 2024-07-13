@@ -143,9 +143,14 @@ const createRequest = (method, uri, data = {}, options) => {
         let eapi = () => {
           // 使用eapi加密
           data.header = header
+          data.e_r =
+            options.e_r != undefined
+              ? options.e_r
+              : data.e_r != undefined
+              ? data.e_r
+              : APP_CONF.encryptResponse // 用于加密接口返回值
           encryptData = encrypt.eapi(uri, data)
           url = APP_CONF.apiDomain + '/eapi/' + uri.substr(5)
-          data.e_r = data.e_r != undefined ? data.e_r : APP_CONF.encryptResponse // 用于加密接口返回值
         }
         let api = () => {
           // 不使用任何加密
@@ -232,7 +237,8 @@ const createRequest = (method, uri, data = {}, options) => {
               body.toString('hex').toUpperCase(),
             )
           } else {
-            answer.body = JSON.parse(body.toString())
+            answer.body =
+              typeof body == 'object' ? body : JSON.parse(body.toString())
           }
 
           if (answer.body.code) {

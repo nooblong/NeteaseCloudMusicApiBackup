@@ -85,80 +85,91 @@ const createRequest = (method, uri, data = {}, options) => {
     }
     // console.log(options.cookie, headers['Cookie'])
 
-    let url = ''
-    let encryptData = ''
-    // 目前任意uri都支持三种加密方式
-    if (options.crypto === 'weapi') {
-      headers['Referer'] = 'https://music.163.com'
-      headers['User-Agent'] = options.ua || chooseUserAgent('pc')
-      let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
-      data.csrf_token = csrfToken ? csrfToken[1] : ''
-      encryptData = encrypt.weapi(data)
-      url = APP_CONF.domain + '/weapi/' + uri.substr(5)
-    } else if (options.crypto === 'linuxapi') {
-      headers['User-Agent'] =
-        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
-      encryptData = encrypt.linuxapi({
-        method: method,
-        url: APP_CONF.apiDomain + uri,
-        params: data,
-      })
-      url = 'https://music.163.com/api/linux/forward'
-    } else if (
-      options.crypto === 'eapi' ||
-      options.crypto === 'api' ||
-      options.crypto === ''
-    ) {
-      // 两种加密方式，都应生成客户端的cookie
-      const cookie = options.cookie || {}
-      const csrfToken = cookie['__csrf'] || ''
-      const header = {
-        osver: cookie.osver || '17.4.1', //系统版本
-        deviceId: cookie.deviceId || global.deviceId,
-        appver: cookie.appver || iosAppVersion, // app版本
-        versioncode: cookie.versioncode || '140', //版本号
-        mobilename: cookie.mobilename || '', //设备model
-        buildver: cookie.buildver || Date.now().toString().substr(0, 10),
-        resolution: cookie.resolution || '1920x1080', //设备分辨率
-        __csrf: csrfToken,
-        os: cookie.os || 'ios',
-        channel: cookie.channel || '',
-        requestId: `${Date.now()}_${Math.floor(Math.random() * 1000)
-          .toString()
-          .padStart(4, '0')}`,
-      }
-      if (cookie.MUSIC_U) header['MUSIC_U'] = cookie.MUSIC_U
-      if (cookie.MUSIC_A) header['MUSIC_A'] = cookie.MUSIC_A
-      headers['Cookie'] = Object.keys(header)
-        .map(
-          (key) =>
-            encodeURIComponent(key) + '=' + encodeURIComponent(header[key]),
-        )
-        .join('; ')
+    let url = '',
+      encryptData = '',
+      crypto = options.crypto
+    // 根据加密方式加密请求数据；目前任意uri都支持四种加密方式
+    switch (crypto) {
+      case 'weapi':
+        headers['Referer'] = 'https://music.163.com'
+        headers['User-Agent'] = options.ua || chooseUserAgent('pc')
+        let csrfTokenList = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
+        data.csrf_token = csrfTokenList ? csrfTokenList[1] : ''
+        encryptData = encrypt.weapi(data)
+        url = APP_CONF.domain + '/weapi/' + uri.substr(5)
+        break
 
-      let eapiEncrypt = () => {
-        data.header = header
-        encryptData = encrypt.eapi(uri, data)
-        url = APP_CONF.apiDomain + '/eapi/' + uri.substr(5)
-        data.e_r = data.e_r != undefined ? data.e_r : APP_CONF.encryptResponse // 用于加密eapi接口的返回值
-      }
-      if (options.crypto === 'eapi') {
-        eapiEncrypt()
-      } else if (options.crypto === 'api') {
-        url = APP_CONF.apiDomain + uri
-        encryptData = data
-      } else if (options.crypto === '') {
-        // 加密方式为空，以配置文件的加密方式为准
-        if (APP_CONF.encrypt) {
-          eapiEncrypt()
-        } else {
+      case 'linuxapi':
+        headers['User-Agent'] =
+          'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
+        encryptData = encrypt.linuxapi({
+          method: method,
+          url: APP_CONF.apiDomain + uri,
+          params: data,
+        })
+        url = 'https://music.163.com/api/linux/forward'
+        break
+
+      case 'eapi':
+      case 'api':
+      case '':
+        // 两种加密方式，都应生成客户端的cookie
+        const cookie = options.cookie || {}
+        const csrfToken = cookie['__csrf'] || ''
+        const header = {
+          osver: cookie.osver || '17.4.1', //系统版本
+          deviceId: cookie.deviceId || global.deviceId,
+          appver: cookie.appver || iosAppVersion, // app版本
+          versioncode: cookie.versioncode || '140', //版本号
+          mobilename: cookie.mobilename || '', //设备model
+          buildver: cookie.buildver || Date.now().toString().substr(0, 10),
+          resolution: cookie.resolution || '1920x1080', //设备分辨率
+          __csrf: csrfToken,
+          os: cookie.os || 'ios',
+          channel: cookie.channel || '',
+          requestId: `${Date.now()}_${Math.floor(Math.random() * 1000)
+            .toString()
+            .padStart(4, '0')}`,
+        }
+        if (cookie.MUSIC_U) header['MUSIC_U'] = cookie.MUSIC_U
+        if (cookie.MUSIC_A) header['MUSIC_A'] = cookie.MUSIC_A
+        headers['Cookie'] = Object.keys(header)
+          .map(
+            (key) =>
+              encodeURIComponent(key) + '=' + encodeURIComponent(header[key]),
+          )
+          .join('; ')
+
+        let eapi = () => {
+          // 使用eapi加密
+          data.header = header
+          encryptData = encrypt.eapi(uri, data)
+          url = APP_CONF.apiDomain + '/eapi/' + uri.substr(5)
+          data.e_r = data.e_r != undefined ? data.e_r : APP_CONF.encryptResponse // 用于加密接口返回值
+        }
+        let api = () => {
+          // 不使用任何加密
           url = APP_CONF.apiDomain + uri
           encryptData = data
         }
-      }
-    } else {
-      // 未知的加密方式
-      console.log('[ERR]', 'Unknown Crypto:', options.crypto)
+        if (crypto === 'eapi') {
+          eapi()
+        } else if (crypto === 'api') {
+          api()
+        } else if (crypto === '') {
+          // 加密方式为空，以配置文件的加密方式为准
+          if (APP_CONF.encrypt) {
+            eapi()
+          } else {
+            api()
+          }
+        }
+        break
+
+      default:
+        // 未知的加密方式
+        console.log('[ERR]', 'Unknown Crypto:', crypto)
+        break
     }
     const answer = { status: 500, body: {}, cookie: [] }
     // console.log(headers, 'headers')
@@ -216,7 +227,7 @@ const createRequest = (method, uri, data = {}, options) => {
         )
         try {
           if (data.e_r) {
-            // eapi接口返回值被加密
+            // eapi接口返回值被加密，需要解密
             answer.body = encrypt.eapiResDecrypt(
               body.toString('hex').toUpperCase(),
             )

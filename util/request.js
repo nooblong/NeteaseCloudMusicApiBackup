@@ -87,14 +87,14 @@ const createRequest = (method, uri, data = {}, options) => {
 
     let url = '',
       encryptData = '',
-      crypto = options.crypto
+      crypto = options.crypto,
+      csrfToken = cookie['__csrf'] || ''
     // 根据加密方式加密请求数据；目前任意uri都支持四种加密方式
     switch (crypto) {
       case 'weapi':
         headers['Referer'] = 'https://music.163.com'
         headers['User-Agent'] = options.ua || chooseUserAgent('pc')
-        let csrfTokenList = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
-        data.csrf_token = csrfTokenList ? csrfTokenList[1] : ''
+        data.csrf_token = csrfToken
         encryptData = encrypt.weapi(data)
         url = APP_CONF.domain + '/weapi/' + uri.substr(5)
         break
@@ -115,7 +115,6 @@ const createRequest = (method, uri, data = {}, options) => {
       case '':
         // 两种加密方式，都应生成客户端的cookie
         const cookie = options.cookie || {}
-        const csrfToken = cookie['__csrf'] || ''
         const header = {
           osver: cookie.osver || '17.4.1', //系统版本
           deviceId: cookie.deviceId || global.deviceId,

@@ -299,6 +299,8 @@
 281. 歌手动态信息
 282. 最近听歌列表
 283. 云盘导入歌曲
+284. 获取客户端歌曲下载链接 - 新版
+285. 当前账号关注的用户/歌手
 
 ## 安装
 
@@ -4684,6 +4686,33 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 bitrate = Math.floor(br / 1000)
 ```
 导入后的文件名后缀均为 `.mp3` 。但用 `获取音乐url` 获取到的文件格式仍然是正确的。
+
+### 获取客户端歌曲下载链接 - 新版
+
+说明 : 使用 `/song/url/v1` 接口获取的是歌曲试听 url, 但存在部分歌曲在非 VIP 账号上可以下载无损音质而不能试听无损音质, 使用此接口可使非 VIP 账号获取这些歌曲的无损音频
+
+**必选参数 :** `id` : 音乐 id
+ `level`: 播放音质等级, 分为 `standard` => `标准`,`higher` => `较高`, `exhigh`=>`极高`, 
+`lossless`=>`无损`, `hires`=>`Hi-Res`, `jyeffect` => `高清环绕声`, `sky` => `沉浸环绕声`,
+`jymaster` => `超清母带`
+
+**接口地址 :** `/song/download/url/v1`
+
+**调用例子 :** `/song/download/url/v1?id=2058263032&level=lossless`
+
+### 当前账号关注的用户/歌手
+
+说明 : 调用此接口, 可获得当前账号关注的用户/歌手
+
+**可选参数 :** `size` : 返回数量 , 默认为 30
+
+`cursor` : 返回数据的 cursor, 默认为 0 , 传入上一次返回结果的 cursor,将会返回下一页的数据
+
+`scene` : 场景, 0 表示所有关注, 1 表示关注的歌手, 2 表示关注的用户, 默认为 0
+
+**接口地址 :** `/user/follow/mixed`
+
+**调用例子 :** `/user/follow/mixed?scene=1`
 
 ## 离线访问此文档
 

@@ -112,7 +112,7 @@
                     method: 'post',
                     data: {
                         uri: uri,
-                        data: data,
+                        data: JSON.parse(data),
                         crypto: crypto,
                     },
                 });

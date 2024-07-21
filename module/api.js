@@ -1,3 +1,4 @@
+const { cookieToJson } = require('../util/index')
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const method = query.method || 'POST'
@@ -6,6 +7,10 @@ module.exports = (query, request) => {
   try {
     data =
       typeof query.data === 'string' ? JSON.parse(query.data) : query.data || {}
+    if (typeof data.cookie === 'string') {
+      data.cookie = cookieToJson(data.cookie)
+      query.cookie = data.cookie
+    }
   } catch (e) {
     data = {}
   }

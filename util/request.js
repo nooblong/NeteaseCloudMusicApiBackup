@@ -89,6 +89,16 @@ const createRequest = (method, uri, data = {}, options) => {
       encryptData = '',
       crypto = options.crypto,
       csrfToken = cookie['__csrf'] || ''
+
+    if (crypto === '') {
+      // 加密方式为空，以配置文件的加密方式为准
+      if (APP_CONF.encrypt) {
+        crypto = 'eapi'
+      } else {
+        crypto = 'api'
+      }
+    }
+
     // 根据加密方式加密请求数据；目前任意uri都支持四种加密方式
     switch (crypto) {
       case 'weapi':
@@ -112,7 +122,6 @@ const createRequest = (method, uri, data = {}, options) => {
 
       case 'eapi':
       case 'api':
-      case '':
         // 两种加密方式，都应生成客户端的cookie
         const cookie = options.cookie || {}
         const header = {
@@ -160,13 +169,6 @@ const createRequest = (method, uri, data = {}, options) => {
           eapi()
         } else if (crypto === 'api') {
           api()
-        } else if (crypto === '') {
-          // 加密方式为空，以配置文件的加密方式为准
-          if (APP_CONF.encrypt) {
-            eapi()
-          } else {
-            api()
-          }
         }
         break
 

@@ -57,9 +57,6 @@ const createRequest = (method, uri, data = {}, options) => {
         __remember_me: true,
         // NMTID: CryptoJS.lib.WordArray.random(16).toString(),
         _ntes_nuid: CryptoJS.lib.WordArray.random(16).toString(),
-        os: options.cookie.os || 'ios',
-        appver:
-          options.cookie.appver || (cookie.os != 'pc' ? iosAppVersion : ''),
       }
       if (uri.indexOf('login') === -1) {
         options.cookie['NMTID'] = CryptoJS.lib.WordArray.random(16).toString()
@@ -73,14 +70,9 @@ const createRequest = (method, uri, data = {}, options) => {
       headers['Cookie'] = cookieObjToString(options.cookie)
     } else if (options.cookie) {
       // cookie string
-      const cookie = cookieToJson(options.cookie)
-      cookie.os = cookie.os || 'ios'
-      cookie.appver = cookie.appver || (cookie.os != 'pc' ? iosAppVersion : '')
-      headers['Cookie'] = cookieObjToString(cookie)
+      headers['Cookie'] = options.cookie
     } else {
       const cookie = cookieToJson('__remember_me=true; NMTID=xxx')
-      cookie.os = cookie.os || 'ios'
-      cookie.appver = cookie.appver || (cookie.os != 'pc' ? iosAppVersion : '')
       headers['Cookie'] = cookieObjToString(cookie)
     }
     // console.log(options.cookie, headers['Cookie'])
@@ -127,13 +119,13 @@ const createRequest = (method, uri, data = {}, options) => {
         const header = {
           osver: cookie.osver || '17.4.1', //系统版本
           deviceId: cookie.deviceId || global.deviceId,
-          appver: cookie.appver || iosAppVersion, // app版本
+          os: cookie.os || 'ios',
+          appver: cookie.appver || (cookie.os != 'pc' ? iosAppVersion : ''), // app版本
           versioncode: cookie.versioncode || '140', //版本号
           mobilename: cookie.mobilename || '', //设备model
           buildver: cookie.buildver || Date.now().toString().substr(0, 10),
           resolution: cookie.resolution || '1920x1080', //设备分辨率
           __csrf: csrfToken,
-          os: cookie.os || 'ios',
           channel: cookie.channel || '',
           requestId: `${Date.now()}_${Math.floor(Math.random() * 1000)
             .toString()

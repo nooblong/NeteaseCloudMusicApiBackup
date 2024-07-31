@@ -26,7 +26,6 @@ function cloudmusic_dll_encode_id(some_id) {
 }
 
 module.exports = async (query, request) => {
-  query.cookie.os = 'iOS'
   const deviceId = getRandomFromList(deviceidList)
   global.deviceId = deviceId
   const encodedId = CryptoJS.enc.Base64.stringify(

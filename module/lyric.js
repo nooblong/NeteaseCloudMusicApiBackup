@@ -2,8 +2,6 @@
 
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  query.cookie.os = 'ios'
-
   const data = {
     id: query.id,
     tv: -1,

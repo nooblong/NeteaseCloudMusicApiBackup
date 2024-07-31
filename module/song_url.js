@@ -1,7 +1,6 @@
 // 歌曲链接
 const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
-  query.cookie.os = 'pc'
   const ids = String(query.id).split(',')
   const data = {
     ids: JSON.stringify(ids),

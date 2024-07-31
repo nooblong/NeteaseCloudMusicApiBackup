@@ -3,7 +3,6 @@ const { resourceTypeMap } = require('../util/config.json')
 
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  query.cookie.os = 'android'
   query.t = {
     1: 'add',
     0: 'delete',

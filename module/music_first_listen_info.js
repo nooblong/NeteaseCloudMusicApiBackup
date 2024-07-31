@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     songId: query.id,
   }
   return request(
-    'POST',
     `/api/content/activity/music/first/listen/info`,
     data,
     createOption(query),

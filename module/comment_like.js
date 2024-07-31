@@ -13,7 +13,6 @@ module.exports = (query, request) => {
     data.threadId = query.threadId
   }
   return request(
-    'POST',
     `/api/v1/comment/${query.t}`,
     data,
     createOption(query, 'weapi'),

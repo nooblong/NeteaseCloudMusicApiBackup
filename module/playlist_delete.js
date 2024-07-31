@@ -5,10 +5,5 @@ module.exports = (query, request) => {
   const data = {
     ids: '[' + query.id + ']',
   }
-  return request(
-    'POST',
-    `/api/playlist/remove`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/playlist/remove`, data, createOption(query, 'weapi'))
 }

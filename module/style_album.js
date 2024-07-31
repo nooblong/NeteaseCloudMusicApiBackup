@@ -9,7 +9,6 @@ module.exports = (query, request) => {
     sort: query.sort || 0,
   }
   return request(
-    'POST',
     `/api/style-tag/home/album`,
     data,
     createOption(query, 'weapi'),

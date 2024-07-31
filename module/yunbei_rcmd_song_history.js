@@ -9,7 +9,6 @@ module.exports = (query, request) => {
     }),
   }
   return request(
-    'POST',
     `/api/yunbei/rcmd/song/history/list`,
     data,
     createOption(query, 'weapi'),

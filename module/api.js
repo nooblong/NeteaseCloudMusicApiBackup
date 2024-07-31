@@ -1,7 +1,6 @@
 const { cookieToJson } = require('../util/index')
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  const method = query.method || 'POST'
   const uri = query.uri
   let data = {}
   try {
@@ -17,6 +16,6 @@ module.exports = (query, request) => {
 
   const crypto = query.crypto || ''
 
-  const res = request(method, uri, data, createOption(query, crypto))
+  const res = request(uri, data, createOption(query, crypto))
   return res
 }

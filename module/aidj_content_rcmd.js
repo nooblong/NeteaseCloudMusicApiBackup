@@ -23,10 +23,5 @@ module.exports = (query, request) => {
     extInfo: JSON.stringify(extInfo),
   }
   // console.log(data)
-  return request(
-    'POST',
-    `/api/aidj/content/rcmd/info`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/aidj/content/rcmd/info`, data, createOption(query))
 }

@@ -9,7 +9,6 @@ module.exports = (query, request) => {
     total: true,
   }
   return request(
-    'POST',
     `/api/playlist/highquality/list`,
     data,
     createOption(query, 'weapi'),

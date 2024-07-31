@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     limit: query.limit || 30,
     total: 'true',
   }
-  return request(
-    'POST',
-    `/api/msg/private/users`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/msg/private/users`, data, createOption(query, 'weapi'))
 }

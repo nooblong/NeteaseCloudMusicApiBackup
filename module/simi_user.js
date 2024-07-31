@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     limit: query.limit || 50,
     offset: query.offset || 0,
   }
-  return request(
-    'POST',
-    `/api/discovery/simiUser`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/discovery/simiUser`, data, createOption(query, 'weapi'))
 }

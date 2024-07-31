@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     date: query.date || '',
   }
   return request(
-    'POST',
     `/api/discovery/recommend/songs/history/detail`,
     data,
     createOption(query, 'weapi'),

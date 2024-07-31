@@ -12,28 +12,24 @@ module.exports = (query, request) => {
   let limit = parseInt(query.limit) || Infinity
   let offset = parseInt(query.offset) || 0
 
-  return request(
-    'POST',
-    `/api/v6/playlist/detail`,
-    data,
-    createOption(query),
-  ).then((res) => {
-    let trackIds = res.body.playlist.trackIds
-    let idsData = {
-      c:
-        '[' +
-        trackIds
-          .slice(offset, offset + limit)
-          .map((item) => '{"id":' + item.id + '}')
-          .join(',') +
-        ']',
-    }
+  return request(`/api/v6/playlist/detail`, data, createOption(query)).then(
+    (res) => {
+      let trackIds = res.body.playlist.trackIds
+      let idsData = {
+        c:
+          '[' +
+          trackIds
+            .slice(offset, offset + limit)
+            .map((item) => '{"id":' + item.id + '}')
+            .join(',') +
+          ']',
+      }
 
-    return request(
-      'POST',
-      `/api/v3/song/detail`,
-      idsData,
-      createOption(query, 'weapi'),
-    )
-  })
+      return request(
+        `/api/v3/song/detail`,
+        idsData,
+        createOption(query, 'weapi'),
+      )
+    },
+  )
 }

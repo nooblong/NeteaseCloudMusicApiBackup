@@ -28,10 +28,5 @@ module.exports = (query, request) => {
   const data = {
     cateId: query.type,
   }
-  return request(
-    'POST',
-    `/api/djradio/recommend`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/djradio/recommend`, data, createOption(query, 'weapi'))
 }

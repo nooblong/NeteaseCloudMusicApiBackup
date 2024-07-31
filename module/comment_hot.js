@@ -11,7 +11,6 @@ module.exports = (query, request) => {
     beforeTime: query.before || 0,
   }
   return request(
-    'POST',
     `/api/v1/resource/hotcomments/${query.type}${query.id}`,
     data,
     createOption(query, 'weapi'),

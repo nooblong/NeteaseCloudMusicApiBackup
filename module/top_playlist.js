@@ -10,7 +10,6 @@ module.exports = async (query, request) => {
     total: true,
   }
   const res = await request(
-    'POST',
     `/api/playlist/list`,
     data,
     createOption(query, 'weapi'),

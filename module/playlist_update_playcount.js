@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     id: query.id,
   }
   return request(
-    'POST',
     `/api/playlist/update/playcount`,
     data,
     createOption(query, 'weapi'),

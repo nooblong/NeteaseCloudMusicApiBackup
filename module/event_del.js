@@ -5,10 +5,5 @@ module.exports = (query, request) => {
   const data = {
     id: query.evId,
   }
-  return request(
-    'POST',
-    `/api/event/delete`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/event/delete`, data, createOption(query, 'weapi'))
 }

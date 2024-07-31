@@ -4,7 +4,6 @@ module.exports = (query, request) => {
     id: query.id,
   }
   return request(
-    'POST',
     `/api/voice/workbench/voicelist/detail`,
     data,
     createOption(query),

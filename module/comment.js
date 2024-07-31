@@ -23,7 +23,6 @@ module.exports = (query, request) => {
     data.content = query.content
   }
   return request(
-    'POST',
     `/api/resource/comments/${query.t}`,
     data,
     createOption(query, 'weapi'),

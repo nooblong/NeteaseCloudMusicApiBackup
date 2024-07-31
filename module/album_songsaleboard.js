@@ -12,7 +12,6 @@ module.exports = (query, request) => {
     }
   }
   return request(
-    'POST',
     `/api/feealbum/songsaleboard/${type}/type`,
     data,
     createOption(query, 'weapi'),

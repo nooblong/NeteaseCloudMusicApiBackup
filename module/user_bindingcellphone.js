@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     password: query.password ? CryptoJS.MD5(query.password).toString() : '',
   }
   return request(
-    'POST',
     `/api/user/bindingCellphone`,
     data,
     createOption(query, 'weapi'),

@@ -29,10 +29,5 @@ module.exports = (query, request) => {
     type: query.type || '1',
     area: query.area,
   }
-  return request(
-    'POST',
-    `/api/v1/artist/list`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/v1/artist/list`, data, createOption(query, 'weapi'))
 }

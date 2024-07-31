@@ -5,10 +5,5 @@ module.exports = (query, request) => {
   const data = {
     mvid: query.mvid,
   }
-  return request(
-    'POST',
-    `/api/discovery/simiMV`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/discovery/simiMV`, data, createOption(query, 'weapi'))
 }

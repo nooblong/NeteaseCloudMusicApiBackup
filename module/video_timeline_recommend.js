@@ -9,10 +9,5 @@ module.exports = (query, request) => {
     needUrl: '1',
     resolution: '480',
   }
-  return request(
-    'POST',
-    `/api/videotimeline/get`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/videotimeline/get`, data, createOption(query, 'weapi'))
 }

@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
   }
   return request(
-    'POST',
     `/api/single/mybought/song/list`,
     data,
     createOption(query, 'weapi'),

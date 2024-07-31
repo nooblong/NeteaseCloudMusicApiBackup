@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     mlogId: query.id,
   }
   return request(
-    'POST',
     `/api/mlog/video/convert/id`,
     data,
     createOption(query, 'weapi'),

@@ -29,21 +29,18 @@ const chooseUserAgent = (uaType) => {
   }
   return userAgentMap.pc
 }
-const createRequest = (method, uri, data = {}, options) => {
+const createRequest = (uri, data, options) => {
+  const method = 'POST'
   const cookie = options.cookie || {}
   return new Promise((resolve, reject) => {
+    options.headers = options.headers || {}
     let headers = {
+      ...options.headers,
       'User-Agent': options.ua || chooseUserAgent(options.uaType),
+      'Content-Type': 'application/x-www-form-urlencoded',
       os: cookie.os || 'ios',
       appver: cookie.appver || (cookie.os != 'pc' ? iosAppVersion : ''),
     }
-    options.headers = options.headers || {}
-    headers = {
-      ...headers,
-      ...options.headers,
-    }
-    if (method.toUpperCase() === 'POST')
-      headers['Content-Type'] = 'application/x-www-form-urlencoded'
     let ip = options.realIP || options.ip || ''
     // console.log(ip)
     if (ip) {

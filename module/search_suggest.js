@@ -7,7 +7,6 @@ module.exports = (query, request) => {
   }
   let type = query.type == 'mobile' ? 'keyword' : 'web'
   return request(
-    'POST',
     `/api/search/suggest/` + type,
     data,
     createOption(query, 'weapi'),

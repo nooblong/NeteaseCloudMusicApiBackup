@@ -10,7 +10,6 @@ module.exports = (query, request) => {
     getcounts: 'true',
   }
   return request(
-    'POST',
     `/api/user/getfolloweds/${query.uid}`,
     data,
     createOption(query),

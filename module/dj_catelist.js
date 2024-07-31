@@ -2,10 +2,5 @@
 
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  return request(
-    'POST',
-    `/api/djradio/category/get`,
-    {},
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/djradio/category/get`, {}, createOption(query, 'weapi'))
 }

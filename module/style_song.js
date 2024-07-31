@@ -8,10 +8,5 @@ module.exports = (query, request) => {
     tagId: query.tagId,
     sort: query.sort || 0,
   }
-  return request(
-    'POST',
-    `/api/style-tag/home/song`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/style-tag/home/song`, data, createOption(query, 'weapi'))
 }

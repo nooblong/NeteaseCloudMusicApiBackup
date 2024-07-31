@@ -13,7 +13,6 @@ module.exports = (query, request) => {
     pageSize: query.pageSize || 100,
   }
   return request(
-    'POST',
     `/api/v2/resource/comments/hug/list`,
     data,
     createOption(query),

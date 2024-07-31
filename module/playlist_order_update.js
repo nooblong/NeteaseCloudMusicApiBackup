@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     ids: query.ids,
   }
   return request(
-    'POST',
     `/api/playlist/order/update`,
     data,
     createOption(query, 'weapi'),

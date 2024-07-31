@@ -10,10 +10,5 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     type: typeMap[query.type || 'new'] || '0', //0为新晋,1为热门
   }
-  return request(
-    'POST',
-    `/api/djradio/toplist`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/djradio/toplist`, data, createOption(query, 'weapi'))
 }

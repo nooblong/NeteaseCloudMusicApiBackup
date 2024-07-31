@@ -11,10 +11,5 @@ module.exports = (query, request) => {
     tab: 0,
     order: query.order || 0,
   }
-  return request(
-    'POST',
-    `/api/mlog/artist/video`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/mlog/artist/video`, data, createOption(query, 'weapi'))
 }

@@ -8,10 +8,5 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     asc: toBoolean(query.asc),
   }
-  return request(
-    'POST',
-    `/api/dj/program/byradio`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/dj/program/byradio`, data, createOption(query, 'weapi'))
 }

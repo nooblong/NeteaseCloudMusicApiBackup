@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     countrycode: query.countrycode || '86',
   }
   return request(
-    'POST',
     `/api/user/replaceCellphone`,
     data,
     createOption(query, 'weapi'),

@@ -15,7 +15,6 @@ module.exports = (query, request) => {
     rcmd: true,
   }
   return request(
-    'POST',
     `/api/discovery/new/albums/area`,
     data,
     createOption(query, 'weapi'),

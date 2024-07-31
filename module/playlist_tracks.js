@@ -13,7 +13,6 @@ module.exports = async (query, request) => {
 
   try {
     const res = await request(
-      'POST',
       `/api/playlist/manipulate/tracks`,
       data,
       createOption(query, 'weapi'),
@@ -27,7 +26,6 @@ module.exports = async (query, request) => {
   } catch (error) {
     if (error.body.code === 512) {
       return request(
-        'POST',
         `/api/playlist/manipulate/tracks`,
         {
           op: query.op, // del,add

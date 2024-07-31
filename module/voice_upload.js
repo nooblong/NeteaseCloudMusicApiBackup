@@ -38,7 +38,6 @@ module.exports = async (query, request) => {
   }
 
   const tokenRes = await request(
-    'POST',
     `/api/nos/token/alloc`,
     {
       bucket: 'ymusic',

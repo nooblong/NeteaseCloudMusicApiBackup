@@ -8,10 +8,5 @@ module.exports = (query, request) => {
     limit: query.limit || '20',
     total: 'true',
   }
-  return request(
-    'POST',
-    `/api/djradio/subscriber`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/djradio/subscriber`, data, createOption(query, 'weapi'))
 }

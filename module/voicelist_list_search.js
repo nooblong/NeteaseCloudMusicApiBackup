@@ -10,10 +10,5 @@ module.exports = (query, request) => {
     voiceFeeType: query.voiceFeeType || null,
     radioId: query.voiceListId,
   }
-  return request(
-    'POST',
-    '/api/voice/workbench/voice/list',
-    data,
-    createOption(query),
-  )
+  return request('/api/voice/workbench/voice/list', data, createOption(query))
 }

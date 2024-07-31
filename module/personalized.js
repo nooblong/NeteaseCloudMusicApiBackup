@@ -9,7 +9,6 @@ module.exports = (query, request) => {
     n: 1000,
   }
   return request(
-    'POST',
     `/api/personalized/playlist`,
     data,
     createOption(query, 'weapi'),

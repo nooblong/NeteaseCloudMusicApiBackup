@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     ids: '["' + query.id + '"]',
     resolution: query.res || 1080,
   }
-  return request(
-    'POST',
-    `/api/cloudvideo/playurl`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/cloudvideo/playurl`, data, createOption(query, 'weapi'))
 }

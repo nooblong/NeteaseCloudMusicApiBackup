@@ -10,7 +10,6 @@ module.exports = (query, request) => {
     yunbeiNum: query.yunbeiNum || 10,
   }
   return request(
-    'POST',
     `/api/yunbei/rcmd/song/submit`,
     data,
     createOption(query, 'weapi'),

@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     areaId: query.areaId || 0,
   }
   return request(
-    'POST',
     `/api/personalized/newsong`,
     data,
     createOption(query, 'weapi'),

@@ -6,10 +6,5 @@ module.exports = (query, request) => {
   const data = {
     c: '[' + query.ids.map((id) => '{"id":' + id + '}').join(',') + ']',
   }
-  return request(
-    'POST',
-    `/api/v3/song/detail`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/v3/song/detail`, data, createOption(query, 'weapi'))
 }

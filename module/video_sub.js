@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     id: query.id,
   }
   return request(
-    'POST',
     `/api/cloudvideo/video/${query.t}`,
     data,
     createOption(query, 'weapi'),

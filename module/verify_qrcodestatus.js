@@ -4,7 +4,6 @@ module.exports = async (query, request) => {
     qrCode: query.qr,
   }
   const res = await request(
-    'POST',
     `/api/frontrisk/verify/qrcodestatus`,
     data,
     createOption(query, 'weapi'),

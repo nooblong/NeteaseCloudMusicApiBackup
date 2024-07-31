@@ -37,7 +37,6 @@ module.exports = async (query, request) => {
     username: encodedId,
   }
   let result = await request(
-    'POST',
     `/api/register/anonimous`,
     data,
     createOption(query, 'weapi'),

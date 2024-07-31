@@ -8,10 +8,5 @@ module.exports = (query, request) => {
     limit: query.limit || 30,
     total: false,
   }
-  return request(
-    'POST',
-    `/api/event/get/${query.uid}`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/event/get/${query.uid}`, data, createOption(query))
 }

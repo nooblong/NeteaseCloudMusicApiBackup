@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     sceneType: 1,
   }
   return request(
-    'POST',
     `/api/v2/discovery/recommend/dislike`,
     data,
     createOption(query, 'weapi'),

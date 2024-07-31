@@ -9,7 +9,6 @@ module.exports = (query, request) => {
     total: true,
   }
   return request(
-    'POST',
     `/api/v1/discovery/new/songs`,
     data,
     createOption(query, 'weapi'),

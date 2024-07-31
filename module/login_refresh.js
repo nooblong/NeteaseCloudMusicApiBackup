@@ -3,7 +3,6 @@
 const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   let result = await request(
-    'POST',
     `/api/login/token/refresh`,
     {},
     {

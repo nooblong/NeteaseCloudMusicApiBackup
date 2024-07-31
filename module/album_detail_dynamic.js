@@ -5,7 +5,6 @@ module.exports = (query, request) => {
     id: query.id,
   }
   return request(
-    'POST',
     `/api/album/detail/dynamic`,
     data,
     createOption(query, 'weapi'),

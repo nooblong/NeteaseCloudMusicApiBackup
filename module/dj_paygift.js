@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     _nmclfl: 1,
   }
   return request(
-    'POST',
     `/api/djradio/home/paygift/list`,
     data,
     createOption(query, 'weapi'),

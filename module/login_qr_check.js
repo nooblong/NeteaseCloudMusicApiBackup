@@ -6,7 +6,6 @@ module.exports = async (query, request) => {
   }
   try {
     let result = await request(
-      'POST',
       `/api/login/qrcode/client/login`,
       data,
       createOption(query, 'weapi'),

@@ -8,10 +8,5 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     includeVideo: true,
   }
-  return request(
-    'POST',
-    `/api/user/playlist`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/user/playlist`, data, createOption(query, 'weapi'))
 }

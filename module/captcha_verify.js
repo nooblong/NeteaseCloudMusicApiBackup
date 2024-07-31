@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     cellphone: query.phone,
     captcha: query.captcha,
   }
-  return request(
-    'POST',
-    `/api/sms/captcha/verify`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/sms/captcha/verify`, data, createOption(query, 'weapi'))
 }

@@ -7,7 +7,6 @@ module.exports = async (query, request) => {
     br: parseInt(query.br || 999000),
   }
   const res = await request(
-    'POST',
     `/api/song/enhance/player/url`,
     data,
     createOption(query),

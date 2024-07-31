@@ -11,10 +11,5 @@ module.exports = async (query, request) => {
   }
   console.log(data)
 
-  return request(
-    'POST',
-    `/api/playlist/track/add`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/playlist/track/add`, data, createOption(query, 'weapi'))
 }

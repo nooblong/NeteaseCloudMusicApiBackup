@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     total: true,
   }
   return request(
-    'POST',
     `/api/cloudvideo/allvideo/sublist`,
     data,
     createOption(query, 'weapi'),

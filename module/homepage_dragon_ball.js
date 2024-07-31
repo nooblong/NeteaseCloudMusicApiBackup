@@ -6,10 +6,5 @@ const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {}
 
-  return request(
-    'POST',
-    `/api/homepage/dragon/ball/static`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/homepage/dragon/ball/static`, data, createOption(query))
 }

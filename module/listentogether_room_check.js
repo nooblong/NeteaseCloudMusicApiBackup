@@ -5,10 +5,5 @@ module.exports = (query, request) => {
   const data = {
     roomId: query.roomId,
   }
-  return request(
-    'POST',
-    `/api/listen/together/room/check`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/listen/together/room/check`, data, createOption(query))
 }

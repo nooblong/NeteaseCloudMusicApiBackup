@@ -5,10 +5,5 @@ module.exports = (query, request) => {
   const data = {
     refer: 'songplay_more',
   }
-  return request(
-    'POST',
-    `/api/listen/together/room/create`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/listen/together/room/create`, data, createOption(query))
 }

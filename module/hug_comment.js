@@ -9,7 +9,6 @@ module.exports = (query, request) => {
     threadId: threadId,
   }
   return request(
-    'POST',
     `/api/v2/resource/comments/hug/listener`,
     data,
     createOption(query),

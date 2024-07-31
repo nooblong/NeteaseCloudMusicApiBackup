@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     podcastName: query.podcastName || '',
   }
   return request(
-    'POST',
     `/api/voice/workbench/voicelist/search`,
     data,
     createOption(query),

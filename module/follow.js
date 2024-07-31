@@ -4,7 +4,6 @@ const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   query.t = query.t == 1 ? 'follow' : 'delfollow'
   return request(
-    'POST',
     `/api/user/${query.t}/${query.id}`,
     {},
     createOption(query, 'weapi'),

@@ -12,7 +12,6 @@ module.exports = async (query, request) => {
   }
   const uploadInfo = await uploadPlugin(query, request)
   const res = await request(
-    'POST',
     `/api/playlist/cover/update`,
     {
       id: query.id,

@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     limit: query.limit || 30,
     offset: query.offset || 0,
   }
-  return request(
-    'POST',
-    `/api/v1/cloud/get`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/v1/cloud/get`, data, createOption(query, 'weapi'))
 }

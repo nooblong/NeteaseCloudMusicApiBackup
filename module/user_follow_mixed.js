@@ -16,7 +16,6 @@ module.exports = (query, request) => {
     sortType: '0',
   }
   return request(
-    'POST',
     `/api/user/follow/users/mixed/get/v2`,
     data,
     createOption(query),

@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     br: parseInt(query.br || 999000),
   }
   return request(
-    'POST',
     `/api/song/enhance/player/url`,
     data,
     createOption(query, 'weapi'),

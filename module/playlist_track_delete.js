@@ -13,7 +13,6 @@ module.exports = async (query, request) => {
   }
 
   return request(
-    'POST',
     `/api/playlist/track/delete`,
     data,
     createOption(query, 'weapi'),

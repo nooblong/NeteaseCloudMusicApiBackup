@@ -19,7 +19,6 @@ module.exports = (query, request) => {
     }),
   }
   return request(
-    'POST',
     `/api/listen/together/sync/list/command/report`,
     data,
     createOption(query),

@@ -9,7 +9,6 @@ module.exports = (query, request) => {
     beforeTime: query.before || 0,
   }
   return request(
-    'POST',
     `/api/v1/resource/comments/R_SO_4_${query.id}`,
     data,
     createOption(query, 'weapi'),

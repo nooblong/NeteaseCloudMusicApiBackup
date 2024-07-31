@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     limit: query.limit || 60,
   }
   return request(
-    'POST',
     `/api/v2/privatecontent/list`,
     data,
     createOption(query, 'weapi'),

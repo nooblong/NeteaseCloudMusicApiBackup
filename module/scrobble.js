@@ -15,15 +15,12 @@ module.exports = (query, request) => {
           type: 'song',
           wifi: 0,
           source: 'list',
+          mainsite: 1,
+          content: '',
         },
       },
     ]),
   }
 
-  return request(
-    'POST',
-    `/api/feedback/weblog`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/feedback/weblog`, data, createOption(query, 'weapi'))
 }

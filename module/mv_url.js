@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     r: query.r || 1080,
   }
   return request(
-    'POST',
     `/api/song/enhance/play/mv/url`,
     data,
     createOption(query, 'weapi'),

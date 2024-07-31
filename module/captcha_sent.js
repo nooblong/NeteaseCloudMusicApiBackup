@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     ctcode: query.ctcode || '86',
     cellphone: query.phone,
   }
-  return request(
-    'POST',
-    `/api/sms/captcha/sent`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/sms/captcha/sent`, data, createOption(query, 'weapi'))
 }

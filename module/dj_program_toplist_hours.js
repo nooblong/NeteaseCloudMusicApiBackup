@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     // 不支持 offset
   }
   return request(
-    'POST',
     `/api/djprogram/toplist/hours`,
     data,
     createOption(query, 'weapi'),

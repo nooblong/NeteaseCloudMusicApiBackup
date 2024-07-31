@@ -4,7 +4,6 @@ module.exports = (query, request) => {
     limit: query.limit || 100,
   }
   return request(
-    'POST',
     `/api/play-record/song/list`,
     data,
     createOption(query, 'weapi'),

@@ -15,7 +15,6 @@ module.exports = async (query, request) => {
   const bucket = 'jd-musicrep-privatecloud-audio-public'
   //   获取key和token
   const tokenRes = await request(
-    'POST',
     `/api/nos/token/alloc`,
     {
       bucket: bucket,

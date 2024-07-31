@@ -3,7 +3,6 @@
 const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   const res = await request(
-    'POST',
     `/api/v1/user/detail/${query.uid}`,
     {},
     createOption(query, 'weapi'),

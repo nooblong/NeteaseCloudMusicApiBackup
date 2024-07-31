@@ -4,7 +4,6 @@ module.exports = async (query, request) => {
     type: 1,
   }
   const result = await request(
-    'POST',
     `/api/login/qrcode/unikey`,
     data,
     createOption(query, 'weapi'),

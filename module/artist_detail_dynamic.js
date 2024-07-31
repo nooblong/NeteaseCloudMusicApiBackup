@@ -5,10 +5,5 @@ module.exports = (query, request) => {
   const data = {
     id: query.id,
   }
-  return request(
-    'POST',
-    `/api/artist/detail/dynamic`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/artist/detail/dynamic`, data, createOption(query))
 }

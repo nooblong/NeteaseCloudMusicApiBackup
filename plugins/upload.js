@@ -12,7 +12,6 @@ module.exports = async (query, request) => {
   }
   //   获取key和token
   const res = await request(
-    'POST',
     `/api/nos/token/alloc`,
     data,
     createOption(query, 'weapi'),

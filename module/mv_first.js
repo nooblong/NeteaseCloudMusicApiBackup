@@ -8,5 +8,5 @@ module.exports = (query, request) => {
     limit: query.limit || 30,
     total: true,
   }
-  return request('POST', `/api/mv/first`, data, createOption(query))
+  return request(`/api/mv/first`, data, createOption(query))
 }

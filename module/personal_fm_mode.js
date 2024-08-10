@@ -10,5 +10,5 @@ module.exports = (query, request) => {
     subMode: query.submode,
     limit: query.limit || 3,
   }
-  return request('POST', `/api/v1/radio/get`, data, createOption(query))
+  return request(`/api/v1/radio/get`, data, createOption(query))
 }

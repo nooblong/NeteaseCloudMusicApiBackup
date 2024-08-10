@@ -8,5 +8,5 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     limit: query.limit || 100,
   }
-  return request('POST', `/api/v1/artist/songs`, data, createOption(query))
+  return request(`/api/v1/artist/songs`, data, createOption(query))
 }

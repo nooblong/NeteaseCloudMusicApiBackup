@@ -2,5 +2,5 @@
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {}
-  return request('POST', `/api/lbs/countries/v1`, data, createOption(query))
+  return request(`/api/lbs/countries/v1`, data, createOption(query))
 }

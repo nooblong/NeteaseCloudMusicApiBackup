@@ -3,5 +3,5 @@
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {}
-  return request('POST', `/api/user/level`, data, createOption(query, 'weapi'))
+  return request(`/api/user/level`, data, createOption(query, 'weapi'))
 }

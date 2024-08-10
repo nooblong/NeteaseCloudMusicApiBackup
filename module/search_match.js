@@ -14,5 +14,5 @@ module.exports = (query, request) => {
   const data = {
     songs: JSON.stringify(songs),
   }
-  return request('POST', `/api/search/match/new`, data, createOption(query))
+  return request(`/api/search/match/new`, data, createOption(query))
 }

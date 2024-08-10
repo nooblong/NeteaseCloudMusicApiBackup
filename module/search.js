@@ -9,7 +9,7 @@ module.exports = (query, request) => {
       limit: query.limit || 30,
       offset: query.offset || 0,
     }
-    return request('POST', `/api/search/voice/get`, data, createOption(query))
+    return request(`/api/search/voice/get`, data, createOption(query))
   }
   const data = {
     s: query.keywords,
@@ -17,5 +17,5 @@ module.exports = (query, request) => {
     limit: query.limit || 30,
     offset: query.offset || 0,
   }
-  return request('POST', `/api/search/get`, data, createOption(query))
+  return request(`/api/search/get`, data, createOption(query))
 }

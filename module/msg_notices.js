@@ -6,5 +6,5 @@ module.exports = (query, request) => {
     limit: query.limit || 30,
     time: query.lasttime || -1,
   }
-  return request('POST', `/api/msg/notices`, data, createOption(query, 'weapi'))
+  return request(`/api/msg/notices`, data, createOption(query, 'weapi'))
 }

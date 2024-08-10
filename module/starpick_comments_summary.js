@@ -8,5 +8,5 @@ module.exports = (query, request) => {
       refresh: true,
     }),
   }
-  return request('POST', `/api/homepage/block/page`, data, createOption(query))
+  return request(`/api/homepage/block/page`, data, createOption(query))
 }

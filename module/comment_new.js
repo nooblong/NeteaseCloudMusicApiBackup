@@ -33,5 +33,5 @@ module.exports = (query, request) => {
     cursor: cursor,
     sortType: sortType, //99:按推荐排序,2:按热度排序,3:按时间排序
   }
-  return request('POST', `/api/v2/resource/comments`, data, createOption(query))
+  return request(`/api/v2/resource/comments`, data, createOption(query))
 }

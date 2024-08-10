@@ -30,7 +30,6 @@ const chooseUserAgent = (uaType) => {
   return userAgentMap.pc
 }
 const createRequest = (uri, data, options) => {
-  const method = 'POST'
   const cookie = options.cookie || {}
   return new Promise((resolve, reject) => {
     options.headers = options.headers || {}
@@ -96,7 +95,7 @@ const createRequest = (uri, data, options) => {
         headers['User-Agent'] =
           'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
         encryptData = encrypt.linuxapi({
-          method: method,
+          method: 'POST',
           url: APP_CONF.apiDomain + uri,
           params: data,
         })
@@ -159,7 +158,7 @@ const createRequest = (uri, data, options) => {
     const answer = { status: 500, body: {}, cookie: [] }
     // console.log(headers, 'headers')
     let settings = {
-      method: method,
+      method: 'POST',
       url: url,
       headers: headers,
       data: new URLSearchParams(encryptData).toString(),

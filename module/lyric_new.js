@@ -13,5 +13,5 @@ module.exports = (query, request) => {
     ytv: 0,
     yrv: 0,
   }
-  return request('POST', `/api/song/lyric/v1`, data, createOption(query))
+  return request(`/api/song/lyric/v1`, data, createOption(query))
 }

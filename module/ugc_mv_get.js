@@ -4,5 +4,5 @@ module.exports = (query, request) => {
   const data = {
     mvId: query.id,
   }
-  return request('POST', `/api/rep/ugc/mv/get`, data, createOption(query))
+  return request(`/api/rep/ugc/mv/get`, data, createOption(query))
 }

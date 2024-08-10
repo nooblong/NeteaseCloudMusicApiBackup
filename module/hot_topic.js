@@ -6,5 +6,5 @@ module.exports = (query, request) => {
     limit: query.limit || 20,
     offset: query.offset || 0,
   }
-  return request('POST', `/api/act/hot`, data, createOption(query, 'weapi'))
+  return request(`/api/act/hot`, data, createOption(query, 'weapi'))
 }

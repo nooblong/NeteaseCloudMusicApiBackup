@@ -8,5 +8,5 @@ module.exports = (query, request) => {
       data[i] = query[i]
     }
   })
-  return request('POST', `/api/batch`, data, createOption(query))
+  return request(`/api/batch`, data, createOption(query))
 }

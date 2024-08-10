@@ -6,5 +6,5 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     limit: query.limit || 30,
   }
-  return request('POST', `/api/mv/exclusive/rcmd`, data, createOption(query))
+  return request(`/api/mv/exclusive/rcmd`, data, createOption(query))
 }

@@ -5,5 +5,5 @@ module.exports = (query, request) => {
   const data = {
     nickname: query.nickname,
   }
-  return request('POST', `/api/activate/initProfile`, data, createOption(query))
+  return request(`/api/activate/initProfile`, data, createOption(query))
 }

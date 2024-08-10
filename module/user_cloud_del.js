@@ -5,5 +5,5 @@ module.exports = (query, request) => {
   const data = {
     songIds: [query.id],
   }
-  return request('POST', `/api/cloud/del`, data, createOption(query, 'weapi'))
+  return request(`/api/cloud/del`, data, createOption(query, 'weapi'))
 }

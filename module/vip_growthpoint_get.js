@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     taskIds: query.ids,
   }
   return request(
-    'POST',
     `/api/vipnewcenter/app/level/task/reward/get`,
     data,
     createOption(query, 'weapi'),

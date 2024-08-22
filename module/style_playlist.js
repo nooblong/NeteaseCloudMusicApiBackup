@@ -9,7 +9,6 @@ module.exports = (query, request) => {
     sort: 0,
   }
   return request(
-    'POST',
     `/api/style-tag/home/playlist`,
     data,
     createOption(query, 'weapi'),

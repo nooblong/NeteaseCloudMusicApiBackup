@@ -2,10 +2,5 @@
 
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  return request(
-    'POST',
-    `/api/discovery/newAlbum`,
-    {},
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/discovery/newAlbum`, {}, createOption(query, 'weapi'))
 }

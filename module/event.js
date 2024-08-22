@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     pagesize: query.pagesize || 20,
     lasttime: query.lasttime || -1,
   }
-  return request(
-    'POST',
-    `/api/v1/event/get`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/v1/event/get`, data, createOption(query, 'weapi'))
 }

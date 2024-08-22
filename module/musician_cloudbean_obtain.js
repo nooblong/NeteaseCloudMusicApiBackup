@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     period: query.period,
   }
   return request(
-    'POST',
     `/api/nmusician/workbench/mission/reward/obtain/new`,
     data,
     createOption(query, 'weapi'),

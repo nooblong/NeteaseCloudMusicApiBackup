@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     voiceListId: query.voiceListId,
   }
   return request(
-    'POST',
     `/api/voice/workbench/voices/by/voicelist`,
     data,
     createOption(query),

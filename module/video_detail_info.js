@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     composeliked: true,
   }
   return request(
-    'POST',
     `/api/comment/commentthread/info`,
     data,
     createOption(query, 'weapi'),

@@ -2,7 +2,6 @@
 const { resourceTypeMap } = require('../util/config.json')
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  query.cookie.os = 'android'
   query.t = query.t == 1 ? 'like' : 'unlike'
   query.type = resourceTypeMap[query.type]
   const data = {
@@ -11,10 +10,5 @@ module.exports = (query, request) => {
   if (query.type === 'A_EV_2_') {
     data.threadId = query.threadId
   }
-  return request(
-    'POST',
-    `/api/resource/${query.t}`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/resource/${query.t}`, data, createOption(query, 'weapi'))
 }

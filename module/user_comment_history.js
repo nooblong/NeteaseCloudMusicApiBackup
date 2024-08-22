@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     time: query.time || 0,
   }
   return request(
-    'POST',
     `/api/comment/user/comment/history`,
     data,
     createOption(query, 'weapi'),

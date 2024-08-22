@@ -4,10 +4,5 @@ module.exports = (query, request) => {
   const data = {
     songId: query.id,
   }
-  return request(
-    'POST',
-    `/api/song/play/about/block/page`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/song/play/about/block/page`, data, createOption(query))
 }

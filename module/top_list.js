@@ -1,8 +1,6 @@
 // 排行榜
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  query.cookie.os = 'pc'
-  query.cookie.appver = '2.9.7'
   if (query.idx) {
     return Promise.resolve({
       status: 500,
@@ -18,5 +16,5 @@ module.exports = (query, request) => {
     n: '500',
     s: '0',
   }
-  return request('POST', `/api/playlist/v4/detail`, data, createOption(query))
+  return request(`/api/playlist/v4/detail`, data, createOption(query))
 }

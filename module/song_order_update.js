@@ -8,10 +8,5 @@ module.exports = (query, request) => {
     op: 'update',
   }
 
-  return request(
-    'POST',
-    `/api/playlist/manipulate/tracks`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/playlist/manipulate/tracks`, data, createOption(query))
 }

@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     alg: 'RT',
     time: query.time || 25,
   }
-  return request(
-    'POST',
-    `/api/radio/trash/add`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/radio/trash/add`, data, createOption(query, 'weapi'))
 }

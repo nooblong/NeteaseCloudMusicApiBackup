@@ -3,8 +3,6 @@ const CryptoJS = require('crypto-js')
 
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  query.cookie.os = 'pc'
-  query.cookie.appver = '2.9.7'
   const data = {
     captcha: query.captcha,
     phone: query.phone,
@@ -12,10 +10,5 @@ module.exports = (query, request) => {
     nickname: query.nickname,
     countrycode: query.countrycode || '86',
   }
-  return request(
-    'POST',
-    `/api/register/cellphone`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/register/cellphone`, data, createOption(query, 'weapi'))
 }

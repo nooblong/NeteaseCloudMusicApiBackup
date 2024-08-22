@@ -10,7 +10,6 @@ module.exports = (query, request) => {
   }
 
   return request(
-    'POST',
     `/api/v1/user/comments/${query.uid}`,
     data,
     createOption(query, 'weapi'),

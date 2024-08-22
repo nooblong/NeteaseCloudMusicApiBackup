@@ -2,8 +2,6 @@
 
 const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
-  query.cookie.os = 'pc'
-  query.cookie.appver = '2.9.7'
   query.ids = query.ids || ''
   const data = {
     id: query.id,
@@ -15,7 +13,6 @@ module.exports = async (query, request) => {
   }
 
   return request(
-    'POST',
     `/api/playlist/track/delete`,
     data,
     createOption(query, 'weapi'),

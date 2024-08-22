@@ -9,7 +9,6 @@ module.exports = (query, request) => {
     limit: query.limit || 20,
   }
   return request(
-    'POST',
     `/api/resource/comment/floor/get`,
     data,
     createOption(query, 'weapi'),

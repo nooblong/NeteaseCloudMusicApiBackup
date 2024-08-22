@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     dataType: query.dataType || 3, // 未知
   }
   return request(
-    'POST',
     '/api/expert/worksdata/works/top/get',
     data,
     createOption(query),

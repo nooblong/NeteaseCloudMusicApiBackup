@@ -5,7 +5,6 @@ module.exports = (query, request) => {
     startTimestamp: query.before || Date.now(),
   }
   return request(
-    'POST',
     `/api/sub/artist/new/works/song/list`,
     data,
     createOption(query, 'weapi'),

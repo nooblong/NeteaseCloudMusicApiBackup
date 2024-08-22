@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
   }
   return request(
-    'POST',
     `/api/vipnewcenter/app/level/growth/details`,
     data,
     createOption(query, 'weapi'),

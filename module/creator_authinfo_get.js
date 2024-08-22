@@ -2,10 +2,5 @@
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {}
-  return request(
-    'POST',
-    `/api/user/creator/authinfo/get`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/user/creator/authinfo/get`, data, createOption(query))
 }

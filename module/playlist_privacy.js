@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     id: query.id,
     privacy: 0,
   }
-  return request(
-    'POST',
-    `/api/playlist/update/privacy`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/playlist/update/privacy`, data, createOption(query))
 }

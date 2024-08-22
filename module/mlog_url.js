@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     resolution: query.res || 1080,
     type: 1,
   }
-  return request(
-    'POST',
-    `/api/mlog/detail/v1`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/mlog/detail/v1`, data, createOption(query, 'weapi'))
 }

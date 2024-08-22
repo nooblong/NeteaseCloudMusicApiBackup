@@ -6,10 +6,5 @@ module.exports = (query, request) => {
   const data = {
     id: query.id,
   }
-  return request(
-    'POST',
-    `/api/album/${query.t}`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/album/${query.t}`, data, createOption(query, 'weapi'))
 }

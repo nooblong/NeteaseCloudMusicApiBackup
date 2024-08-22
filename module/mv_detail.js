@@ -5,10 +5,5 @@ module.exports = (query, request) => {
   const data = {
     id: query.mvid,
   }
-  return request(
-    'POST',
-    `/api/v1/mv/detail`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/v1/mv/detail`, data, createOption(query, 'weapi'))
 }

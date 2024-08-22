@@ -3,8 +3,6 @@ const { resourceTypeMap } = require('../util/config.json')
 
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  query.cookie.os = 'pc'
-  query.cookie.appver = '2.9.7'
   query.t = query.t == 1 ? 'like' : 'unlike'
   query.type = resourceTypeMap[query.type]
   const data = {
@@ -15,7 +13,6 @@ module.exports = (query, request) => {
     data.threadId = query.threadId
   }
   return request(
-    'POST',
     `/api/v1/comment/${query.t}`,
     data,
     createOption(query, 'weapi'),

@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     adjustSongId: query.asid,
   }
   return request(
-    'POST',
     `/api/cloud/user/song/match`,
     data,
     createOption(query, 'weapi'),

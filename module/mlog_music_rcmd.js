@@ -9,5 +9,5 @@ module.exports = (query, request) => {
     limit: query.limit || 10,
     extInfo: JSON.stringify({ songId: query.songid }),
   }
-  return request('POST', `/api/mlog/rcmd/feed/list`, data, createOption(query))
+  return request(`/api/mlog/rcmd/feed/list`, data, createOption(query))
 }

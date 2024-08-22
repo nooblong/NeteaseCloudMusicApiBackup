@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
   }
   return request(
-    'POST',
     `/api/discovery/simiPlaylist`,
     data,
     createOption(query, 'weapi'),

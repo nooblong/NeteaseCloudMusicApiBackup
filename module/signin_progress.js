@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     moduleId: query.moduleId || '1207signin-1207signin',
   }
   return request(
-    'POST',
     `/api/act/modules/signin/v2/progress`,
     data,
     createOption(query, 'weapi'),

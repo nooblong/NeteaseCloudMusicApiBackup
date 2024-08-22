@@ -5,5 +5,5 @@ module.exports = (query, request) => {
   const data = {
     id: query.id,
   }
-  return request('POST', `/api/album/privilege`, data, createOption(query))
+  return request(`/api/album/privilege`, data, createOption(query))
 }

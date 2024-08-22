@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     limit: query.limit || 100,
     // 不支持 offset
   }
-  return request(
-    'POST',
-    `/api/dj/toplist/popular`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/dj/toplist/popular`, data, createOption(query, 'weapi'))
 }

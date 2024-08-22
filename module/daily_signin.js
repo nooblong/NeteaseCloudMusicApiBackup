@@ -12,10 +12,5 @@ module.exports = (query, request) => {
   const data = {
     type: query.type || 0,
   }
-  return request(
-    'POST',
-    `/api/point/dailyTask`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/point/dailyTask`, data, createOption(query, 'weapi'))
 }

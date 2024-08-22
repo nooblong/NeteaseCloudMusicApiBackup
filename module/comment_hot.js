@@ -3,8 +3,6 @@ const { resourceTypeMap } = require('../util/config.json')
 
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  query.cookie.os = 'pc'
-  query.cookie.appver = '2.9.7'
   query.type = resourceTypeMap[query.type]
   const data = {
     rid: query.id,
@@ -13,7 +11,6 @@ module.exports = (query, request) => {
     beforeTime: query.before || 0,
   }
   return request(
-    'POST',
     `/api/v1/resource/hotcomments/${query.type}${query.id}`,
     data,
     createOption(query, 'weapi'),

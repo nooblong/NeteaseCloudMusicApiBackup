@@ -17,8 +17,6 @@ module.exports = async (query, request) => {
     .replace('.' + ext, '')
     .replace(/\s/g, '')
     .replace(/\./g, '_')
-  query.cookie.os = 'pc'
-  query.cookie.appver = '2.9.7'
   const bitrate = 999000
   if (!query.songFile) {
     return Promise.reject({
@@ -35,7 +33,6 @@ module.exports = async (query, request) => {
     query.songFile.size = query.songFile.data.byteLength
   }
   const res = await request(
-    'POST',
     `/api/cloud/upload/check`,
     {
       bitrate: String(bitrate),
@@ -94,7 +91,6 @@ module.exports = async (query, request) => {
     console.log(error)
   }
   const tokenRes = await request(
-    'POST',
     `/api/nos/token/alloc`,
     {
       bucket: '',
@@ -114,7 +110,6 @@ module.exports = async (query, request) => {
   }
   // console.log(tokenRes.body.result)
   const res2 = await request(
-    'POST',
     `/api/upload/cloud/info/v2`,
     {
       md5: query.songFile.md5,
@@ -131,7 +126,6 @@ module.exports = async (query, request) => {
   // console.log({ res2, privateCloud: res2.body.privateCloud })
   // console.log(res.body.songId, 'songid')
   const res3 = await request(
-    'POST',
     `/api/cloud/pub/v2`,
     {
       songid: res2.body.songId,

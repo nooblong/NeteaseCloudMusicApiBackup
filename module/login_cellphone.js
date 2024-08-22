@@ -13,7 +13,7 @@ module.exports = async (query, request) => {
       : query.md5_password || CryptoJS.MD5(query.password).toString(),
     rememberLogin: 'true',
   }
-  let result = await request('POST', `/api/login/cellphone`, data, {
+  let result = await request(`/api/login/cellphone`, data, {
     ...createOption(query, 'weapi'),
     uaType: 'pc',
   })

@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     position: query.position || '1', // 排序编号
   }
   return request(
-    'POST',
     `/api/voice/workbench/radio/program/trans`,
     data,
     createOption(query),

@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     id: query.id,
   }
   return request(
-    'POST',
     `/api/artist/follow/count/get`,
     data,
     createOption(query, 'weapi'),

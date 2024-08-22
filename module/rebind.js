@@ -9,7 +9,6 @@ module.exports = (query, request) => {
     ctcode: query.ctcode || '86',
   }
   return request(
-    'POST',
     `/api/user/replaceCellphone`,
     data,
     createOption(query, 'weapi'),

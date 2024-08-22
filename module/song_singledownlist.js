@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     offset: query.offset || '0',
     total: 'true',
   }
-  return request(
-    'POST',
-    `/api/member/song/singledownlist`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/member/song/singledownlist`, data, createOption(query))
 }

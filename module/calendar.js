@@ -4,10 +4,5 @@ module.exports = (query, request) => {
     startTime: query.startTime || Date.now(),
     endTime: query.endTime || Date.now(),
   }
-  return request(
-    'POST',
-    `/api/mcalendar/detail`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/mcalendar/detail`, data, createOption(query, 'weapi'))
 }

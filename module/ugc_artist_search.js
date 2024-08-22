@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     keyword: query.keyword,
     limit: query.limit || 40,
   }
-  return request(
-    'POST',
-    `/api/rep/ugc/artist/search`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/rep/ugc/artist/search`, data, createOption(query))
 }

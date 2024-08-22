@@ -4,5 +4,5 @@ module.exports = (query, request) => {
   const data = {
     songId: query.id,
   }
-  return request('POST', `/api/rep/ugc/song/get`, data, createOption(query))
+  return request(`/api/rep/ugc/song/get`, data, createOption(query))
 }

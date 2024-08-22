@@ -8,5 +8,5 @@ module.exports = (query, request) => {
     type: 'song',
     userIds: '[' + query.user_ids + ']',
   }
-  return request('POST', `/api/msg/private/send`, data, createOption(query))
+  return request(`/api/msg/private/send`, data, createOption(query))
 }

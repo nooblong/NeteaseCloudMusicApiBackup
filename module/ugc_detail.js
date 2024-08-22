@@ -13,10 +13,5 @@ module.exports = (query, request) => {
     //曲库纠错 ARTIST:1 ALBUM:2 SONG:3 MV:4 LYRIC:5 TLYRIC:6
     //曲库补充 ALBUM:101 MV:103
   }
-  return request(
-    'POST',
-    `/api/rep/ugc/detail`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/rep/ugc/detail`, data, createOption(query, 'weapi'))
 }

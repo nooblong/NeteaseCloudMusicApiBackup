@@ -14,7 +14,6 @@ module.exports = (query, request) => {
     }),
   }
   return request(
-    'POST',
     `/api/listen/together/play/command/report`,
     data,
     createOption(query),

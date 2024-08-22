@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     total: true,
   }
-  return request(
-    'POST',
-    `/api/djradio/get/subed`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/djradio/get/subed`, data, createOption(query, 'weapi'))
 }

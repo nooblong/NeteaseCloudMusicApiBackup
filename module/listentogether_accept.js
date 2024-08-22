@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     inviterId: query.inviterId,
   }
   return request(
-    'POST',
     `/api/listen/together/play/invitation/accept`,
     data,
     createOption(query),

@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     mvId: query.mvid,
     mvIds: '["' + query.mvid + '"]',
   }
-  return request(
-    'POST',
-    `/api/mv/${query.t}`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/mv/${query.t}`, data, createOption(query, 'weapi'))
 }

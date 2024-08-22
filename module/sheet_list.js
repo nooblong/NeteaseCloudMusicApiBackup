@@ -5,5 +5,5 @@ module.exports = (query, request) => {
     id: query.id,
     abTest: query.ab || 'b',
   }
-  return request('POST', `/api/music/sheet/list/v1`, data, createOption(query))
+  return request(`/api/music/sheet/list/v1`, data, createOption(query))
 }

@@ -12,10 +12,5 @@ module.exports = (query, request) => {
   if (data.level == 'sky') {
     data.immerseType = 'c51'
   }
-  return request(
-    'POST',
-    `/api/song/enhance/player/url/v1`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/song/enhance/player/url/v1`, data, createOption(query))
 }

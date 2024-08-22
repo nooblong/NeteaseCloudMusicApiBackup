@@ -5,7 +5,6 @@ module.exports = (query, request) => {
     limit: query.limit || '12',
   }
   return request(
-    'POST',
     `/api/mlog/playlist/mylike/bytime/get`,
     data,
     createOption(query, 'weapi'),

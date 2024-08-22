@@ -3,7 +3,6 @@ const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = {}
   return request(
-    'POST',
     `/api/influencer/web/apply/threshold/detail/get`,
     data,
     createOption(query),

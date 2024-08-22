@@ -5,10 +5,5 @@ module.exports = (query, request) => {
   const data = {
     tagId: query.tagId,
   }
-  return request(
-    'POST',
-    `/api/style-tag/home/head`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/style-tag/home/head`, data, createOption(query, 'weapi'))
 }

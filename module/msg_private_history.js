@@ -8,10 +8,5 @@ module.exports = (query, request) => {
     time: query.before || 0,
     total: 'true',
   }
-  return request(
-    'POST',
-    `/api/msg/private/history`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/msg/private/history`, data, createOption(query, 'weapi'))
 }

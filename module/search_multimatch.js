@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     s: query.keywords || '',
   }
   return request(
-    'POST',
     `/api/search/suggest/multimatch`,
     data,
     createOption(query, 'weapi'),

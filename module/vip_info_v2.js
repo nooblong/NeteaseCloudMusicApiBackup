@@ -3,7 +3,6 @@
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   return request(
-    'POST',
     `/api/music-vip-membership/client/vip/info`,
     {
       userId: query.uid || '',

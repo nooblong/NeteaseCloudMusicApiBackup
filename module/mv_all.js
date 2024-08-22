@@ -12,5 +12,5 @@ module.exports = (query, request) => {
     total: 'true',
     limit: query.limit || 30,
   }
-  return request('POST', `/api/mv/all`, data, createOption(query))
+  return request(`/api/mv/all`, data, createOption(query))
 }

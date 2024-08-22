@@ -10,7 +10,6 @@ module.exports = (query, request) => {
   }
   //   /api/videotimeline/otherclient/get
   return request(
-    'POST',
     `/api/videotimeline/otherclient/get`,
     data,
     createOption(query, 'weapi'),

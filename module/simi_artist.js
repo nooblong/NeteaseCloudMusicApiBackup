@@ -5,7 +5,6 @@ module.exports = (query, request) => {
     artistid: query.id,
   }
   return request(
-    'POST',
     `/api/discovery/simiArtist`,
     data,
     createOption(query, 'weapi'),

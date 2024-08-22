@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     endTime: query.endTime,
   }
   return request(
-    'POST',
     `/api/creator/musician/play/count/statistic/data/trend/get`,
     data,
     createOption(query, 'weapi'),

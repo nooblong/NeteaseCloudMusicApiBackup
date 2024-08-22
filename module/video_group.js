@@ -9,7 +9,6 @@ module.exports = (query, request) => {
     total: true,
   }
   return request(
-    'POST',
     `/api/videotimeline/videogroup/otherclient/get`,
     data,
     createOption(query, 'weapi'),

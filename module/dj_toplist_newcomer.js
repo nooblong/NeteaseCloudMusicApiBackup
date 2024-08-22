@@ -5,10 +5,5 @@ module.exports = (query, request) => {
     limit: query.limit || 100,
     offset: query.offset || 0,
   }
-  return request(
-    'POST',
-    `/api/dj/toplist/newcomer`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/dj/toplist/newcomer`, data, createOption(query, 'weapi'))
 }

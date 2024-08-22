@@ -9,7 +9,6 @@ module.exports = (query, request) => {
       3: 'ipad',
     }[query.type || 0] || 'pc'
   return request(
-    'POST',
     `/api/v2/banner/get`,
     { clientType: type },
     createOption(query),

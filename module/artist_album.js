@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     total: true,
   }
   return request(
-    'POST',
     `/api/artist/albums/${query.id}`,
     data,
     createOption(query, 'weapi'),

@@ -4,10 +4,5 @@
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
   const data = { refresh: query.refresh || false, cursor: query.cursor }
-  return request(
-    'POST',
-    `/api/homepage/block/page`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/homepage/block/page`, data, createOption(query, 'weapi'))
 }

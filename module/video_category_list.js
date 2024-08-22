@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     limit: query.limit || 99,
   }
   return request(
-    'POST',
     `/api/cloudvideo/category/list`,
     data,
     createOption(query, 'weapi'),

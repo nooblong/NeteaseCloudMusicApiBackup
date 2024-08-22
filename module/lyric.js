@@ -2,8 +2,6 @@
 
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  query.cookie.os = 'ios'
-
   const data = {
     id: query.id,
     tv: -1,
@@ -12,5 +10,5 @@ module.exports = (query, request) => {
     kv: -1,
     _nmclfl: 1,
   }
-  return request('POST', `/api/song/lyric`, data, createOption(query))
+  return request(`/api/song/lyric`, data, createOption(query))
 }

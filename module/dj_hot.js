@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     limit: query.limit || 30,
     offset: query.offset || 0,
   }
-  return request(
-    'POST',
-    `/api/djradio/hot/v1`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/djradio/hot/v1`, data, createOption(query, 'weapi'))
 }

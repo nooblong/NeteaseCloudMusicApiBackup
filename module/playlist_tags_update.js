@@ -6,5 +6,5 @@ module.exports = (query, request) => {
     id: query.id,
     tags: query.tags,
   }
-  return request('POST', `/api/playlist/tags/update`, data, createOption(query))
+  return request(`/api/playlist/tags/update`, data, createOption(query))
 }

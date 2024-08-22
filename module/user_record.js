@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     uid: query.uid,
     type: query.type || 0, // 1: 最近一周, 0: 所有时间
   }
-  return request(
-    'POST',
-    `/api/v1/play/record`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/v1/play/record`, data, createOption(query, 'weapi'))
 }

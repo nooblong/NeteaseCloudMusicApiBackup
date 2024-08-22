@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     endTime: query.endTime || Date.now(),
     type: query.type || 0, //新增关注:0 新增取关:1
   }
-  return request(
-    'POST',
-    `/api/fanscenter/trend/list`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/fanscenter/trend/list`, data, createOption(query))
 }

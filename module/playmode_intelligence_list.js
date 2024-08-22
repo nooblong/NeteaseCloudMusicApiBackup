@@ -10,7 +10,6 @@ module.exports = (query, request) => {
     count: query.count || 1,
   }
   return request(
-    'POST',
     `/api/playmode/intelligence/list`,
     data,
     createOption(query, 'weapi'),

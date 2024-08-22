@@ -7,5 +7,5 @@ module.exports = (query, request) => {
     n: 100000,
     s: query.s || 8,
   }
-  return request('POST', `/api/v6/playlist/detail`, data, createOption(query))
+  return request(`/api/v6/playlist/detail`, data, createOption(query))
 }

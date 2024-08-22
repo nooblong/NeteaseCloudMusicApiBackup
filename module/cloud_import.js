@@ -16,7 +16,6 @@ module.exports = async (query, request) => {
     ]),
   }
   const res = await request(
-    'POST',
     `/api/cloud/upload/check/v2`,
     checkData,
     createOption(query),
@@ -36,10 +35,5 @@ module.exports = async (query, request) => {
       },
     ]),
   }
-  return request(
-    'POST',
-    `/api/cloud/user/song/import`,
-    importData,
-    createOption(query),
-  )
+  return request(`/api/cloud/user/song/import`, importData, createOption(query))
 }

@@ -5,7 +5,7 @@ module.exports = (query, request) => {
   const data = {
     type: 1111,
   }
-  return request('POST', `/api/search/hot`, data, {
+  return request(`/api/search/hot`, data, {
     ...createOption(query, 'weapi'),
     uaType: 'mobile',
   })

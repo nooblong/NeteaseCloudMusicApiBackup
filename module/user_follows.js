@@ -8,7 +8,6 @@ module.exports = (query, request) => {
     order: true,
   }
   return request(
-    'POST',
     `/api/user/getfollows/${query.uid}`,
     data,
     createOption(query, 'weapi'),

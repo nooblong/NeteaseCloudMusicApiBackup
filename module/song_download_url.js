@@ -6,10 +6,5 @@ module.exports = (query, request) => {
     id: query.id,
     br: parseInt(query.br || 999000),
   }
-  return request(
-    'POST',
-    `/api/song/enhance/download/url`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/song/enhance/download/url`, data, createOption(query))
 }

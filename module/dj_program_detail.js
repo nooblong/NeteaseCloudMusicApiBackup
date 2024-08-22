@@ -5,10 +5,5 @@ module.exports = (query, request) => {
   const data = {
     id: query.id,
   }
-  return request(
-    'POST',
-    `/api/dj/program/detail`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/dj/program/detail`, data, createOption(query, 'weapi'))
 }

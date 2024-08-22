@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     total: true,
   }
-  return request(
-    'POST',
-    `/api/topic/sublist`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/topic/sublist`, data, createOption(query, 'weapi'))
 }

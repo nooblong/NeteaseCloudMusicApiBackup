@@ -9,5 +9,5 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     total: true,
   }
-  return request('POST', `/api/cloudsearch/pc`, data, createOption(query))
+  return request(`/api/cloudsearch/pc`, data, createOption(query))
 }

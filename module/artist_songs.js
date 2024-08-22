@@ -1,7 +1,5 @@
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  query.cookie.os = 'pc'
-  query.cookie.appver = '2.9.7'
   const data = {
     id: query.id,
     private_cloud: 'true',
@@ -10,10 +8,5 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     limit: query.limit || 100,
   }
-  return request(
-    'POST',
-    `/api/v1/artist/songs`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/v1/artist/songs`, data, createOption(query))
 }

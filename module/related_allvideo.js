@@ -7,7 +7,6 @@ module.exports = (query, request) => {
     type: /^\d+$/.test(query.id) ? 0 : 1,
   }
   return request(
-    'POST',
     `/api/cloudvideo/v1/allvideo/rcmd`,
     data,
     createOption(query, 'weapi'),

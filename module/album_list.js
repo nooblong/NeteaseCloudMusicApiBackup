@@ -9,7 +9,6 @@ module.exports = (query, request) => {
     type: query.type,
   }
   return request(
-    'POST',
     `/api/vipmall/albumproduct/list`,
     data,
     createOption(query, 'weapi'),

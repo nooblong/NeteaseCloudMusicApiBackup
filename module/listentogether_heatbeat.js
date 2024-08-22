@@ -8,10 +8,5 @@ module.exports = (query, request) => {
     playStatus: query.playStatus,
     progress: query.progress,
   }
-  return request(
-    'POST',
-    `/api/listen/together/heartbeat`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/listen/together/heartbeat`, data, createOption(query))
 }

@@ -4,5 +4,5 @@ module.exports = (query, request) => {
     limit: query.limit || 10,
     offset: query.offset || 0,
   }
-  return request('POST', `/api/point/expense`, data, createOption(query))
+  return request(`/api/point/expense`, data, createOption(query))
 }

@@ -6,10 +6,5 @@ module.exports = (query, request) => {
   const data = {
     songIds: id,
   }
-  return request(
-    'POST',
-    `/api/v1/cloud/get/byids`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/v1/cloud/get/byids`, data, createOption(query, 'weapi'))
 }

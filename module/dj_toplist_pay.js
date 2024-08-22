@@ -5,10 +5,5 @@ module.exports = (query, request) => {
     limit: query.limit || 100,
     // 不支持 offset
   }
-  return request(
-    'POST',
-    `/api/djradio/toplist/pay`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/djradio/toplist/pay`, data, createOption(query, 'weapi'))
 }

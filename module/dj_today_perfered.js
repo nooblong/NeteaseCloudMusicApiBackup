@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     page: query.page || 0,
   }
   return request(
-    'POST',
     `/api/djradio/home/today/perfered`,
     data,
     createOption(query, 'weapi'),

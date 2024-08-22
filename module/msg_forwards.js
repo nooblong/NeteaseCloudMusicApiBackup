@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     limit: query.limit || 30,
     total: 'true',
   }
-  return request(
-    'POST',
-    `/api/forwards/get`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/forwards/get`, data, createOption(query, 'weapi'))
 }

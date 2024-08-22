@@ -6,7 +6,6 @@ module.exports = (query, request) => {
     roomId: query.roomId,
   }
   return request(
-    'POST',
     `/api/listen/together/sync/playlist/get`,
     data,
     createOption(query),

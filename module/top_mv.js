@@ -8,5 +8,5 @@ module.exports = (query, request) => {
     offset: query.offset || 0,
     total: true,
   }
-  return request('POST', `/api/mv/toplist`, data, createOption(query, 'weapi'))
+  return request(`/api/mv/toplist`, data, createOption(query, 'weapi'))
 }

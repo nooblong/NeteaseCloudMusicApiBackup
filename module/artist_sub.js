@@ -7,10 +7,5 @@ module.exports = (query, request) => {
     artistId: query.id,
     artistIds: '[' + query.id + ']',
   }
-  return request(
-    'POST',
-    `/api/artist/${query.t}`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/artist/${query.t}`, data, createOption(query, 'weapi'))
 }

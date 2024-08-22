@@ -10,7 +10,6 @@ module.exports = (query, request) => {
     data.limit = query.limit || 60
   }
   return request(
-    'POST',
     `/api/vipmusic/newrecord/weekflow`,
     data,
     createOption(query, 'weapi'),

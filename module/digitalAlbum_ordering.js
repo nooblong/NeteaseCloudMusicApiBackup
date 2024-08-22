@@ -15,7 +15,6 @@ module.exports = (query, request) => {
     from: 'web',
   }
   return request(
-    'POST',
     `/api/ordering/web/digital`,
     data,
     createOption(query, 'weapi'),

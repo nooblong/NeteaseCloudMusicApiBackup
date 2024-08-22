@@ -9,10 +9,5 @@ module.exports = (query, request) => {
     immerseType: 'c51',
     level: query.level,
   }
-  return request(
-    'POST',
-    `/api/song/enhance/download/url/v1`,
-    data,
-    createOption(query),
-  )
+  return request(`/api/song/enhance/download/url/v1`, data, createOption(query))
 }

@@ -374,7 +374,7 @@ v4.0.8 加入了 Vercel 配置文件,可以直接在 Vercel 下部署了,不需�
 
 
 ## 腾讯云 serverless 部署
-因 `Vercel` 在国内访问太慢(不绑定自己的域名的情况下),在此提供腾讯云 serverless 部署方法(注意:腾讯云 serverless 并不是免费的,前三个月有免费额度,之后收费)
+因 `Vercel` 在国内访问太慢(不绑定自己的域名的情况下),在此提供腾讯云 serverless 部署方法
 ### 操作方法
 1. [fork](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/forks/new)  此项目
 2. 在腾讯云serverless应用管理页面( https://console.cloud.tencent.com/sls ),点击`新建应用`
@@ -388,6 +388,9 @@ export PORT=9000
 /var/lang/node16/bin/node app.js
 ``` 
 7. 点击`完成`,等待部署完成,点击`资源列表`的 `API网关` 里的 `URL`,正常情况会打开文档地址,点击文档`例子`可查看接口调用效果
+- 注意
+   - 腾讯云 serverless 并不是免费的,前三个月有免费额度,之后收费
+   - 当前(2024-08-24), 用此法创建的话, 会`默认`关联一个"日志服务-日志主题"(创建过程中没有提醒), 此服务是计量收费的
 
 ## 可以使用代理
 
@@ -568,6 +571,17 @@ v3.30.0 后支持手动传入 cookie,登录接口返回内容新增 `cookie` 字
 {
     ...,
     cookie:"xxx"
+}
+```
+另外的cookie说明:
+可以直接从浏览器中获取cookie值, 只需要其中key为`MUSIC_U`的数据即可
+请求
+```
+GET https://example.com/search?keywords=HELLO&cookie=MUSIC_U%3Dxxxx
+POST https://example.com/search?keywords=HELLO
+body {
+  ...,
+  "cookie": "MUSIC_U=xxxx"
 }
 ```
 

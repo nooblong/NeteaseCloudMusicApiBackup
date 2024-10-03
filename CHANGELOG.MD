@@ -1,4 +1,12 @@
 # 更新日志
+### 4.23.0 | 2024.10.03
+- 修复登录冻结问题 [#25](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/25)
+- 增加歌曲动态封面接口 [#24](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/24)
+- 增加用户是否互相关注接口 [#24](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/24)
+- 增加歌曲是否喜爱接口 [#24](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/24)
+- 增加 杜比全景声 音质的说明。补充客户端下载链接新版接口的说明 [#23](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/23)
+
+
 ### 4.22.0 | 2024.07.16
 - 增加部分接口(获取客户端歌曲下载链接 - 新版、当前账号关注的用户/歌手)；eapi返回值加密可被控制，默认不加密；代码优化 [#15](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/15)
 - 增加`会员下载歌曲记录` `会员本月下载歌曲记录` `已购买单曲` 等接口 [#16](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/16)

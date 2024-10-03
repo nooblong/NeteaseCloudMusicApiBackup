@@ -5,6 +5,8 @@ const CryptoJS = require('crypto-js')
 const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   const data = {
+    type: '1',
+    https: 'true',
     phone: query.phone,
     countrycode: query.countrycode || '86',
     captcha: query.captcha,
@@ -13,8 +15,8 @@ module.exports = async (query, request) => {
       : query.md5_password || CryptoJS.MD5(query.password).toString(),
     rememberLogin: 'true',
   }
-  let result = await request(`/api/login/cellphone`, data, {
-    ...createOption(query, 'weapi'),
+  let result = await request(`/api/w/login/cellphone`, data, {
+    ...createOption(query),
     uaType: 'pc',
   })
 

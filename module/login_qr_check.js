@@ -2,13 +2,13 @@ const createOption = require('../util/option.js')
 module.exports = async (query, request) => {
   const data = {
     key: query.key,
-    type: 1,
+    type: 3,
   }
   try {
     let result = await request(
       `/api/login/qrcode/client/login`,
       data,
-      createOption(query, 'weapi'),
+      createOption(query),
     )
     result = {
       status: 200,

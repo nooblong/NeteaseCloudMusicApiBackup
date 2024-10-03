@@ -6,7 +6,7 @@ module.exports = async (query, request) => {
     `/api/login/token/refresh`,
     {},
     {
-      ...createOption(query, 'weapi'),
+      ...createOption(query, 'eapi'),
       uaType: 'pc',
     },
   )

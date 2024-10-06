@@ -18,16 +18,19 @@ const iosAppVersion = '9.0.65'
 const { APP_CONF } = require('../util/config.json')
 // request.debug = true // 开启可看到更详细信息
 
-const chooseUserAgent = (uaType) => {
+const chooseUserAgent = (crypto, uaType = 'pc') => {
   const userAgentMap = {
-    mobile:
-      'Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Mobile/15E148 Safari/604.1',
-    pc: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0',
+    weapi: {
+      pc: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0',
+    },
+    api: {
+      pc: 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36 Chrome/91.0.4472.164 NeteaseMusicDesktop/3.0.18.203152',
+      android:
+        'NeteaseMusic/9.1.65.240927161425(9001065);Dalvik/2.1.0 (Linux; U; Android 14; 23013RK75C Build/UKQ1.230804.001)',
+      ios: 'NeteaseMusic 9.0.90/5038 (iPhone; iOS 16.2; zh_CN)',
+    },
   }
-  if (uaType === 'mobile') {
-    return userAgentMap.mobile
-  }
-  return userAgentMap.pc
+  return userAgentMap[crypto][uaType] || ''
 }
 const createRequest = (uri, data, options) => {
   const cookie = options.cookie || {}
@@ -85,7 +88,7 @@ const createRequest = (uri, data, options) => {
     switch (crypto) {
       case 'weapi':
         headers['Referer'] = APP_CONF.domain
-        headers['User-Agent'] = options.ua || chooseUserAgent('pc')
+        headers['User-Agent'] = options.ua || chooseUserAgent('weapi')
         data.csrf_token = csrfToken
         encryptData = encrypt.weapi(data)
         url = APP_CONF.domain + '/weapi/' + uri.substr(5)
@@ -116,7 +119,7 @@ const createRequest = (uri, data, options) => {
           buildver: cookie.buildver || Date.now().toString().substr(0, 10),
           resolution: cookie.resolution || '1920x1080', //设备分辨率
           __csrf: csrfToken,
-          channel: cookie.channel || '',
+          channel: cookie.channel || 'netease',
           requestId: `${Date.now()}_${Math.floor(Math.random() * 1000)
             .toString()
             .padStart(4, '0')}`,
@@ -129,7 +132,7 @@ const createRequest = (uri, data, options) => {
               encodeURIComponent(key) + '=' + encodeURIComponent(header[key]),
           )
           .join('; ')
-        headers['User-Agent'] = options.ua || chooseUserAgent(options.uaType)
+        headers['User-Agent'] = options.ua || chooseUserAgent('api')
 
         if (crypto === 'eapi') {
           // 使用eapi加密

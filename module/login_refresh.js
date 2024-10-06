@@ -5,10 +5,7 @@ module.exports = async (query, request) => {
   let result = await request(
     `/api/login/token/refresh`,
     {},
-    {
-      ...createOption(query, 'eapi'),
-      uaType: 'pc',
-    },
+    createOption(query),
   )
   if (result.body.code === 200) {
     result = {

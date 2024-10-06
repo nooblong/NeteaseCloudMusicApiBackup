@@ -1,4 +1,7 @@
 # 更新日志
+### 4.23.1 | 2024.10.06
+- 模拟pc客户端的ua和cookie字段 [#26](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/26)
+
 ### 4.23.0 | 2024.10.03
 - 修复登录冻结问题 [#25](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/25)
 - 增加歌曲动态封面接口 [#24](https://gitlab.com/Binaryify/neteasecloudmusicapi/-/merge_requests/24)

@@ -2,12 +2,5 @@
 
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {
-  return request(
-    `/api/logout`,
-    {},
-    {
-      ...createOption(query, 'weapi'),
-      uaType: 'pc',
-    },
-  )
+  return request(`/api/logout`, {}, createOption(query))
 }

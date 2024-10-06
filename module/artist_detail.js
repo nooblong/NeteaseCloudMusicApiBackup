@@ -5,6 +5,6 @@ module.exports = (query, request) => {
     {
       id: query.id,
     },
-    createOption(query, 'weapi'),
+    createOption(query),
   )
 }

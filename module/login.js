@@ -11,10 +11,7 @@ module.exports = async (query, request) => {
     password: query.md5_password || CryptoJS.MD5(query.password).toString(),
     rememberLogin: 'true',
   }
-  let result = await request(`/api/w/login`, data, {
-    ...createOption(query),
-    uaType: 'pc',
-  })
+  let result = await request(`/api/w/login`, data, createOption(query))
   if (result.body.code === 502) {
     return {
       status: 200,

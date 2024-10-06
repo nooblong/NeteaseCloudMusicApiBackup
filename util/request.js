@@ -63,7 +63,7 @@ const createRequest = (uri, data, options) => {
     // headers['X-Real-IP'] = '118.88.88.88'
     if (typeof cookie === 'object') {
       let _ntes_nuid = CryptoJS.lib.WordArray.random(32).toString()
-      let os = osMap[cookie.os] || osMap['pc']
+      let os = osMap[cookie.os] || osMap['iphone']
       cookie = {
         ...cookie,
         __remember_me: 'true',
@@ -122,7 +122,7 @@ const createRequest = (uri, data, options) => {
           url: APP_CONF.apiDomain + uri,
           params: data,
         })
-        url = 'https://music.163.com/api/linux/forward'
+        url = APP_CONF.apiDomain + '/api/linux/forward'
         break
 
       case 'eapi':

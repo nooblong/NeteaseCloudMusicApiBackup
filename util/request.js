@@ -95,10 +95,11 @@ const createRequest = (uri, data, options) => {
         __remember_me: 'true',
         // NMTID: CryptoJS.lib.WordArray.random(16).toString(),
         ntes_kaola_ad: '1',
-        _ntes_nuid: _ntes_nuid,
-        _ntes_nnid: `${_ntes_nuid},${Date.now().toString()}`,
-        WNMCID: WNMCID,
-        WEVNSM: '1.0.0',
+        _ntes_nuid: cookie._ntes_nuid || _ntes_nuid,
+        _ntes_nnid:
+          cookie._ntes_nnid || `${_ntes_nuid},${Date.now().toString()}`,
+        WNMCID: cookie.WNMCID || WNMCID,
+        WEVNSM: cookie.WEVNSM || '1.0.0',
 
         osver: cookie.osver || os.osver,
         deviceId: cookie.deviceId || global.deviceId,
@@ -111,9 +112,7 @@ const createRequest = (uri, data, options) => {
       }
       if (!cookie.MUSIC_U) {
         // 游客
-        if (!cookie.MUSIC_A) {
-          cookie.MUSIC_A = anonymous_token
-        }
+        cookie.MUSIC_A = cookie.MUSIC_A || anonymous_token
       }
       headers['Cookie'] = cookieObjToString(cookie)
     }

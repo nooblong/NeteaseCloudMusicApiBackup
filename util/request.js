@@ -47,7 +47,7 @@ const osMap = {
     channel: 'xiaomi',
   },
   iphone: {
-    os: 'iOS',
+    os: 'iPhone OS',
     appver: '9.0.90',
     osver: '16.2',
     channel: 'distribution',

@@ -10,7 +10,7 @@ module.exports = {
     let obj = {}
     cookieArr.forEach((i) => {
       let arr = i.split('=')
-      obj[arr[0]] = arr[1]
+      if (arr.length == 2) obj[arr[0].trim()] = arr[1].trim()
     })
     return obj
   },

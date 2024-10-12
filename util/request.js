@@ -17,21 +17,40 @@ const { URLSearchParams, URL } = require('url')
 const { APP_CONF } = require('../util/config.json')
 // request.debug = true // 开启可看到更详细信息
 
+const WNMCID = (function () {
+  const characters = 'abcdefghijklmnopqrstuvwxyz'
+  let randomString = ''
+  for (let i = 0; i < 6; i++)
+    randomString += characters.charAt(
+      Math.floor(Math.random() * characters.length),
+    )
+  return `${randomString}.${Date.now().toString()}.01.0`
+})()
+
 const osMap = {
   pc: {
     os: 'pc',
     appver: '3.0.18.203152',
     osver: 'Microsoft-Windows-10-Professional-build-22631-64bit',
+    channel: 'netease',
+  },
+  linux: {
+    os: 'linux',
+    appver: '1.2.1.0428',
+    osver: 'Deepin 20.9',
+    channel: 'netease',
   },
   android: {
     os: 'android',
     appver: '8.20.20.231215173437',
     osver: '14',
+    channel: 'xiaomi',
   },
   iphone: {
     os: 'iOS',
     appver: '9.0.90',
     osver: '16.2',
+    channel: 'distribution',
   },
 }
 
@@ -39,6 +58,10 @@ const chooseUserAgent = (crypto, uaType = 'pc') => {
   const userAgentMap = {
     weapi: {
       pc: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0',
+    },
+    linuxapi: {
+      linux:
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36',
     },
     api: {
       pc: 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36 Chrome/91.0.4472.164 NeteaseMusicDesktop/3.0.18.203152',
@@ -50,10 +73,8 @@ const chooseUserAgent = (crypto, uaType = 'pc') => {
   return userAgentMap[crypto][uaType] || ''
 }
 const createRequest = (uri, data, options) => {
-  let cookie = options.cookie || {}
   return new Promise((resolve, reject) => {
-    options.headers = options.headers || {}
-    let headers = options.headers
+    let headers = options.headers || {}
     let ip = options.realIP || options.ip || ''
     // console.log(ip)
     if (ip) {
@@ -61,6 +82,11 @@ const createRequest = (uri, data, options) => {
       headers['X-Forwarded-For'] = ip
     }
     // headers['X-Real-IP'] = '118.88.88.88'
+
+    let cookie = options.cookie || {}
+    if (typeof cookie === 'string') {
+      cookie = cookieToJson(cookie)
+    }
     if (typeof cookie === 'object') {
       let _ntes_nuid = CryptoJS.lib.WordArray.random(32).toString()
       let os = osMap[cookie.os] || osMap['iphone']
@@ -69,13 +95,16 @@ const createRequest = (uri, data, options) => {
         __remember_me: 'true',
         // NMTID: CryptoJS.lib.WordArray.random(16).toString(),
         ntes_kaola_ad: '1',
-        _ntes_nuid: _ntes_nuid,
-        _ntes_nnid: `${_ntes_nuid},${Date.now().toString()}`,
+        _ntes_nuid: cookie._ntes_nuid || _ntes_nuid,
+        _ntes_nnid:
+          cookie._ntes_nnid || `${_ntes_nuid},${Date.now().toString()}`,
+        WNMCID: cookie.WNMCID || WNMCID,
+        WEVNSM: cookie.WEVNSM || '1.0.0',
 
         osver: cookie.osver || os.osver,
         deviceId: cookie.deviceId || global.deviceId,
         os: cookie.os || os.os,
-        channel: cookie.channel || 'netease',
+        channel: cookie.channel || os.channel,
         appver: cookie.appver || os.appver,
       }
       if (uri.indexOf('login') === -1) {
@@ -83,9 +112,7 @@ const createRequest = (uri, data, options) => {
       }
       if (!cookie.MUSIC_U) {
         // 游客
-        if (!cookie.MUSIC_A) {
-          cookie.MUSIC_A = anonymous_token
-        }
+        cookie.MUSIC_A = cookie.MUSIC_A || anonymous_token
       }
       headers['Cookie'] = cookieObjToString(cookie)
     }
@@ -116,13 +143,13 @@ const createRequest = (uri, data, options) => {
 
       case 'linuxapi':
         headers['User-Agent'] =
-          'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36'
+          options.ua || chooseUserAgent('linuxapi', 'linux')
         encryptData = encrypt.linuxapi({
           method: 'POST',
-          url: APP_CONF.apiDomain + uri,
+          url: APP_CONF.domain + uri,
           params: data,
         })
-        url = APP_CONF.apiDomain + '/api/linux/forward'
+        url = APP_CONF.domain + '/api/linux/forward'
         break
 
       case 'eapi':
@@ -131,14 +158,14 @@ const createRequest = (uri, data, options) => {
         const header = {
           osver: cookie.osver, //系统版本
           deviceId: cookie.deviceId,
-          os: cookie.os,
+          os: cookie.os, //系统类型
           appver: cookie.appver, // app版本
           versioncode: cookie.versioncode || '140', //版本号
           mobilename: cookie.mobilename || '', //设备model
           buildver: cookie.buildver || Date.now().toString().substr(0, 10),
           resolution: cookie.resolution || '1920x1080', //设备分辨率
           __csrf: csrfToken,
-          channel: cookie.channel,
+          channel: cookie.channel, //下载渠道
           requestId: `${Date.now()}_${Math.floor(Math.random() * 1000)
             .toString()
             .padStart(4, '0')}`,
@@ -151,7 +178,7 @@ const createRequest = (uri, data, options) => {
               encodeURIComponent(key) + '=' + encodeURIComponent(header[key]),
           )
           .join('; ')
-        headers['User-Agent'] = options.ua || chooseUserAgent('api')
+        headers['User-Agent'] = options.ua || chooseUserAgent('api', 'iphone')
 
         if (crypto === 'eapi') {
           // 使用eapi加密

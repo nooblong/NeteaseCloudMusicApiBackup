@@ -73,12 +73,18 @@
       max-height: 80vh; /* 设置最大高度 */
       overflow-y: auto; /* 启用垂直滚动条 */
     }
+    
+    .version {
+      margin-top: 0.5em;
+      font-size: 1.0em;
+      color: #666;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h1>网易云音乐 API</h1>
+    <h1>网易云音乐 API <span id="api-version"></span></h1>
     <p>当你看到这个页面时，这个服务已经成功跑起来了~</p>
     <p class="current-url"><span id="current-url"></span></p>
     <a href="/docs">查看文档</a>
@@ -95,6 +101,7 @@
     </ul>
   </div>
 
+  <script src="https://fastly.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const currentUrlElement = document.getElementById('current-url');
@@ -109,6 +116,18 @@
         number.textContent = (i + 1) + '. ';
         items[i].prepend(number);
       }
+      
+      // 获取API版本号
+      axios({
+        url: '/inner/version',
+        method: 'post',
+        data: {},
+      }).then((res) => {
+        const body = res.data;
+        const version = body.data.version;
+        const apiVersionElement = document.getElementById('api-version');
+        apiVersionElement.textContent = ` v${version}`;
+      });
     });
   </script>
 </body>

@@ -318,6 +318,7 @@
 300. 听歌足迹 - 本周/本月收听时长
 301. 听歌足迹 - 周/月/年收听报告
 302. 歌单导入 - 元数据/文字/链接导入
+303. 歌单导入 - 任务状态
 
 ## 安装
 
@@ -4975,6 +4976,18 @@ let link = encodeURIComponent(
 3. 直接复制文章链接
 
 **调用例子 :** `/playlist/import/name/task/create?link=${link}`
+
+### 歌单导入 - 任务状态
+
+说明: 调用此接口, 传入导入歌单任务id, 获取任务状态
+
+**必选参数：**     
+
+`id`: 任务id
+
+**接口地址:** `/playlist/import/task/status`
+
+**调用例子:** `/playlist/import/task/status?id=123834369`
 
 ## 离线访问此文档
 

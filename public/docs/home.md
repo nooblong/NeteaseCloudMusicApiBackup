@@ -317,6 +317,7 @@
 299. 听歌足迹 - 总收听时长
 300. 听歌足迹 - 本周/本月收听时长
 301. 听歌足迹 - 周/月/年收听报告
+302. 歌单导入 - 元数据/文字/链接导入
 
 ## 安装
 
@@ -4611,9 +4612,9 @@ qrCodeStatus:20,detailReason:0  验证成功qrCodeStatus:21,detailReason:0 二�
 
 `id`: 歌曲id
 
-**接口地址:** `song/music/detail`
+**接口地址:** `/song/music/detail`
 
-**调用例子:** `song/music/detail?id=2082700997`
+**调用例子:** `/song/music/detail?id=2082700997`
 
 返回字段说明 :
 ```
@@ -4914,6 +4915,66 @@ bitrate = Math.floor(br / 1000)
 **接口地址 :** `/listen/data/report`
 
 **调用例子 :** `/listen/data/report?type=month`
+
+### 歌单导入 - 元数据/文字/链接导入
+
+说明 : 登录后调用此接口, 支持通过元数据/文字/链接三种方式生成歌单; 三种方式不可同时调用
+
+**接口地址 :** `/playlist/import/name/task/create`
+
+**可选参数 :**
+
+`importStarPlaylist` : 是否导入`我喜欢的音乐`
+
+**元数据导入 :**  
+
+`local`: json类型的字符串, 如：
+```javascript
+let local = encodeURIComponent(
+  JSON.stringify([
+    {
+      name: 'アイニーブルー', // 歌曲名称
+      artist: 'ZLMS',        // 艺术家名称
+      album: 'アイニーブルー',// 专辑名称
+    },
+    {
+      name: 'ファンタズマ',
+      artist: 'sasakure.UK',
+      album: '未来イヴ',
+    },
+  ]),
+)
+```
+
+**调用例子 :** `/playlist/import/name/task/create?local=${local}`
+
+**文字导入 :**  
+
+`text`: 导入的文字, 如：
+```javascript
+let text = encodeURIComponent(`アイニーブルー ZLMS
+ファンタズマ sasakure.UK`)
+```
+
+**调用例子 :** `/playlist/import/name/task/create?text=${text}`
+
+**链接导入 :**  
+
+`link`: 存有歌单链接的数组类型的字符串, 如：
+```javascript
+let link = encodeURIComponent(
+  JSON.stringify([
+    'https://i.y.qq.com/n2/m/share/details/taoge.html?id=7716341988&hosteuin=',
+    'https://i.y.qq.com/n2/m/share/details/taoge.html?id=8010042041&hosteuin=',
+  ]),
+)
+```
+歌单链接来源:
+1. 将歌单分享到微信/微博/QQ后复制链接
+2. 直接复制歌单/个人主页链接
+3. 直接复制文章链接
+
+**调用例子 :** `/playlist/import/name/task/create?link=${link}`
 
 ## 离线访问此文档
 

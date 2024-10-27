@@ -4929,7 +4929,8 @@ bitrate = Math.floor(br / 1000)
 
 **可选参数 :**
 
-`importStarPlaylist` : 是否导入`我喜欢的音乐`
+`importStarPlaylist` : 是否导入`我喜欢的音乐`, 此项为true则不生成新的歌单
+`playlistName` : 生成的歌单名, 仅文字导入和链接导入支持, 默认为```'导入音乐 '.concat(new Date().toLocaleString())```
 
 **元数据导入 :**  
 

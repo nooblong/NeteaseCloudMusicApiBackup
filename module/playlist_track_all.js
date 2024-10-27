@@ -25,11 +25,7 @@ module.exports = (query, request) => {
           ']',
       }
 
-      return request(
-        `/api/v3/song/detail`,
-        idsData,
-        createOption(query, 'weapi'),
-      )
+      return request(`/api/v3/song/detail`, idsData, createOption(query))
     },
   )
 }

@@ -10,5 +10,5 @@ module.exports = (query, request) => {
     nickname: query.nickname,
     countrycode: query.countrycode || '86',
   }
-  return request(`/api/register/cellphone`, data, createOption(query, 'weapi'))
+  return request(`/api/register/cellphone`, data, createOption(query))
 }

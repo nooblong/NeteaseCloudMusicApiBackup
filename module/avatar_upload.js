@@ -7,7 +7,7 @@ module.exports = async (query, request) => {
     {
       imgid: uploadInfo.imgId,
     },
-    createOption(query, 'weapi'),
+    createOption(query),
   )
   return {
     status: 200,

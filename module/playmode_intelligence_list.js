@@ -9,9 +9,5 @@ module.exports = (query, request) => {
     startMusicId: query.sid || query.id,
     count: query.count || 1,
   }
-  return request(
-    `/api/playmode/intelligence/list`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/playmode/intelligence/list`, data, createOption(query))
 }

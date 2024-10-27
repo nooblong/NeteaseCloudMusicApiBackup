@@ -5,9 +5,5 @@ module.exports = (query, request) => {
   const data = {
     id: query.id,
   }
-  return request(
-    `/api/playlist/update/playcount`,
-    data,
-    createOption(query, 'weapi'),
-  )
+  return request(`/api/playlist/update/playcount`, data, createOption(query))
 }

@@ -1,4 +1,4 @@
-// 动态
+// 获取动态列表
 
 const createOption = require('../util/option.js')
 module.exports = (query, request) => {

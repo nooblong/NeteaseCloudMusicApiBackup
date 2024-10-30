@@ -11,5 +11,5 @@ module.exports = (query, request) => {
     province: query.province,
     signature: query.signature,
   }
-  return request(`/api/user/profile/update`, data, createOption(query, 'weapi'))
+  return request(`/api/user/profile/update`, data, createOption(query))
 }

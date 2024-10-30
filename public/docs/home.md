@@ -80,7 +80,7 @@
 62. 电台 - 详情
 63. 电台 - 节目
 64. 给评论点赞
-65. 获取动态
+65. 获取动态列表
 66. 热搜列表(简略)
 67. 发送私信
 68. 发送私信歌单
@@ -89,7 +89,7 @@
 71. 歌单分类
 72. 收藏的歌手列表
 73. 订阅的电台列表
-74. 相关歌单推荐
+74. 相关歌单
 75. 付费精选接口
 76. 音乐是否可用检查接口
 77. 登录状态
@@ -319,6 +319,8 @@
 301. 听歌足迹 - 周/月/年收听报告
 302. 歌单导入 - 元数据/文字/链接导入
 303. 歌单导入 - 任务状态
+304. 副歌时间
+305. 相关歌单推荐
 
 ## 安装
 
@@ -1225,7 +1227,7 @@ tags: 歌单标签
 
 **调用例子 :** `/playmode/intelligence/list?id=33894312&pid=24381616` , `/playmode/intelligence/list?id=33894312&pid=24381616&sid=36871368`
 
-### 获取动态消息
+### 获取动态列表
 
 说明 : 调用此接口 , 可获取各种动态 , 对应网页版网易云，朋友界面里的各种动态消息
 ，如分享的视频，音乐，照片等！
@@ -1441,15 +1443,17 @@ tags: 歌单标签
 
 **调用例子 :** `/top/playlist/highquality?before=1503639064232&limit=3`
 
-### 相关歌单推荐
+### 相关歌单
 
-说明 : 调用此接口,传入歌单 id 可获取相关歌单(对应页面 [https://music.163.com/#/playlist?id=1](https://music.163.com/#/playlist?id=1))
+说明: 请替换为[相关歌单推荐](#相关歌单推荐)接口; 本接口通过html抓取内容, 现已无法抓取歌单
 
-**必选参数 :** `id` : 歌单 id
+~~说明 : 调用此接口,传入歌单 id 可获取相关歌单(对应页面 [https://music.163.com/#/playlist?id=1](https://music.163.com/#/playlist?id=1))~~
 
-**接口地址 :** `/related/playlist`
+~~**必选参数 :** `id` : 歌单 id~~
 
-**调用例子 :** `/related/playlist?id=1`
+~~**接口地址 :** `/related/playlist`~~
+
+~~**调用例子 :** `/related/playlist?id=1`~~
 
 ### 获取歌单详情
 
@@ -4925,7 +4929,8 @@ bitrate = Math.floor(br / 1000)
 
 **可选参数 :**
 
-`importStarPlaylist` : 是否导入`我喜欢的音乐`
+`importStarPlaylist` : 是否导入`我喜欢的音乐`, 此项为true则不生成新的歌单
+`playlistName` : 生成的歌单名, 仅文字导入和链接导入支持, 默认为```'导入音乐 '.concat(new Date().toLocaleString())```
 
 **元数据导入 :**  
 
@@ -4988,6 +4993,30 @@ let link = encodeURIComponent(
 **接口地址:** `/playlist/import/task/status`
 
 **调用例子:** `/playlist/import/task/status?id=123834369`
+
+### 副歌时间
+
+说明: 调用此接口, 传入歌曲id, 获取副歌时间
+
+**必选参数：**     
+
+`id`: 歌曲id
+
+**接口地址:** `/song/chorus`
+
+**调用例子:** `/song/chorus?id=2058263032`
+
+### 相关歌单推荐
+
+说明: 调用此接口, 传入歌单id, 获取相关歌单推荐
+
+**必选参数：**     
+
+`id`: 歌单id
+
+**接口地址:** `/playlist/detail/rcmd/get`
+
+**调用例子:** `/playlist/detail/rcmd/get?id=8039587836`
 
 ## 离线访问此文档
 

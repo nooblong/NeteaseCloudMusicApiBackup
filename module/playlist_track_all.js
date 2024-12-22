@@ -9,7 +9,7 @@ module.exports = (query, request) => {
     s: query.s || 8,
   }
   //不放在data里面避免请求带上无用的数据
-  let limit = parseInt(query.limit) || Infinity
+  let limit = parseInt(query.limit) || 1000
   let offset = parseInt(query.offset) || 0
 
   return request(`/api/v6/playlist/detail`, data, createOption(query)).then(

@@ -321,6 +321,10 @@
 303. 歌单导入 - 任务状态
 304. 副歌时间
 305. 相关歌单推荐
+306. 歌词摘录 - 歌词摘录信息
+307. 歌词摘录 - 我的歌词本
+308. 歌词摘录 - 添加/修改摘录歌词
+309. 歌词摘录 - 删除摘录歌词
 
 ## 安装
 
@@ -5017,6 +5021,70 @@ let link = encodeURIComponent(
 **接口地址:** `/playlist/detail/rcmd/get`
 
 **调用例子:** `/playlist/detail/rcmd/get?id=8039587836`
+
+### 歌词摘录 - 歌词摘录信息
+
+说明: 登录后调用此接口, 传入歌曲id, 获取歌词摘录信息
+
+**必选参数：**
+
+`id`: 歌曲id
+
+**接口地址:** `/song/lyrics/mark`
+
+**调用例子:** `/song/lyrics/mark?id=2058263032`
+
+### 歌词摘录 - 我的歌词本
+
+说明: 登录后调用此接口, 获取我的歌词本
+
+**可选参数 :**
+
+`limit` : 返回数量 , 默认为 20
+
+`offset` : 偏移数量，用于分页 ,如 :( 页数 -1)\*30, 其中 30 为 limit 的值 , 默认为 0
+
+**接口地址:** `/song/lyrics/mark/user/page`
+
+**调用例子:** `/song/lyrics/mark/user/page`
+
+### 歌词摘录 - 添加/修改摘录歌词
+
+说明: 登录后调用此接口, 传入歌曲id, 可以添加/修改摘录歌词
+
+**必选参数：**
+
+`id`: 歌曲id
+
+`data`: 存储歌词摘录信息的对象数组的字符串，如: 
+```javascript
+let data = encodeURIComponent(
+  JSON.stringify([
+  {
+    "translateType": 1,
+    "startTimeStamp": 800,
+    "translateLyricsText": "让我逃走吧、声音已经枯萎",
+    "originalLyricsText": "逃がし てくれって声を枯らした"
+  }
+]),
+)
+```
+
+若需要修改摘录信息, 则需要填入参数```markId```, 修改对应的摘录信息
+
+**接口地址:** `/song/lyrics/mark/add`
+
+### 歌词摘录 - 删除摘录歌词
+
+说明: 登录后调用此接口, 传入摘录歌词id, 删除摘录歌词
+
+**必选参数：**
+
+`id`: 摘录歌词id
+
+**接口地址:** `/song/lyrics/mark/del`
+
+**调用例子:** `/song/lyrics/mark?id=2083850`
 
 ## 离线访问此文档
 
